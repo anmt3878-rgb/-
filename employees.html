@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SHIZAZ AI - Employees</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#0b1120;
+    color:#fff;
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:240px;
+    background:#111827;
+    padding:25px 15px;
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    overflow-y:auto;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:35px;
+    padding-left:12px;
+}
+
+.logo span{
+    color:#38bdf8;
+}
+
+.nav a{
+    display:block;
+    text-decoration:none;
+    color:#94a3b8;
+    padding:13px 14px;
+    border-radius:10px;
+    margin-bottom:7px;
+    transition:.2s;
+}
+
+.nav a:hover,
+.nav a.active{
+    background:#1e293b;
+    color:#fff;
+}
+
+.logout{
+    width:100%;
+    margin-top:20px;
+    padding:12px;
+    background:#1e293b;
+    color:#f87171;
+    border:1px solid #334155;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.logout:hover{
+    background:#263449;
+}
+
+/* MAIN */
+.main{
+    margin-left:240px;
+    width:calc(100% - 240px);
+    padding:30px;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+    gap:20px;
+}
+
+.top h1{
+    font-size:30px;
+}
+
+.top p{
+    color:#94a3b8;
+    margin-top:7px;
+}
+
+.top-right{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.user-email{
+    color:#94a3b8;
+    font-size:13px;
+    max-width:220px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.add-btn{
+    background:#38bdf8;
+    color:#06111d;
+    border:0;
+    padding:13px 20px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.add-btn:hover{
+    opacity:.9;
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:#111827;
+    border:1px solid #1e293b;
+    border-radius:15px;
+    padding:22px;
+}
+
+.stat-title{
+    color:#94a3b8;
+    font-size:14px;
+}
+
+.stat-number{
+    font-size:28px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.stat-green{
+    color:#22c55e;
+}
+
+.stat-yellow{
+    color:#facc15;
+}
+
+/* SEARCH */
+.search{
+    width:100%;
+    padding:15px;
+    background:#111827;
+    border:1px solid #263449;
+    color:white;
+    border-radius:10px;
+    margin-bottom:20px;
+    outline:none;
+}
+
+.search:focus{
+    border-color:#38bdf8;
+}
+
+/* TABLE */
+.table-box{
+    background:#111827;
+    border:1px solid #1e293b;
+    border-radius:15px;
+    overflow:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:750px;
+}
+
+th,td{
+    padding:17px;
+    text-align:left;
+    border-bottom:1px solid #1e293b;
+}
+
+th{
+    color:#94a3b8;
+    font-size:13px;
+}
+
+td{
+    color:#e2e8f0;
+}
+
+.status{
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    display:inline-block;
+}
+
+.active-status{
+    background:#12351f;
+    color:#4ade80;
+}
+
+.leave-status{
+    background:#3b2d08;
+    color:#facc15;
+}
+
+.action-btn{
+    border:0;
+    padding:7px 10px;
+    border-radius:7px;
+    cursor:pointer;
+    margin-right:5px;
+}
+
+.edit{
+    background:#1e3a5f;
+    color:#7dd3fc;
+}
+
+.delete{
+    background:#451a1a;
+    color:#f87171;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:1000;
+}
+
+.modal-box{
+    background:#111827;
+    width:100%;
+    max-width:450px;
+    padding:25px;
+    border-radius:16px;
+    border:1px solid #263449;
+}
+
+.modal-box h2{
+    margin-bottom:20px;
+}
+
+.modal-box input,
+.modal-box select{
+    width:100%;
+    padding:13px;
+    margin-bottom:12px;
+    background:#0b1120;
+    color:#fff;
+    border:1px solid #263449;
+    border-radius:8px;
+}
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+}
+
+.save-btn,
+.cancel-btn{
+    flex:1;
+    padding:12px;
+    border:0;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.save-btn{
+    background:#38bdf8;
+}
+
+.cancel-btn{
+    background:#334155;
+    color:#fff;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+    .sidebar{
+        width:190px;
+    }
+
+    .main{
+        margin-left:190px;
+        width:calc(100% - 190px);
+        padding:20px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .user-email{
+        max-width:150px;
+    }
+}
+
+@media(max-width:600px){
+
+    .sidebar{
+        width:70px;
+        padding:20px 8px;
+    }
+
+    .logo{
+        font-size:0;
+        padding:0;
+        text-align:center;
+    }
+
+    .logo span{
+        font-size:20px;
+    }
+
+    .nav a{
+        font-size:0;
+        text-align:center;
+        padding:14px 5px;
+    }
+
+    .nav a:first-letter{
+        font-size:18px;
+    }
+
+    .logout{
+        font-size:0;
+        padding:12px 5px;
+    }
+
+    .logout:first-letter{
+        font-size:18px;
+    }
+
+    .main{
+        margin-left:70px;
+        width:calc(100% - 70px);
+        padding:15px;
+    }
+
+    .top{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .top h1{
+        font-size:23px;
+    }
+
+    .top-right{
+        width:100%;
+        justify-content:space-between;
+    }
+
+    .user-email{
+        display:none;
+    }
+
+    .add-btn{
+        padding:10px 12px;
+        font-size:12px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .stat{
+        padding:15px;
+    }
+
+    .stat-number{
+        font-size:21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PROTECTION -->
+<script>
+if(localStorage.getItem("shizaz_logged_in") !== "true"){
+    window.location.href = "login.html";
+}
+</script>
+
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="logo">
+        SHIZAZ<span>AI</span>
+    </div>
+
+    <div class="nav">
+
+        <a href="dashboard.html">
+            📊 Dashboard
+        </a>
+
+        <a href="ai.html">
+            🤖 AI Assistant
+        </a>
+
+        <a href="analytics.html">
+            📈 Analytics
+        </a>
+
+        <a href="automation.html">
+            ⚙️ Automation
+        </a>
+
+        <a href="employees.html" class="active">
+            👥 Employees
+        </a>
+
+        <!-- CUSTOMERS -->
+        <a href="customers.html">
+            👤 Customers
+        </a>
+
+        <a href="security.html">
+            🔐 Security
+        </a>
+
+        <a href="integrations.html">
+            🔌 Integrations
+        </a>
+
+        <a href="billing.html">
+            💳 Billing
+        </a>
+
+        <a href="settings.html">
+            ⚙️ Settings
+        </a>
+
+        <button class="logout" onclick="logout()">
+            🚪 Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+<div class="main">
+
+    <div class="top">
+
+        <div>
+            <h1>Employees</h1>
+            <p>Manage your company's workforce.</p>
+        </div>
+
+        <div class="top-right">
+
+            <div class="user-email" id="userEmail">
+                user@example.com
+            </div>
+
+            <button class="add-btn" onclick="openModal()">
+                + Add Employee
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATS -->
+    <div class="stats">
+
+        <div class="stat">
+            <div class="stat-title">Total Employees</div>
+            <div class="stat-number" id="totalEmployees">486</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-title">Active Employees</div>
+            <div class="stat-number stat-green" id="activeEmployees">472</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-title">On Leave</div>
+            <div class="stat-number stat-yellow" id="leaveEmployees">14</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-title">Departments</div>
+            <div class="stat-number">12</div>
+        </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+    <input
+        class="search"
+        id="searchInput"
+        type="text"
+        placeholder="🔍 Search employees..."
+        onkeyup="searchEmployees()"
+    >
+
+
+    <!-- TABLE -->
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Department</th>
+                    <th>Status</th>
+                    <th>Salary</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="employeeTable">
+
+                <tr>
+                    <td>John Carter</td>
+                    <td>Chief Executive Officer</td>
+                    <td>Management</td>
+                    <td>
+                        <span class="status active-status">
+                            Active
+                        </span>
+                    </td>
+                    <td>$18,500</td>
+                    <td>
+                        <button
+                            class="action-btn edit"
+                            onclick="editEmployee(this)">
+                            Edit
+                        </button>
+
+                        <button
+                            class="action-btn delete"
+                            onclick="deleteEmployee(this)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Sarah Wilson</td>
+                    <td>Finance Director</td>
+                    <td>Finance</td>
+                    <td>
+                        <span class="status active-status">
+                            Active
+                        </span>
+                    </td>
+                    <td>$12,800</td>
+                    <td>
+                        <button
+                            class="action-btn edit"
+                            onclick="editEmployee(this)">
+                            Edit
+                        </button>
+
+                        <button
+                            class="action-btn delete"
+                            onclick="deleteEmployee(this)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Michael Brown</td>
+                    <td>AI Engineer</td>
+                    <td>Technology</td>
+                    <td>
+                        <span class="status active-status">
+                            Active
+                        </span>
+                    </td>
+                    <td>$11,500</td>
+                    <td>
+                        <button
+                            class="action-btn edit"
+                            onclick="editEmployee(this)">
+                            Edit
+                        </button>
+
+                        <button
+                            class="action-btn delete"
+                            onclick="deleteEmployee(this)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Emily Johnson</td>
+                    <td>Marketing Manager</td>
+                    <td>Marketing</td>
+                    <td>
+                        <span class="status leave-status">
+                            On Leave
+                        </span>
+                    </td>
+                    <td>$8,900</td>
+                    <td>
+                        <button
+                            class="action-btn edit"
+                            onclick="editEmployee(this)">
+                            Edit
+                        </button>
+
+                        <button
+                            class="action-btn delete"
+                            onclick="deleteEmployee(this)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL -->
+<div class="modal" id="employeeModal">
+
+    <div class="modal-box">
+
+        <h2>Add Employee</h2>
+
+        <input
+            id="employeeName"
+            type="text"
+            placeholder="Employee name"
+        >
+
+        <input
+            id="employeePosition"
+            type="text"
+            placeholder="Position"
+        >
+
+        <input
+            id="employeeDepartment"
+            type="text"
+            placeholder="Department"
+        >
+
+        <select id="employeeStatus">
+
+            <option value="Active">
+                Active
+            </option>
+
+            <option value="On Leave">
+                On Leave
+            </option>
+
+        </select>
+
+        <input
+            id="employeeSalary"
+            type="text"
+            placeholder="Salary"
+        >
+
+        <div class="modal-actions">
+
+            <button
+                class="save-btn"
+                onclick="addEmployee()">
+                Add Employee
+            </button>
+
+            <button
+                class="cancel-btn"
+                onclick="closeModal()">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* SHOW LOGGED-IN EMAIL */
+
+const email =
+    localStorage.getItem("shizaz_user_email");
+
+if(email){
+
+    document.getElementById("userEmail").textContent =
+        email;
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+    localStorage.removeItem("shizaz_logged_in");
+
+    localStorage.removeItem("shizaz_user_email");
+
+    window.location.href = "login.html";
+
+}
+
+
+/* OPEN MODAL */
+
+function openModal(){
+
+    document
+        .getElementById("employeeModal")
+        .style.display = "flex";
+
+}
+
+
+/* CLOSE MODAL */
+
+function closeModal(){
+
+    document
+        .getElementById("employeeModal")
+        .style.display = "none";
+
+}
+
+
+/* ADD EMPLOYEE */
+
+function addEmployee(){
+
+    let name =
+        document.getElementById("employeeName").value.trim();
+
+    let position =
+        document.getElementById("employeePosition").value.trim();
+
+    let department =
+        document.getElementById("employeeDepartment").value.trim();
+
+    let status =
+        document.getElementById("employeeStatus").value;
+
+    let salary =
+        document.getElementById("employeeSalary").value.trim();
+
+
+    if(
+        name === "" ||
+        position === "" ||
+        department === "" ||
+        salary === ""
+    ){
+
+        alert("Please fill all fields.");
+
+        return;
+
+    }
+
+
+    let statusClass =
+        status === "Active"
+        ? "active-status"
+        : "leave-status";
+
+
+    let row =
+        document.createElement("tr");
+
+
+    row.innerHTML = `
+
+        <td>${name}</td>
+
+        <td>${position}</td>
+
+        <td>${department}</td>
+
+        <td>
+            <span class="status ${statusClass}">
+                ${status}
+            </span>
+        </td>
+
+        <td>${salary}</td>
+
+        <td>
+
+            <button
+                class="action-btn edit"
+                onclick="editEmployee(this)">
+                Edit
+            </button>
+
+            <button
+                class="action-btn delete"
+                onclick="deleteEmployee(this)">
+                Delete
+            </button>
+
+        </td>
+
+    `;
+
+
+    document
+        .getElementById("employeeTable")
+        .appendChild(row);
+
+
+    updateStats();
+
+    closeModal();
+
+
+    document.getElementById("employeeName").value = "";
+    document.getElementById("employeePosition").value = "";
+    document.getElementById("employeeDepartment").value = "";
+    document.getElementById("employeeSalary").value = "";
+
+}
+
+
+/* DELETE */
+
+function deleteEmployee(button){
+
+    if(confirm("Delete this employee?")){
+
+        button
+            .closest("tr")
+            .remove();
+
+        updateStats();
+
+    }
+
+}
+
+
+/* EDIT */
+
+function editEmployee(button){
+
+    let row =
+        button.closest("tr");
+
+
+    let name =
+        prompt(
+            "Employee name:",
+            row.cells[0].innerText
+        );
+
+
+    if(name === null) return;
+
+
+    if(name.trim() !== ""){
+
+        row.cells[0].innerText =
+            name.trim();
+
+    }
+
+}
+
+
+/* SEARCH */
+
+function searchEmployees(){
+
+    let search =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+
+    let rows =
+        document
+            .querySelectorAll("#employeeTable tr");
+
+
+    rows.forEach(row => {
+
+        let text =
+            row.innerText.toLowerCase();
+
+
+        row.style.display =
+            text.includes(search)
+            ? ""
+            : "none";
+
+    });
+
+}
+
+
+/* UPDATE STATS */
+
+function updateStats(){
+
+    let rows =
+        document
+            .querySelectorAll("#employeeTable tr");
+
+
+    let total = rows.length;
+
+    let active = 0;
+
+    let leave = 0;
+
+
+    rows.forEach(row => {
+
+        let status =
+            row.cells[3].innerText.trim();
+
+
+        if(status === "Active"){
+            active++;
+        }
+
+
+        if(status === "On Leave"){
+            leave++;
+        }
+
+    });
+
+
+    document
+        .getElementById("totalEmployees")
+        .innerText = total;
+
+
+    document
+        .getElementById("activeEmployees")
+        .innerText = active;
+
+
+    document
+        .getElementById("leaveEmployees")
+        .innerText = leave;
+
+}
+
+
+/* CLOSE MODAL OUTSIDE */
+
+document
+    .getElementById("employeeModal")
+    .addEventListener("click", function(event){
+
+        if(event.target === this){
+
+            closeModal();
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
