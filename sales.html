@@ -1,0 +1,1473 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>SHIZAZ AI - Enterprise AI Solutions</title><style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#080d1a;
+    color:white;
+    line-height:1.6;
+}
+
+/* NAVBAR */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(8,13,26,.95);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid #202a3d;
+}
+
+.nav-container{
+    max-width:1200px;
+    margin:auto;
+    padding:18px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#6366f1;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+    align-items:center;
+}
+
+.nav-links a{
+    color:#aeb7c8;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.nav-links a:hover{
+    color:white;
+}
+
+.nav-btn{
+    background:#6366f1;
+    color:white!important;
+    padding:10px 17px;
+    border-radius:8px;
+}
+
+/* HERO */
+
+.hero{
+    max-width:1200px;
+    margin:auto;
+    padding:100px 25px 80px;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:60px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-block;
+    background:#171e35;
+    border:1px solid #303b52;
+    color:#a5b4fc;
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:12px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:58px;
+    line-height:1.05;
+    margin-bottom:22px;
+}
+
+.hero h1 span{
+    color:#6366f1;
+}
+
+.hero p{
+    color:#9ba7ba;
+    font-size:18px;
+    max-width:620px;
+    margin-bottom:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:13px 20px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.btn-primary{
+    background:#6366f1;
+    color:white;
+}
+
+.btn-secondary{
+    border:1px solid #354158;
+    color:white;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+/* HERO DASHBOARD */
+
+.hero-dashboard{
+    background:#111827;
+    border:1px solid #29354b;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 25px 70px rgba(0,0,0,.4);
+}
+
+.dash-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.dash-title{
+    font-weight:bold;
+}
+
+.live{
+    color:#4ade80;
+    font-size:12px;
+}
+
+.dash-card{
+    background:#0b1020;
+    border:1px solid #263147;
+    padding:16px;
+    border-radius:10px;
+    margin-bottom:12px;
+}
+
+.dash-label{
+    color:#8e99ad;
+    font-size:12px;
+}
+
+.dash-value{
+    font-size:25px;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.progress{
+    height:7px;
+    background:#202a3d;
+    border-radius:10px;
+    margin-top:10px;
+    overflow:hidden;
+}
+
+.progress span{
+    display:block;
+    height:100%;
+    background:#6366f1;
+    width:82%;
+}
+
+/* SECTIONS */
+
+.section{
+    max-width:1200px;
+    margin:auto;
+    padding:80px 25px;
+}
+
+.section-title{
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 45px;
+}
+
+.section-title h2{
+    font-size:38px;
+    margin-bottom:12px;
+}
+
+.section-title p{
+    color:#8e99ad;
+}
+
+/* FEATURES */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.feature{
+    background:#111827;
+    border:1px solid #263147;
+    border-radius:13px;
+    padding:25px;
+}
+
+.icon{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.feature h3{
+    margin-bottom:8px;
+}
+
+.feature p{
+    color:#8e99ad;
+    font-size:14px;
+}
+
+/* DEMO */
+
+.demo{
+    background:#0d1424;
+}
+
+.demo-box{
+    max-width:1000px;
+    margin:auto;
+    background:#111827;
+    border:1px solid #2a354b;
+    border-radius:15px;
+    padding:25px;
+}
+
+.demo-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.demo-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.demo-stat{
+    background:#0b1020;
+    border:1px solid #263147;
+    border-radius:10px;
+    padding:18px;
+}
+
+.demo-stat small{
+    color:#8995aa;
+}
+
+.demo-stat strong{
+    display:block;
+    font-size:25px;
+    margin-top:5px;
+}
+
+/* PRICING */
+
+.pricing{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.price-card{
+    background:#111827;
+    border:1px solid #29354b;
+    border-radius:15px;
+    padding:30px;
+}
+
+.price-card.featured{
+    border-color:#6366f1;
+    transform:translateY(-5px);
+}
+
+.price-card h3{
+    font-size:21px;
+}
+
+.price{
+    font-size:37px;
+    font-weight:bold;
+    margin:18px 0;
+}
+
+.price span{
+    font-size:13px;
+    color:#8995aa;
+    font-weight:normal;
+}
+
+.price-card p{
+    color:#8995aa;
+    font-size:14px;
+}
+
+.price-card ul{
+    list-style:none;
+    margin:25px 0;
+}
+
+.price-card li{
+    margin:10px 0;
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.price-card li::before{
+    content:"✓ ";
+    color:#6366f1;
+    font-weight:bold;
+}
+
+/* PROCESS */
+
+.process{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.step{
+    background:#111827;
+    border:1px solid #263147;
+    border-radius:12px;
+    padding:22px;
+}
+
+.number{
+    font-size:30px;
+    color:#6366f1;
+    font-weight:bold;
+}
+
+.step h3{
+    margin:10px 0;
+}
+
+.step p{
+    color:#8995aa;
+    font-size:14px;
+}
+
+/* CONTACT */
+
+.contact{
+    background:#111827;
+    border:1px solid #263147;
+    border-radius:18px;
+    padding:40px;
+    max-width:850px;
+    margin:auto;
+}
+
+.contact h2{
+    text-align:center;
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.contact-sub{
+    text-align:center;
+    color:#8995aa;
+    margin-bottom:30px;
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.field{
+    margin-bottom:16px;
+}
+
+.field label{
+    display:block;
+    margin-bottom:7px;
+    font-size:13px;
+    color:#cbd5e1;
+}
+
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    background:#0b1020;
+    color:white;
+    border:1px solid #303b52;
+    border-radius:8px;
+    padding:13px;
+    outline:none;
+    font-size:14px;
+}
+
+.field textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    border-color:#6366f1;
+}
+
+.submit-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#6366f1;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    background:#4f46e5;
+}
+
+.form-note{
+    text-align:center;
+    color:#69758a;
+    font-size:12px;
+    margin-top:12px;
+}
+
+.message{
+    display:none;
+    padding:12px;
+    border-radius:8px;
+    margin-top:15px;
+    text-align:center;
+    font-size:14px;
+}
+
+.success{
+    display:block;
+    background:#064e3b;
+    color:#a7f3d0;
+}
+
+.error{
+    display:block;
+    background:#7f1d1d;
+    color:#fecaca;
+}
+
+/* CTA */
+
+.cta{
+    text-align:center;
+    padding:100px 25px;
+    background:linear-gradient(180deg,#080d1a,#111827);
+}
+
+.cta h2{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.cta p{
+    color:#8995aa;
+    max-width:600px;
+    margin:0 auto 25px;
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid #202a3d;
+    padding:25px;
+    text-align:center;
+    color:#69758a;
+    font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+        padding-top:65px;
+    }
+
+    .hero h1{
+        font-size:43px;
+    }
+
+    .features,
+    .pricing{
+        grid-template-columns:1fr;
+    }
+
+    .process{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .demo-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .hero{
+        padding-left:18px;
+        padding-right:18px;
+    }
+
+    .section{
+        padding:60px 18px;
+    }
+
+    .hero h1{
+        font-size:37px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .process{
+        grid-template-columns:1fr;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .contact{
+        padding:25px 18px;
+    }
+
+    .contact h2{
+        font-size:28px;
+    }
+
+    .cta h2{
+        font-size:32px;
+    }
+}
+</style></head><body><!-- NAVBAR --><nav class="navbar"><div class="nav-container">
+
+    <div class="logo">
+        SHIZAZ <span>AI</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#features">
+            Features
+        </a>
+
+        <a href="#demo">
+            Demo
+        </a>
+
+        <a href="#pricing">
+            Pricing
+        </a>
+
+        <a href="#process">
+            Process
+        </a>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="#contact" class="nav-btn">
+            Request Demo
+        </a>
+
+    </div>
+
+</div>
+
+</nav><!-- HERO --><section class="hero"><div>
+
+    <div class="badge">
+        ENTERPRISE AI PLATFORM
+    </div>
+
+    <h1>
+        Turn Your Business Into an
+        <span>AI-Powered Enterprise.</span>
+    </h1>
+
+    <p>
+        SHIZAZ AI helps modern businesses automate operations,
+        understand their data, manage customers, and make
+        smarter decisions with enterprise artificial intelligence.
+    </p>
+
+    <div class="hero-buttons">
+
+        <a href="#contact" class="btn btn-primary">
+            Request a Demo
+        </a>
+
+        <a href="#pricing" class="btn btn-secondary">
+            View Pricing
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="hero-dashboard">
+
+    <div class="dash-top">
+
+        <div class="dash-title">
+            SHIZAZ AI Command Center
+        </div>
+
+        <div class="live">
+            ● SYSTEM ONLINE
+        </div>
+
+    </div>
+
+
+    <div class="dash-card">
+
+        <div class="dash-label">
+            AI BUSINESS HEALTH
+        </div>
+
+        <div class="dash-value">
+            94%
+        </div>
+
+        <div class="progress">
+            <span></span>
+        </div>
+
+    </div>
+
+
+    <div class="dash-card">
+
+        <div class="dash-label">
+            AUTOMATIONS
+        </div>
+
+        <div class="dash-value">
+            1,842
+        </div>
+
+    </div>
+
+
+    <div class="dash-card">
+
+        <div class="dash-label">
+            CUSTOMER VALUE
+        </div>
+
+        <div class="dash-value">
+            $8.42M
+        </div>
+
+    </div>
+
+</div>
+
+</section><!-- FEATURES --><section class="section" id="features"><div class="section-title">
+
+    <h2>
+        Everything Your Business Needs
+    </h2>
+
+    <p>
+        One intelligent platform for managing and automating
+        your modern enterprise.
+    </p>
+
+</div>
+
+
+<div class="features">
+
+    <div class="feature">
+
+        <div class="icon">
+            🤖
+        </div>
+
+        <h3>
+            AI Assistant
+        </h3>
+
+        <p>
+            Get intelligent answers, recommendations,
+            business insights and decision support.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="icon">
+            📊
+        </div>
+
+        <h3>
+            Business Analytics
+        </h3>
+
+        <p>
+            Monitor revenue, profit, customers,
+            performance and important business metrics.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="icon">
+            ⚙️
+        </div>
+
+        <h3>
+            Automation
+        </h3>
+
+        <p>
+            Automate repetitive business processes
+            and improve operational efficiency.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="icon">
+            👥
+        </div>
+
+        <h3>
+            Customer Management
+        </h3>
+
+        <p>
+            Organize customer information,
+            opportunities and sales activities.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="icon">
+            🔐
+        </div>
+
+        <h3>
+            Enterprise Security
+        </h3>
+
+        <p>
+            Centralized security controls and
+            visibility for enterprise environments.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="icon">
+            🔗
+        </div>
+
+        <h3>
+            Integrations
+        </h3>
+
+        <p>
+            Connect your business tools and
+            services through a centralized platform.
+        </p>
+
+    </div>
+
+</div>
+
+</section><!-- DEMO --><section class="demo" id="demo"><div class="section">
+
+    <div class="section-title">
+
+        <h2>
+            SHIZAZ AI Command Center
+        </h2>
+
+        <p>
+            A unified view of your business intelligence.
+        </p>
+
+    </div>
+
+
+    <div class="demo-box">
+
+        <div class="demo-header">
+
+            <strong>
+                Executive Overview
+            </strong>
+
+            <span class="live">
+                ● Live Demo
+            </span>
+
+        </div>
+
+
+        <div class="demo-grid">
+
+            <div class="demo-stat">
+
+                <small>
+                    Revenue
+                </small>
+
+                <strong>
+                    $2.84M
+                </strong>
+
+            </div>
+
+
+            <div class="demo-stat">
+
+                <small>
+                    Net Profit
+                </small>
+
+                <strong>
+                    $846K
+                </strong>
+
+            </div>
+
+
+            <div class="demo-stat">
+
+                <small>
+                    Customers
+                </small>
+
+                <strong>
+                    12,482
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section><!-- PRICING --><section class="section" id="pricing"><div class="section-title">
+
+    <h2>
+        Enterprise Pricing
+    </h2>
+
+    <p>
+        Choose the level of AI infrastructure your business needs.
+    </p>
+
+</div>
+
+
+<div class="pricing">
+
+
+    <div class="price-card">
+
+        <h3>
+            Starter
+        </h3>
+
+        <div class="price">
+            $2,500
+            <span>/month</span>
+        </div>
+
+        <p>
+            For growing businesses.
+        </p>
+
+        <ul>
+
+            <li>
+                AI Assistant
+            </li>
+
+            <li>
+                Business Analytics
+            </li>
+
+            <li>
+                Basic Automation
+            </li>
+
+            <li>
+                Customer Management
+            </li>
+
+            <li>
+                Email Support
+            </li>
+
+        </ul>
+
+        <a href="#contact" class="btn btn-primary">
+            Get Started
+        </a>
+
+    </div>
+
+
+    <div class="price-card featured">
+
+        <h3>
+            Enterprise
+        </h3>
+
+        <div class="price">
+            $25,000
+            <span>/month</span>
+        </div>
+
+        <p>
+            For established organizations.
+        </p>
+
+        <ul>
+
+            <li>
+                Advanced AI
+            </li>
+
+            <li>
+                Advanced Analytics
+            </li>
+
+            <li>
+                Advanced Automation
+            </li>
+
+            <li>
+                CRM & Customer Intelligence
+            </li>
+
+            <li>
+                Enterprise Security
+            </li>
+
+            <li>
+                Priority Support
+            </li>
+
+        </ul>
+
+        <a href="#contact" class="btn btn-primary">
+            Request Demo
+        </a>
+
+    </div>
+
+
+    <div class="price-card">
+
+        <h3>
+            Global Enterprise
+        </h3>
+
+        <div class="price">
+            Custom
+        </div>
+
+        <p>
+            For global organizations and large AI deployments.
+        </p>
+
+        <ul>
+
+            <li>
+                Custom AI Infrastructure
+            </li>
+
+            <li>
+                Global Deployment
+            </li>
+
+            <li>
+                Custom Integrations
+            </li>
+
+            <li>
+                Dedicated Support
+            </li>
+
+            <li>
+                Custom SLA
+            </li>
+
+        </ul>
+
+        <a href="#contact" class="btn btn-primary">
+            Contact Sales
+        </a>
+
+    </div>
+
+</div>
+
+</section><!-- PROCESS --><section class="section" id="process"><div class="section-title">
+
+    <h2>
+        How It Works
+    </h2>
+
+    <p>
+        From business discovery to AI-powered operations.
+    </p>
+
+</div>
+
+
+<div class="process">
+
+    <div class="step">
+
+        <div class="number">
+            01
+        </div>
+
+        <h3>
+            Discovery
+        </h3>
+
+        <p>
+            We understand your business,
+            workflows and goals.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="number">
+            02
+        </div>
+
+        <h3>
+            Design
+        </h3>
+
+        <p>
+            We design the AI solution
+            around your business requirements.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="number">
+            03
+        </div>
+
+        <h3>
+            Development
+        </h3>
+
+        <p>
+            AI tools, automation,
+            dashboards and integrations are developed.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="number">
+            04
+        </div>
+
+        <h3>
+            Launch
+        </h3>
+
+        <p>
+            Your AI platform is deployed
+            and prepared for business operations.
+        </p>
+
+    </div>
+
+</div>
+
+</section><!-- CONTACT / REQUEST DEMO --><section class="section" id="contact"><div class="contact">
+
+    <h2>
+        Request a SHIZAZ AI Demo
+    </h2>
+
+    <p class="contact-sub">
+        Tell us about your business and our sales team
+        can review your requirements.
+    </p>
+
+
+    <form id="demoForm">
+
+
+        <div class="form-row">
+
+            <div class="field">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="John Smith"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Company Name
+                </label>
+
+                <input
+                    type="text"
+                    id="company"
+                    placeholder="Your Company"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-row">
+
+            <div class="field">
+
+                <label>
+                    Business Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="you@company.com"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="+1 555 000 0000"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Select Solution
+            </label>
+
+            <select id="plan" required>
+
+                <option value="">
+                    Select a solution
+                </option>
+
+                <option value="Starter - $2,500/month">
+                    Starter - $2,500/month
+                </option>
+
+                <option value="Enterprise - $25,000/month">
+                    Enterprise - $25,000/month
+                </option>
+
+                <option value="Global Enterprise - Custom">
+                    Global Enterprise - Custom
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Tell Us About Your Business
+            </label>
+
+            <textarea
+                id="businessMessage"
+                placeholder="Tell us about your business, your current challenges, and what you would like SHIZAZ AI to help you automate."
+                required
+            ></textarea>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="submit-btn"
+        >
+            Submit Demo Request
+        </button>
+
+
+        <div
+            id="formMessage"
+            class="message"
+        ></div>
+
+
+        <div class="form-note">
+            Demo form only — submissions are currently stored in this browser.
+        </div>
+
+    </form>
+
+</div>
+
+</section><!-- CTA --><section class="cta"><h2>
+    Ready to Build Your AI-Powered Business?
+</h2>
+
+<p>
+    Start a conversation with SHIZAZ AI and explore
+    how artificial intelligence can transform your organization.
+</p>
+
+<a href="#contact" class="btn btn-primary">
+    Request Your Demo
+</a>
+
+</section><!-- FOOTER --><footer>© 2026 SHIZAZ AI. All rights reserved.
+
+</footer><script>
+
+/* DEMO FORM */
+
+document
+.getElementById("demoForm")
+.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const company =
+        document.getElementById("company").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const plan =
+        document.getElementById("plan").value;
+
+    const message =
+        document
+        .getElementById("businessMessage")
+        .value
+        .trim();
+
+
+    const formMessage =
+        document.getElementById("formMessage");
+
+
+    /* CHECK */
+
+    if(
+        !name ||
+        !company ||
+        !email ||
+        !phone ||
+        !plan ||
+        !message
+    ){
+
+        formMessage.className =
+            "message error";
+
+        formMessage.textContent =
+            "Please complete all fields.";
+
+        return;
+
+    }
+
+
+    /* GET EXISTING LEADS */
+
+    let leads =
+        JSON.parse(
+            localStorage.getItem("shizaz_leads") || "[]"
+        );
+
+
+    /* CREATE NEW LEAD */
+
+    const newLead = {
+
+        id:Date.now(),
+
+        name:name,
+
+        company:company,
+
+        email:email,
+
+        phone:phone,
+
+        plan:plan,
+
+        message:message,
+
+        date:new Date().toISOString(),
+
+        status:"New"
+
+    };
+
+
+    /* ADD NEW LEAD */
+
+    leads.push(newLead);
+
+
+    /* SAVE ALL LEADS */
+
+    localStorage.setItem(
+        "shizaz_leads",
+        JSON.stringify(leads)
+    );
+
+
+    /* ALSO KEEP LATEST REQUEST */
+
+    localStorage.setItem(
+        "shizaz_demo_request",
+        JSON.stringify(newLead)
+    );
+
+
+    /* SUCCESS */
+
+    formMessage.className =
+        "message success";
+
+    formMessage.textContent =
+        "Thank you! Your demo request has been received successfully.";
+
+
+    /* RESET FORM */
+
+    document
+    .getElementById("demoForm")
+    .reset();
+
+
+    /* SCROLL TO MESSAGE */
+
+    formMessage.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+});
+
+</script></body>
+</html>
