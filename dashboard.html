@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SHIZAZ AI | Executive Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#070b14;
+    color:#fff;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:240px;
+    height:100vh;
+    background:#0d1422;
+    border-right:1px solid #202b3d;
+    padding:25px 15px;
+    overflow-y:auto;
+    z-index:1000;
+}
+
+.logo{
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:35px;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#4f8cff;
+}
+
+.menu a{
+    display:block;
+    padding:13px 15px;
+    margin-bottom:6px;
+    border-radius:9px;
+    color:#9ca8ba;
+    text-decoration:none;
+    font-size:14px;
+    transition:.2s;
+}
+
+.menu a:hover,
+.menu a.active{
+    background:#17243a;
+    color:white;
+}
+
+/* LOGOUT */
+
+.logout-btn{
+    position:absolute;
+    bottom:25px;
+    left:15px;
+    width:210px;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#dc2626;
+    color:white;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.logout-btn:hover{
+    background:#b91c1c;
+}
+
+/* MAIN */
+
+.main{
+    margin-left:240px;
+    padding:30px;
+    max-width:1600px;
+}
+
+/* TOPBAR */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.topbar h1{
+    font-size:30px;
+}
+
+.topbar p{
+    color:#64748b;
+    margin-top:7px;
+    font-size:13px;
+}
+
+.user-area{
+    text-align:right;
+}
+
+.user{
+    color:#9ca8ba;
+    font-size:13px;
+}
+
+.user strong{
+    color:#4f8cff;
+}
+
+.updated{
+    color:#64748b;
+    font-size:11px;
+    margin-top:5px;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:22px;
+}
+
+.card{
+    background:#101725;
+    border:1px solid #202b3d;
+    border-radius:14px;
+    padding:22px;
+}
+
+.stat-card{
+    position:relative;
+    overflow:hidden;
+}
+
+.stat-icon{
+    width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#17243a;
+    border-radius:10px;
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+.card-title{
+    color:#8b95a7;
+    font-size:13px;
+    margin-bottom:9px;
+}
+
+.card-value{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.change{
+    margin-top:9px;
+    font-size:12px;
+}
+
+.green{
+    color:#22c55e;
+}
+
+.blue{
+    color:#4f8cff;
+}
+
+.yellow{
+    color:#f59e0b;
+}
+
+/* GRID */
+
+.main-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+    margin-bottom:20px;
+}
+
+/* REVENUE */
+
+.chart-card{
+    min-height:360px;
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.card-header h3{
+    font-size:17px;
+}
+
+.card-header span{
+    color:#64748b;
+    font-size:12px;
+}
+
+.chart{
+    height:260px;
+    display:flex;
+    align-items:end;
+    gap:12px;
+    padding:25px 5px 0;
+    border-bottom:1px solid #202b3d;
+}
+
+.bar-wrap{
+    height:100%;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:end;
+    align-items:center;
+}
+
+.bar{
+    width:75%;
+    background:#4f8cff;
+    border-radius:6px 6px 0 0;
+    min-height:25px;
+    transition:.3s;
+}
+
+.bar:hover{
+    opacity:.75;
+    transform:translateY(-5px);
+}
+
+.month{
+    color:#64748b;
+    font-size:10px;
+    margin-top:8px;
+}
+
+/* ACTIVITY */
+
+.activity{
+    margin-top:5px;
+}
+
+.activity-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 0;
+    border-bottom:1px solid #202b3d;
+}
+
+.activity-item:last-child{
+    border-bottom:0;
+}
+
+.activity-icon{
+    width:34px;
+    height:34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#17243a;
+    border-radius:8px;
+}
+
+.activity-text{
+    font-size:13px;
+}
+
+.activity-time{
+    color:#64748b;
+    font-size:10px;
+    margin-top:4px;
+}
+
+/* AI INSIGHT */
+
+.ai-box{
+    background:#0d1728;
+    border:1px solid #263958;
+    border-radius:14px;
+    padding:22px;
+    margin-bottom:20px;
+}
+
+.ai-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:15px;
+}
+
+.ai-icon{
+    width:42px;
+    height:42px;
+    background:#17243a;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+}
+
+.ai-header h3{
+    font-size:17px;
+}
+
+.ai-header span{
+    display:block;
+    color:#22c55e;
+    font-size:11px;
+    margin-top:4px;
+}
+
+.ai-box p{
+    color:#9ca8ba;
+    line-height:1.7;
+    font-size:13px;
+}
+
+.ai-actions{
+    margin-top:16px;
+}
+
+.ai-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#4f8cff;
+    color:white;
+    padding:10px 15px;
+    border-radius:8px;
+    font-size:12px;
+}
+
+/* LOWER GRID */
+
+.lower-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:20px;
+}
+
+/* PERFORMANCE */
+
+.performance-item{
+    margin-top:17px;
+}
+
+.performance-top{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    color:#aab4c5;
+    margin-bottom:7px;
+}
+
+.progress{
+    width:100%;
+    height:7px;
+    background:#1e293b;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    background:#4f8cff;
+    border-radius:10px;
+}
+
+/* SYSTEM STATUS */
+
+.status-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 0;
+    border-bottom:1px solid #202b3d;
+}
+
+.status-item:last-child{
+    border-bottom:0;
+}
+
+.status-name{
+    color:#aab4c5;
+    font-size:13px;
+}
+
+.status-badge{
+    padding:5px 9px;
+    background:#12351f;
+    color:#4ade80;
+    border-radius:20px;
+    font-size:10px;
+}
+
+/* QUICK ACTIONS */
+
+.quick-action{
+    display:block;
+    text-decoration:none;
+    color:white;
+    background:#0d1422;
+    border:1px solid #202b3d;
+    padding:12px;
+    border-radius:9px;
+    margin-top:10px;
+    font-size:12px;
+    transition:.2s;
+}
+
+.quick-action:hover{
+    background:#17243a;
+    border-color:#4f8cff;
+}
+
+.quick-action span{
+    margin-right:7px;
+}
+
+/* MOBILE */
+
+@media(max-width:1100px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .lower-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:900px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+        border-right:none;
+        border-bottom:1px solid #202b3d;
+        overflow:visible;
+    }
+
+    .menu{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:5px;
+    }
+
+    .logout-btn{
+        position:relative;
+        left:auto;
+        bottom:auto;
+        width:100%;
+        margin-top:15px;
+    }
+
+    .main{
+        margin-left:0;
+        padding:20px;
+    }
+
+    .main-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .main{
+        padding:15px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .lower-grid{
+        grid-template-columns:1fr;
+    }
+
+    .topbar{
+        display:block;
+    }
+
+    .user-area{
+        text-align:left;
+        margin-top:15px;
+    }
+
+    .menu{
+        grid-template-columns:1fr;
+    }
+
+    .chart{
+        gap:5px;
+    }
+
+    .bar{
+        width:85%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PROTECTION -->
+
+<script>
+
+if(localStorage.getItem("shizaz_logged_in") !== "true"){
+    window.location.href = "login.html";
+}
+
+</script>
+
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        SHIZAZ <span>AI</span>
+    </div>
+
+    <div class="menu">
+
+        <a href="dashboard.html" class="active">
+            📊 Dashboard
+        </a>
+
+        <a href="ai.html">
+            🤖 AI Assistant
+        </a>
+
+        <a href="analytics.html">
+            📈 Analytics
+        </a>
+
+        <a href="automation.html">
+            ⚡ Automation
+        </a>
+
+        <a href="employees.html">
+            👥 Employees
+        </a>
+
+        <a href="customers.html">
+            👤 Customers
+        </a>
+
+        <a href="security.html">
+            🔐 Security
+        </a>
+
+        <a href="integrations.html">
+            🔗 Integrations
+        </a>
+
+        <a href="billing.html">
+            💳 Billing
+        </a>
+
+        <a href="settings.html">
+            ⚙️ Settings
+        </a>
+
+    </div>
+
+
+    <button onclick="logout()" class="logout-btn">
+        🚪 Logout
+    </button>
+
+</div>
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <div>
+
+            <h1>Executive Dashboard</h1>
+
+            <p>
+                Real-time overview of your business intelligence platform.
+            </p>
+
+        </div>
+
+
+        <div class="user-area">
+
+            <div class="user" id="userEmail">
+                Welcome back 👋
+            </div>
+
+            <div class="updated" id="lastUpdated">
+                Last updated: --
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">
+                💰
+            </div>
+
+            <div class="card-title">
+                Total Revenue
+            </div>
+
+            <div class="card-value">
+                $2.84M
+            </div>
+
+            <div class="change green">
+                ↑ 18.6% vs last month
+            </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <div class="card-title">
+                Active Customers
+            </div>
+
+            <div class="card-value">
+                12,482
+            </div>
+
+            <div class="change green">
+                ↑ 12.4% growth
+            </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">
+                👨‍💼
+            </div>
+
+            <div class="card-title">
+                Employees
+            </div>
+
+            <div class="card-value">
+                486
+            </div>
+
+            <div class="change blue">
+                ● Workforce active
+            </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">
+                🤖
+            </div>
+
+            <div class="card-title">
+                AI Automations
+            </div>
+
+            <div class="card-value">
+                1,842
+            </div>
+
+            <div class="change green">
+                ↑ 24.8% this month
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN GRID -->
+
+    <div class="main-grid">
+
+
+        <!-- REVENUE CHART -->
+
+        <div class="card chart-card">
+
+            <div class="card-header">
+
+                <h3>
+                    📈 Revenue Performance
+                </h3>
+
+                <span>
+                    Last 8 Months
+                </span>
+
+            </div>
+
+
+            <div class="chart">
+
+
+                <div class="bar-wrap">
+                    <div class="bar" style="height:35%"></div>
+                    <div class="month">Jan</div>
+                </div>
+
+
+                <div class="bar-wrap">
+                    <div class="bar" style="height:45%"></div>
+                    <div class="month">Feb</div>
+                </div>
+
+
+                <div class="bar-wrap">
+                    <div class="bar" style="height:40%"></div>
+                    <div class="month">Mar</div>
+                </div>
+
+
+                <div class="bar-wrap">
+                    <div class="bar" style="height:60%"></div>
+                    <div class="month">Apr</div>
+                </div>
+
+
+                <div class="bar-wrap">
+                    <div class="bar" style="height:55%"></div>
+                    <div class="month">May</div>
+                </div>
+
+
+                <div class="bar-wrap">
+                    <div class="bar" style="height:72%"></div>
+                    <div class="month">Jun</div>
+                </div>
+
+
+                <div class="bar-wrap">
+                    <div class="bar" style="height:85%"></div>
+                    <div class="month">Jul</div>
+                </div>
+
+
+                <div class="bar-wrap">
+                    <div class="bar" style="height:95%"></div>
+                    <div class="month">Aug</div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- ACTIVITY -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h3>
+                    Recent Activity
+                </h3>
+
+                <span>
+                    Live
+                </span>
+
+            </div>
+
+
+            <div class="activity">
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+                        🤖
+                    </div>
+
+                    <div>
+
+                        <div class="activity-text">
+                            AI automation completed
+                        </div>
+
+                        <div class="activity-time">
+                            2 minutes ago
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <div class="activity-text">
+                            New customer registered
+                        </div>
+
+                        <div class="activity-time">
+                            14 minutes ago
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+                        📊
+                    </div>
+
+                    <div>
+
+                        <div class="activity-text">
+                            Monthly report generated
+                        </div>
+
+                        <div class="activity-time">
+                            32 minutes ago
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+                        🔐
+                    </div>
+
+                    <div>
+
+                        <div class="activity-text">
+                            Security scan completed
+                        </div>
+
+                        <div class="activity-time">
+                            1 hour ago
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+                        💳
+                    </div>
+
+                    <div>
+
+                        <div class="activity-text">
+                            Invoice processed
+                        </div>
+
+                        <div class="activity-time">
+                            2 hours ago
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- AI INTELLIGENCE -->
+
+    <div class="ai-box">
+
+
+        <div class="ai-header">
+
+            <div class="ai-icon">
+                🤖
+            </div>
+
+            <div>
+
+                <h3>
+                    SHIZAZ AI Intelligence
+                </h3>
+
+                <span>
+                    ● AI SYSTEM ONLINE
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <p>
+            Your business intelligence assistant is monitoring
+            revenue, customers, employee activity, automation
+            performance and security events. Current performance
+            indicates strong revenue growth and increasing
+            automation activity.
+        </p>
+
+
+        <div class="ai-actions">
+
+            <a href="ai.html" class="ai-btn">
+                Open AI Assistant →
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- LOWER GRID -->
+
+    <div class="lower-grid">
+
+
+        <!-- PERFORMANCE -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h3>
+                    📊 Performance
+                </h3>
+
+                <span>
+                    Overall
+                </span>
+
+            </div>
+
+
+            <div class="performance-item">
+
+                <div class="performance-top">
+                    <span>Sales</span>
+                    <span>92%</span>
+                </div>
+
+                <div class="progress">
+                    <div
+                        class="progress-bar"
+                        style="width:92%">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="performance-item">
+
+                <div class="performance-top">
+                    <span>Marketing</span>
+                    <span>78%</span>
+                </div>
+
+                <div class="progress">
+                    <div
+                        class="progress-bar"
+                        style="width:78%">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="performance-item">
+
+                <div class="performance-top">
+                    <span>Operations</span>
+                    <span>86%</span>
+                </div>
+
+                <div class="progress">
+                    <div
+                        class="progress-bar"
+                        style="width:86%">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="performance-item">
+
+                <div class="performance-top">
+                    <span>Customer Success</span>
+                    <span>94%</span>
+                </div>
+
+                <div class="progress">
+                    <div
+                        class="progress-bar"
+                        style="width:94%">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SYSTEM STATUS -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h3>
+                    🛡️ System Status
+                </h3>
+
+                <span>
+                    Monitoring
+                </span>
+
+            </div>
+
+
+            <div class="status-item">
+
+                <div class="status-name">
+                    AI Engine
+                </div>
+
+                <div class="status-badge">
+                    Operational
+                </div>
+
+            </div>
+
+
+            <div class="status-item">
+
+                <div class="status-name">
+                    Database
+                </div>
+
+                <div class="status-badge">
+                    Operational
+                </div>
+
+            </div>
+
+
+            <div class="status-item">
+
+                <div class="status-name">
+                    API Services
+                </div>
+
+                <div class="status-badge">
+                    Operational
+                </div>
+
+            </div>
+
+
+            <div class="status-item">
+
+                <div class="status-name">
+                    Security
+                </div>
+
+                <div class="status-badge">
+                    Protected
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h3>
+                    ⚡ Quick Actions
+                </h3>
+
+            </div>
+
+
+            <a
+                href="customers.html"
+                class="quick-action">
+
+                <span>👤</span>
+                Manage Customers
+
+            </a>
+
+
+            <a
+                href="automation.html"
+                class="quick-action">
+
+                <span>⚡</span>
+                Create Automation
+
+            </a>
+
+
+            <a
+                href="analytics.html"
+                class="quick-action">
+
+                <span>📈</span>
+                View Analytics
+
+            </a>
+
+
+            <a
+                href="ai.html"
+                class="quick-action">
+
+                <span>🤖</span>
+                Ask SHIZAZ AI
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+/* LOGOUT */
+
+function logout(){
+
+    const confirmLogout =
+        confirm("Are you sure you want to logout?");
+
+    if(!confirmLogout){
+        return;
+    }
+
+    localStorage.removeItem("shizaz_logged_in");
+    localStorage.removeItem("shizaz_user_email");
+
+    window.location.href = "login.html";
+
+}
+
+
+/* USER EMAIL */
+
+const email =
+    localStorage.getItem("shizaz_user_email");
+
+if(email){
+
+    document.getElementById("userEmail").innerHTML =
+        "Welcome back 👋 <strong>" +
+        email +
+        "</strong>";
+
+}
+
+
+/* LAST UPDATED */
+
+function updateTime(){
+
+    const now = new Date();
+
+    document.getElementById("lastUpdated").textContent =
+        "Last updated: " +
+        now.toLocaleTimeString([],{
+            hour:"2-digit",
+            minute:"2-digit"
+        });
+
+}
+
+updateTime();
+
+</script>
+
+</body>
+</html>
