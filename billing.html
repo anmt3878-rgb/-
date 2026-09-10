@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SHIZAZ AI - Billing</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#0b1120;
+    color:#fff;
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:240px;
+    background:#111827;
+    padding:25px 15px;
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    overflow-y:auto;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:35px;
+    padding-left:12px;
+}
+
+.logo span{
+    color:#38bdf8;
+}
+
+.nav a{
+    display:block;
+    text-decoration:none;
+    color:#94a3b8;
+    padding:13px 14px;
+    border-radius:10px;
+    margin-bottom:7px;
+}
+
+.nav a:hover,
+.nav a.active{
+    background:#1e293b;
+    color:#fff;
+}
+
+.user-area{
+    margin-top:25px;
+    padding:15px 12px;
+    border-top:1px solid #1e293b;
+}
+
+.user-email{
+    color:#94a3b8;
+    font-size:11px;
+    word-break:break-all;
+    margin-bottom:10px;
+}
+
+.logout-btn{
+    width:100%;
+    border:0;
+    padding:10px;
+    border-radius:8px;
+    background:#dc2626;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.logout-btn:hover{
+    opacity:.9;
+}
+
+.main{
+    margin-left:240px;
+    width:calc(100% - 240px);
+    padding:30px;
+}
+
+.header{
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:30px;
+}
+
+.header p{
+    color:#94a3b8;
+    margin-top:7px;
+}
+
+.current-plan{
+    background:#111827;
+    border:1px solid #1e293b;
+    border-radius:16px;
+    padding:25px;
+    margin-bottom:25px;
+}
+
+.plan-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.plan-name{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.plan-price{
+    font-size:30px;
+    font-weight:bold;
+}
+
+.plan-price span{
+    color:#94a3b8;
+    font-size:14px;
+    font-weight:normal;
+}
+
+.plan-status{
+    display:inline-block;
+    margin-top:10px;
+    padding:6px 10px;
+    border-radius:20px;
+    background:#12351f;
+    color:#4ade80;
+    font-size:12px;
+}
+
+.billing-info{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:25px;
+}
+
+.info-box{
+    background:#0b1120;
+    border:1px solid #1e293b;
+    border-radius:10px;
+    padding:17px;
+}
+
+.info-title{
+    color:#64748b;
+    font-size:12px;
+}
+
+.info-value{
+    margin-top:8px;
+    font-weight:bold;
+}
+
+.section-title{
+    font-size:22px;
+    margin-bottom:18px;
+}
+
+.plans{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.plan-card{
+    background:#111827;
+    border:1px solid #1e293b;
+    border-radius:16px;
+    padding:22px;
+}
+
+.plan-card.featured{
+    border:1px solid #38bdf8;
+}
+
+.plan-card.selected{
+    box-shadow:0 0 0 1px #38bdf8;
+}
+
+.plan-card h2{
+    font-size:20px;
+}
+
+.plan-description{
+    color:#94a3b8;
+    font-size:13px;
+    margin-top:7px;
+    min-height:35px;
+}
+
+.price{
+    font-size:28px;
+    font-weight:bold;
+    margin:18px 0;
+}
+
+.price span{
+    font-size:13px;
+    color:#94a3b8;
+    font-weight:normal;
+}
+
+.features{
+    list-style:none;
+    margin-bottom:20px;
+}
+
+.features li{
+    padding:7px 0;
+    color:#cbd5e1;
+    font-size:13px;
+}
+
+.features li::before{
+    content:"✓";
+    color:#4ade80;
+    margin-right:8px;
+}
+
+.plan-button{
+    width:100%;
+    padding:11px;
+    border:0;
+    border-radius:8px;
+    cursor:pointer;
+    background:#1e293b;
+    color:#fff;
+    font-weight:bold;
+}
+
+.plan-button:hover{
+    opacity:.9;
+}
+
+.featured .plan-button{
+    background:#38bdf8;
+    color:#06111d;
+}
+
+.invoice-box{
+    margin-top:25px;
+    background:#111827;
+    border:1px solid #1e293b;
+    border-radius:16px;
+    padding:22px;
+    overflow:auto;
+}
+
+.invoice-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:650px;
+}
+
+.invoice-table th,
+.invoice-table td{
+    padding:15px;
+    text-align:left;
+    border-bottom:1px solid #1e293b;
+}
+
+.invoice-table th{
+    color:#94a3b8;
+    font-size:12px;
+}
+
+.invoice-table td{
+    font-size:13px;
+}
+
+.paid{
+    color:#4ade80;
+}
+
+.download{
+    border:0;
+    padding:7px 11px;
+    border-radius:7px;
+    background:#1e293b;
+    color:#fff;
+    cursor:pointer;
+}
+
+.download:hover{
+    background:#334155;
+}
+
+@media(max-width:1000px){
+
+    .plans{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:190px;
+    }
+
+    .main{
+        margin-left:190px;
+        width:calc(100% - 190px);
+        padding:20px;
+    }
+
+    .billing-info{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .sidebar{
+        width:70px;
+        padding:20px 8px;
+    }
+
+    .logo{
+        font-size:14px;
+        padding:0;
+        text-align:center;
+    }
+
+    .nav a{
+        font-size:0;
+        text-align:center;
+        padding:14px 5px;
+    }
+
+    .nav a::first-letter{
+        font-size:18px;
+    }
+
+    .user-area{
+        padding:10px 2px;
+        text-align:center;
+    }
+
+    .user-email{
+        display:none;
+    }
+
+    .logout-btn{
+        font-size:0;
+        padding:13px 5px;
+    }
+
+    .logout-btn::before{
+        content:"🚪";
+        font-size:18px;
+    }
+
+    .main{
+        margin-left:70px;
+        width:calc(100% - 70px);
+        padding:15px;
+    }
+
+    .header h1{
+        font-size:23px;
+    }
+
+    .plan-top{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .plans{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:380px){
+
+    .current-plan{
+        padding:17px;
+    }
+
+    .plan-price{
+        font-size:25px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<script>
+
+if(localStorage.getItem("shizaz_logged_in") !== "true"){
+    window.location.href = "login.html";
+}
+
+</script>
+
+<div class="sidebar">
+
+    <div class="logo">
+        SHIZAZ <span>AI</span>
+    </div>
+
+    <div class="nav">
+
+        <a href="dashboard.html">📊 Dashboard</a>
+
+        <a href="ai.html">🤖 AI Assistant</a>
+
+        <a href="analytics.html">📈 Analytics</a>
+
+        <a href="automation.html">⚙️ Automation</a>
+
+        <a href="employees.html">👥 Employees</a>
+
+        <!-- CUSTOMERS -->
+        <a href="customers.html">👤 Customers</a>
+
+        <a href="security.html">🔐 Security</a>
+
+        <a href="integrations.html">🔗 Integrations</a>
+
+        <a href="billing.html" class="active">💳 Billing</a>
+
+        <a href="settings.html">⚙️ Settings</a>
+
+    </div>
+
+    <div class="user-area">
+
+        <div class="user-email" id="userEmail">
+            User
+        </div>
+
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+<div class="main">
+
+    <div class="header">
+
+        <h1>Billing</h1>
+
+        <p>
+            Manage your SHIZAZ AI subscription and invoices.
+        </p>
+
+    </div>
+
+    <div class="current-plan">
+
+        <div class="plan-top">
+
+            <div>
+
+                <div class="plan-name" id="currentPlanName">
+                    Professional
+                </div>
+
+                <div class="plan-status">
+                    ● Active
+                </div>
+
+            </div>
+
+            <div class="plan-price">
+
+                <span id="currentPrice">
+                    $25,000
+                </span>
+
+                <span>/ month</span>
+
+            </div>
+
+        </div>
+
+        <div class="billing-info">
+
+            <div class="info-box">
+
+                <div class="info-title">
+                    Next Payment
+                </div>
+
+                <div class="info-value">
+                    October 10, 2026
+                </div>
+
+            </div>
+
+            <div class="info-box">
+
+                <div class="info-title">
+                    Payment Method
+                </div>
+
+                <div class="info-value">
+                    •••• 4821
+                </div>
+
+            </div>
+
+            <div class="info-box">
+
+                <div class="info-title">
+                    Monthly Usage
+                </div>
+
+                <div class="info-value">
+                    68%
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="section-title">
+        Available Plans
+    </div>
+
+    <div class="plans">
+
+        <div class="plan-card">
+
+            <h2>Starter</h2>
+
+            <div class="plan-description">
+                For small teams.
+            </div>
+
+            <div class="price">
+                $2,500
+                <span>/month</span>
+            </div>
+
+            <ul class="features">
+                <li>AI Assistant</li>
+                <li>Business Analytics</li>
+                <li>Basic Automation</li>
+                <li>Email Support</li>
+            </ul>
+
+            <button
+                class="plan-button"
+                onclick="selectPlan('Starter', '$2,500')">
+                Select Plan
+            </button>
+
+        </div>
+
+        <div class="plan-card">
+
+            <h2>Business</h2>
+
+            <div class="plan-description">
+                For growing businesses.
+            </div>
+
+            <div class="price">
+                $10,000
+                <span>/month</span>
+            </div>
+
+            <ul class="features">
+                <li>Advanced AI</li>
+                <li>Analytics</li>
+                <li>Automation</li>
+                <li>Priority Support</li>
+            </ul>
+
+            <button
+                class="plan-button"
+                onclick="selectPlan('Business', '$10,000')">
+                Select Plan
+            </button>
+
+        </div>
+
+        <div class="plan-card featured">
+
+            <h2>Professional</h2>
+
+            <div class="plan-description">
+                For advanced organizations.
+            </div>
+
+            <div class="price">
+                $25,000
+                <span>/month</span>
+            </div>
+
+            <ul class="features">
+                <li>Advanced AI Platform</li>
+                <li>Enterprise Analytics</li>
+                <li>Advanced Automation</li>
+                <li>Priority Support</li>
+            </ul>
+
+            <button
+                class="plan-button"
+                onclick="selectPlan('Professional', '$25,000')">
+                Current Plan
+            </button>
+
+        </div>
+
+        <div class="plan-card">
+
+            <h2>Enterprise</h2>
+
+            <div class="plan-description">
+                For large enterprises.
+            </div>
+
+            <div class="price">
+                $50,000
+                <span>/month</span>
+            </div>
+
+            <ul class="features">
+                <li>Enterprise AI</li>
+                <li>Security Controls</li>
+                <li>Custom Integrations</li>
+                <li>Dedicated Support</li>
+            </ul>
+
+            <button
+                class="plan-button"
+                onclick="selectPlan('Enterprise', '$50,000')">
+                Select Plan
+            </button>
+
+        </div>
+
+        <div class="plan-card">
+
+            <h2>Corporate</h2>
+
+            <div class="plan-description">
+                For global corporations.
+            </div>
+
+            <div class="price">
+                $100,000
+                <span>/month</span>
+            </div>
+
+            <ul class="features">
+                <li>Dedicated AI</li>
+                <li>Advanced Security</li>
+                <li>Custom Infrastructure</li>
+                <li>24/7 Support</li>
+            </ul>
+
+            <button
+                class="plan-button"
+                onclick="selectPlan('Corporate', '$100,000')">
+                Select Plan
+            </button>
+
+        </div>
+
+        <div class="plan-card">
+
+            <h2>Global Enterprise</h2>
+
+            <div class="plan-description">
+                For multinational organizations.
+            </div>
+
+            <div class="price">
+                $250,000
+                <span>/month</span>
+            </div>
+
+            <ul class="features">
+                <li>Global AI Infrastructure</li>
+                <li>Enterprise Security</li>
+                <li>Dedicated Environment</li>
+                <li>Premium SLA</li>
+            </ul>
+
+            <button
+                class="plan-button"
+                onclick="selectPlan('Global Enterprise', '$250,000')">
+                Select Plan
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="invoice-box">
+
+        <div class="section-title">
+            Recent Invoices
+        </div>
+
+        <table class="invoice-table">
+
+            <thead>
+
+                <tr>
+                    <th>Invoice</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>#SHZ-2026-091</td>
+
+                    <td>Sep 10, 2026</td>
+
+                    <td>$25,000</td>
+
+                    <td class="paid">
+                        Paid
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="download"
+                            onclick="downloadInvoice('SHZ-2026-091')">
+                            View
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>#SHZ-2026-082</td>
+
+                    <td>Aug 10, 2026</td>
+
+                    <td>$25,000</td>
+
+                    <td class="paid">
+                        Paid
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="download"
+                            onclick="downloadInvoice('SHZ-2026-082')">
+                            View
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>#SHZ-2026-073</td>
+
+                    <td>Jul 10, 2026</td>
+
+                    <td>$25,000</td>
+
+                    <td class="paid">
+                        Paid
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="download"
+                            onclick="downloadInvoice('SHZ-2026-073')">
+                            View
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+
+const savedEmail =
+    localStorage.getItem("shizaz_user_email");
+
+if(savedEmail){
+
+    document.getElementById("userEmail").innerText =
+        savedEmail;
+
+}
+
+function logout(){
+
+    localStorage.removeItem("shizaz_logged_in");
+
+    localStorage.removeItem("shizaz_user_email");
+
+    window.location.href = "login.html";
+
+}
+
+const planPrices = {
+
+    "Starter":"$2,500",
+
+    "Business":"$10,000",
+
+    "Professional":"$25,000",
+
+    "Enterprise":"$50,000",
+
+    "Corporate":"$100,000",
+
+    "Global Enterprise":"$250,000"
+
+};
+
+function selectPlan(plan,price){
+
+    const currentPlan =
+        localStorage.getItem("shizaz_plan")
+        || "Professional";
+
+    if(plan === currentPlan){
+
+        alert(
+            "This is your current plan.\n\n"
+            + plan
+            + " — "
+            + price
+            + "/month"
+        );
+
+        return;
+
+    }
+
+    const confirmed =
+        confirm(
+            "Select " + plan
+            + " plan?\n\n"
+            + "Price: "
+            + price
+            + "/month\n\n"
+            + "This is a demo checkout."
+        );
+
+    if(!confirmed){
+        return;
+    }
+
+    localStorage.setItem(
+        "shizaz_plan",
+        plan
+    );
+
+    localStorage.setItem(
+        "shizaz_plan_price",
+        price
+    );
+
+    document.getElementById(
+        "currentPlanName"
+    ).innerText = plan;
+
+    document.getElementById(
+        "currentPrice"
+    ).innerText = price;
+
+    alert(
+        "Demo plan updated successfully!\n\n"
+        + "Plan: "
+        + plan
+        + "\nPrice: "
+        + price
+        + "/month"
+    );
+
+}
+
+function loadPlan(){
+
+    const savedPlan =
+        localStorage.getItem("shizaz_plan");
+
+    const savedPrice =
+        localStorage.getItem("shizaz_plan_price");
+
+    if(savedPlan && savedPrice){
+
+        document.getElementById(
+            "currentPlanName"
+        ).innerText = savedPlan;
+
+        document.getElementById(
+            "currentPrice"
+        ).innerText = savedPrice;
+
+    }
+
+}
+
+function downloadInvoice(invoice){
+
+    alert(
+        "Invoice: "
+        + invoice
+        + "\n\nDemo invoice preview."
+    );
+
+}
+
+loadPlan();
+
+</script>
+
+</body>
+</html>
