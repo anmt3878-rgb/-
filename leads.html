@@ -11,53 +11,64 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:#f4f7fb;
-    color:#172033;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#07111f;
+    color:#f8fafc;
+}
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
 }
 
 /* SIDEBAR */
+
 .sidebar{
     position:fixed;
     left:0;
     top:0;
-    width:250px;
+    width:245px;
     height:100vh;
-    background:#111827;
-    color:white;
-    padding:25px 15px;
+    background:#0b1728;
+    border-right:1px solid #1e293b;
+    padding:22px 15px;
     overflow-y:auto;
 }
 
 .logo{
     font-size:24px;
     font-weight:bold;
-    text-align:center;
-    margin-bottom:30px;
+    color:#38bdf8;
+    padding:0 12px 25px;
 }
 
-.nav-title{
+.menu-title{
+    color:#64748b;
     font-size:11px;
-    color:#9ca3af;
-    margin:20px 10px 8px;
+    margin:15px 12px 8px;
     text-transform:uppercase;
 }
 
 .sidebar a{
     display:block;
-    color:#d1d5db;
-    text-decoration:none;
-    padding:12px 14px;
+    padding:12px;
+    margin:3px 0;
     border-radius:8px;
-    margin-bottom:5px;
+    color:#94a3b8;
     font-size:14px;
 }
 
 .sidebar a:hover{
-    background:#1f2937;
+    background:#132238;
     color:white;
 }
 
@@ -66,69 +77,43 @@ body{
     color:white;
 }
 
+.logout{
+    margin-top:20px;
+    color:#f87171!important;
+}
+
 /* MAIN */
+
 .main{
-    margin-left:250px;
+    margin-left:245px;
+    padding:30px;
     min-height:100vh;
 }
 
-/* TOPBAR */
 .topbar{
-    height:70px;
-    background:white;
-    border-bottom:1px solid #e5e7eb;
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    padding:0 30px;
-    position:sticky;
-    top:0;
-    z-index:10;
+    align-items:center;
+    gap:15px;
+    margin-bottom:30px;
 }
 
 .topbar h1{
-    font-size:22px;
+    font-size:30px;
 }
 
-.user-area{
-    display:flex;
-    align-items:center;
-    gap:15px;
+.topbar p{
+    color:#64748b;
+    margin-top:5px;
 }
 
-.user-email{
-    color:#6b7280;
-    font-size:13px;
-}
-
-.logout{
-    border:0;
-    background:#ef4444;
-    color:white;
-    padding:9px 14px;
-    border-radius:7px;
-    cursor:pointer;
-}
-
-/* CONTENT */
-.content{
-    padding:30px;
-}
-
-.page-title{
-    margin-bottom:25px;
-}
-
-.page-title h2{
-    font-size:28px;
-    margin-bottom:7px;
-}
-
-.page-title p{
-    color:#6b7280;
+.user-box{
+    color:#94a3b8;
+    font-size:14px;
 }
 
 /* STATS */
+
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -137,184 +122,257 @@ body{
 }
 
 .stat{
-    background:white;
-    border:1px solid #e5e7eb;
+    background:#0f1b2d;
+    border:1px solid #1e293b;
     border-radius:12px;
     padding:22px;
 }
 
 .stat-icon{
     font-size:25px;
-    margin-bottom:12px;
+    margin-bottom:10px;
 }
 
 .stat-title{
-    color:#6b7280;
+    color:#94a3b8;
     font-size:13px;
-    margin-bottom:7px;
 }
 
 .stat-value{
-    font-size:27px;
+    font-size:28px;
     font-weight:bold;
+    margin-top:5px;
 }
 
-/* PANEL */
-.panel{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:12px;
-    padding:22px;
-}
+/* TOOLBAR */
 
 .toolbar{
     display:flex;
-    gap:12px;
-    margin-bottom:20px;
+    justify-content:space-between;
+    gap:15px;
     flex-wrap:wrap;
+    margin-bottom:20px;
 }
 
-.search{
+.search-box{
     flex:1;
-    min-width:220px;
-    padding:12px;
-    border:1px solid #d1d5db;
-    border-radius:7px;
+    min-width:230px;
+}
+
+.search-box input,
+.toolbar select{
+    width:100%;
+    padding:13px;
+    border-radius:8px;
+    border:1px solid #334155;
+    background:#0f1b2d;
+    color:white;
     outline:none;
 }
 
-.filter{
-    padding:12px;
-    border:1px solid #d1d5db;
-    border-radius:7px;
-    background:white;
+.toolbar select{
+    width:180px;
 }
 
-.btn{
-    border:0;
-    padding:12px 17px;
-    border-radius:7px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.btn-red{
-    background:#ef4444;
+.delete-all{
+    padding:13px 18px;
+    border:none;
+    border-radius:8px;
+    background:#7f1d1d;
     color:white;
+    cursor:pointer;
+}
+
+.delete-all:hover{
+    background:#991b1b;
 }
 
 /* TABLE */
-.table-container{
-    width:100%;
+
+.table-card{
+    background:#0f1b2d;
+    border:1px solid #1e293b;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.table-wrapper{
     overflow-x:auto;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:950px;
+    min-width:1050px;
 }
 
 th{
-    background:#f9fafb;
     text-align:left;
-    padding:13px;
+    padding:16px;
+    color:#94a3b8;
     font-size:12px;
-    color:#6b7280;
-    border-bottom:1px solid #e5e7eb;
+    text-transform:uppercase;
+    background:#0b1728;
+    border-bottom:1px solid #1e293b;
 }
 
 td{
-    padding:14px 13px;
-    border-bottom:1px solid #e5e7eb;
-    font-size:13px;
+    padding:16px;
+    border-bottom:1px solid #1e293b;
+    font-size:14px;
 }
 
-td strong{
-    color:#111827;
+tr:hover{
+    background:#111f33;
+}
+
+.company{
+    color:#94a3b8;
+    font-size:12px;
+    margin-top:3px;
+}
+
+.email{
+    color:#38bdf8;
+}
+
+.phone{
+    color:#cbd5e1;
+}
+
+.plan{
+    color:#cbd5e1;
+}
+
+.date{
+    color:#94a3b8;
 }
 
 /* STATUS */
-.status-select{
-    padding:7px;
-    border:1px solid #d1d5db;
-    border-radius:6px;
-    font-size:12px;
+
+.status{
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+    display:inline-block;
+}
+
+.status-new{
+    background:#172554;
+    color:#60a5fa;
+}
+
+.status-contacted{
+    background:#422006;
+    color:#fbbf24;
+}
+
+.status-won{
+    background:#064e3b;
+    color:#34d399;
+}
+
+.status-lost{
+    background:#450a0a;
+    color:#f87171;
 }
 
 /* ACTIONS */
+
 .actions{
     display:flex;
-    gap:7px;
+    gap:6px;
+    flex-wrap:wrap;
 }
 
 .action-btn{
-    border:0;
-    padding:7px 10px;
+    border:none;
     border-radius:6px;
+    padding:7px 9px;
     cursor:pointer;
-    font-size:12px;
+    font-size:11px;
+    color:white;
 }
 
-.view{
-    background:#dbeafe;
-    color:#1d4ed8;
+.view-btn{
+    background:#1d4ed8;
 }
 
-.delete{
-    background:#fee2e2;
-    color:#b91c1c;
+.contact-btn{
+    background:#0369a1;
+}
+
+.won-btn{
+    background:#047857;
+}
+
+.lost-btn{
+    background:#b45309;
+}
+
+.delete-btn{
+    background:#991b1b;
+}
+
+.action-btn:hover{
+    opacity:.8;
 }
 
 /* EMPTY */
+
 .empty{
     text-align:center;
-    padding:55px 20px;
-    color:#6b7280;
+    padding:70px 20px;
+    color:#64748b;
 }
 
 .empty-icon{
     font-size:50px;
-    margin-bottom:12px;
+    margin-bottom:15px;
 }
 
 /* MODAL */
+
 .modal{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.55);
+    background:rgba(0,0,0,.75);
     align-items:center;
     justify-content:center;
     padding:20px;
-    z-index:100;
+    z-index:999;
 }
 
 .modal-box{
     width:100%;
-    max-width:550px;
-    background:white;
-    border-radius:12px;
-    padding:25px;
+    max-width:600px;
     max-height:90vh;
     overflow-y:auto;
+    background:#0f1b2d;
+    border:1px solid #334155;
+    border-radius:14px;
+    padding:25px;
 }
 
 .modal-header{
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
     margin-bottom:20px;
 }
 
+.modal-header h2{
+    font-size:22px;
+}
+
 .close{
-    border:0;
-    background:#f3f4f6;
-    width:35px;
-    height:35px;
-    border-radius:50%;
+    background:none;
+    border:none;
+    color:#94a3b8;
+    font-size:25px;
     cursor:pointer;
-    font-size:20px;
 }
 
 .detail{
@@ -322,79 +380,68 @@ td strong{
 }
 
 .detail-label{
-    font-size:11px;
-    color:#6b7280;
-    margin-bottom:5px;
-    text-transform:uppercase;
+    color:#64748b;
+    font-size:12px;
+    margin-bottom:4px;
 }
 
 .detail-value{
-    background:#f9fafb;
-    padding:11px;
-    border-radius:7px;
+    color:#f8fafc;
     word-break:break-word;
 }
 
+.message{
+    background:#07111f;
+    border:1px solid #1e293b;
+    border-radius:8px;
+    padding:15px;
+    color:#cbd5e1;
+    line-height:1.6;
+}
+
 /* MOBILE */
-@media(max-width:900px){
 
-    .sidebar{
-        width:210px;
-    }
-
-    .main{
-        margin-left:210px;
-    }
+@media(max-width:1000px){
 
     .stats{
         grid-template-columns:repeat(2,1fr);
     }
 }
 
-@media(max-width:650px){
+@media(max-width:700px){
 
     .sidebar{
         position:relative;
         width:100%;
         height:auto;
-        padding:15px;
-    }
-
-    .logo{
-        margin-bottom:15px;
+        border-right:none;
+        border-bottom:1px solid #1e293b;
     }
 
     .main{
         margin-left:0;
+        padding:20px;
     }
 
     .topbar{
-        padding:0 15px;
-    }
-
-    .user-email{
-        display:none;
-    }
-
-    .content{
-        padding:18px;
+        align-items:flex-start;
+        flex-direction:column;
     }
 
     .stats{
-        grid-template-columns:1fr 1fr;
-        gap:10px;
+        grid-template-columns:1fr;
     }
 
-    .stat{
-        padding:15px;
+    .toolbar{
+        flex-direction:column;
     }
 
-    .stat-value{
-        font-size:20px;
+    .toolbar select{
+        width:100%;
     }
 
-    .page-title h2{
-        font-size:23px;
+    .delete-all{
+        width:100%;
     }
 }
 </style>
@@ -403,13 +450,12 @@ td strong{
 <body>
 
 <!-- SIDEBAR -->
+
 <aside class="sidebar">
 
-    <div class="logo">
-        SHIZAZ AI
-    </div>
+    <div class="logo">SHIZAZ AI</div>
 
-    <div class="nav-title">Main</div>
+    <div class="menu-title">MAIN</div>
 
     <a href="dashboard.html">
         📊 Dashboard
@@ -427,7 +473,7 @@ td strong{
         ⚡ Automation
     </a>
 
-    <div class="nav-title">Management</div>
+    <div class="menu-title">MANAGEMENT</div>
 
     <a href="employees.html">
         👥 Employees
@@ -441,7 +487,7 @@ td strong{
         🎯 Sales Leads
     </a>
 
-    <div class="nav-title">System</div>
+    <div class="menu-title">SYSTEM</div>
 
     <a href="security.html">
         🔐 Security
@@ -459,206 +505,127 @@ td strong{
         ⚙️ Settings
     </a>
 
+    <a href="#" class="logout" onclick="logout()">
+        🚪 Logout
+    </a>
+
 </aside>
 
 
 <!-- MAIN -->
+
 <main class="main">
 
     <div class="topbar">
 
-        <h1>Sales Leads</h1>
+        <div>
+            <h1>🎯 Sales Leads</h1>
+            <p>Manage and track your potential customers.</p>
+        </div>
 
-        <div class="user-area">
-
-            <span class="user-email" id="userEmail">
-                SHIZAZ AI User
-            </span>
-
-            <button
-                class="logout"
-                onclick="logout()">
-                Logout
-            </button>
-
+        <div class="user-box" id="userEmail">
+            SHIZAZ AI
         </div>
 
     </div>
 
 
-    <div class="content">
+    <!-- STATS -->
 
-        <div class="page-title">
+    <section class="stats">
 
-            <h2>🎯 Sales Leads</h2>
+        <div class="stat">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-title">Total Leads</div>
+            <div class="stat-value" id="totalLeads">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">🆕</div>
+            <div class="stat-title">New Leads</div>
+            <div class="stat-value" id="newLeads">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">📞</div>
+            <div class="stat-title">Contacted</div>
+            <div class="stat-value" id="contactedLeads">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">🏆</div>
+            <div class="stat-title">Won</div>
+            <div class="stat-value" id="wonLeads">0</div>
+        </div>
+
+    </section>
+
+
+    <!-- TOOLBAR -->
+
+    <div class="toolbar">
+
+        <div class="search-box">
+            <input
+                type="text"
+                id="search"
+                placeholder="Search name, company or email..."
+                oninput="renderLeads()"
+            >
+        </div>
+
+        <select id="statusFilter" onchange="renderLeads()">
+            <option value="All">All Status</option>
+            <option value="New">New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Won">Won</option>
+            <option value="Lost">Lost</option>
+        </select>
+
+        <button class="delete-all" onclick="clearAllLeads()">
+            🗑️ Delete All
+        </button>
+
+    </div>
+
+
+    <!-- TABLE -->
+
+    <div class="table-card">
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Company</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Plan</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="leadsTable"></tbody>
+
+            </table>
+
+        </div>
+
+        <div class="empty" id="emptyState" style="display:none;">
+
+            <div class="empty-icon">🎯</div>
+
+            <h3>No Sales Leads</h3>
 
             <p>
-                Manage and track your business sales opportunities.
+                When customers submit the Request Demo form,
+                they will appear here.
             </p>
-
-        </div>
-
-
-        <!-- STATS -->
-        <div class="stats">
-
-            <div class="stat">
-
-                <div class="stat-icon">
-                    🎯
-                </div>
-
-                <div class="stat-title">
-                    Total Leads
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="totalLeads">
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-icon">
-                    🆕
-                </div>
-
-                <div class="stat-title">
-                    New Leads
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="newLeads">
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-icon">
-                    📞
-                </div>
-
-                <div class="stat-title">
-                    Contacted
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="contactedLeads">
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-icon">
-                    🏆
-                </div>
-
-                <div class="stat-title">
-                    Won
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="wonLeads">
-                    0
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- LEADS -->
-        <div class="panel">
-
-            <div class="toolbar">
-
-                <input
-                    id="searchInput"
-                    class="search"
-                    type="text"
-                    placeholder="Search name, company or email..."
-                    oninput="renderLeads()"
-                >
-
-                <select
-                    id="statusFilter"
-                    class="filter"
-                    onchange="renderLeads()">
-
-                    <option value="All">
-                        All Status
-                    </option>
-
-                    <option value="New">
-                        New
-                    </option>
-
-                    <option value="Contacted">
-                        Contacted
-                    </option>
-
-                    <option value="Won">
-                        Won
-                    </option>
-
-                    <option value="Lost">
-                        Lost
-                    </option>
-
-                </select>
-
-
-                <button
-                    class="btn btn-red"
-                    onclick="clearAllLeads()">
-
-                    Delete All
-
-                </button>
-
-            </div>
-
-
-            <div class="table-container">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>Name</th>
-                            <th>Company</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Plan</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody id="leadsTable"></tbody>
-
-                </table>
-
-            </div>
 
         </div>
 
@@ -667,10 +634,9 @@ td strong{
 </main>
 
 
-<!-- MODAL -->
-<div
-    class="modal"
-    id="viewModal">
+<!-- VIEW MODAL -->
+
+<div class="modal" id="viewModal">
 
     <div class="modal-box">
 
@@ -678,17 +644,56 @@ td strong{
 
             <h2>Lead Details</h2>
 
-            <button
-                class="close"
-                onclick="closeModal()">
-
+            <button class="close" onclick="closeModal()">
                 ×
-
             </button>
 
         </div>
 
-        <div id="leadDetails"></div>
+        <div class="detail">
+            <div class="detail-label">Full Name</div>
+            <div class="detail-value" id="viewName"></div>
+        </div>
+
+        <div class="detail">
+            <div class="detail-label">Company</div>
+            <div class="detail-value" id="viewCompany"></div>
+        </div>
+
+        <div class="detail">
+            <div class="detail-label">Business Email</div>
+            <div class="detail-value" id="viewEmail"></div>
+        </div>
+
+        <div class="detail">
+            <div class="detail-label">Phone</div>
+            <div class="detail-value" id="viewPhone"></div>
+        </div>
+
+        <div class="detail">
+            <div class="detail-label">Selected Solution</div>
+            <div class="detail-value" id="viewPlan"></div>
+        </div>
+
+        <div class="detail">
+            <div class="detail-label">Date</div>
+            <div class="detail-value" id="viewDate"></div>
+        </div>
+
+        <div class="detail">
+            <div class="detail-label">Status</div>
+            <div class="detail-value" id="viewStatus"></div>
+        </div>
+
+        <div class="detail">
+
+            <div class="detail-label">
+                Business Requirements
+            </div>
+
+            <div class="message" id="viewMessage"></div>
+
+        </div>
 
     </div>
 
@@ -697,99 +702,66 @@ td strong{
 
 <script>
 
-/* USER EMAIL */
-
-const savedEmail =
-    localStorage.getItem("shizaz_user_email");
-
-if(savedEmail){
-
-    document.getElementById("userEmail").textContent =
-        savedEmail;
-
-}
-
-
-/* GET LEADS */
+/* =========================
+   GET LEADS
+========================= */
 
 function getLeads(){
 
+    let leads = [];
+
     try{
 
-        let leads =
-            JSON.parse(
-                localStorage.getItem("shizaz_leads") || "[]"
-            );
+        leads = JSON.parse(
+            localStorage.getItem("shizaz_leads") || "[]"
+        );
 
         if(!Array.isArray(leads)){
-
             leads = [];
-
         }
-
-
-        /* OLD DEMO REQUEST */
-
-        if(
-            leads.length === 0 &&
-            localStorage.getItem("shizaz_demo_request")
-        ){
-
-            try{
-
-                const oldLead =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "shizaz_demo_request"
-                        )
-                    );
-
-                if(oldLead){
-
-                    if(!oldLead.id){
-
-                        oldLead.id =
-                            Date.now();
-
-                    }
-
-                    if(!oldLead.status){
-
-                        oldLead.status =
-                            "New";
-
-                    }
-
-                    leads.push(oldLead);
-
-                    localStorage.setItem(
-                        "shizaz_leads",
-                        JSON.stringify(leads)
-                    );
-
-                }
-
-            }catch(error){
-
-                console.log(error);
-
-            }
-
-        }
-
-
-        return leads;
 
     }catch(error){
 
-        return [];
+        leads = [];
 
     }
 
+
+    /*
+       Compatibility with old demo request
+    */
+
+    if(leads.length === 0){
+
+        try{
+
+            const oldLead =
+                JSON.parse(
+                    localStorage.getItem("shizaz_demo_request")
+                );
+
+            if(oldLead){
+
+                leads.push(oldLead);
+
+                localStorage.setItem(
+                    "shizaz_leads",
+                    JSON.stringify(leads)
+                );
+
+            }
+
+        }catch(error){}
+
+    }
+
+    return leads;
 }
 
 
-/* SAVE */
+/* =========================
+   SAVE LEADS
+========================= */
 
 function saveLeads(leads){
 
@@ -801,17 +773,14 @@ function saveLeads(leads){
 }
 
 
-/* ESCAPE */
+/* =========================
+   ESCAPE HTML
+========================= */
 
 function escapeHtml(value){
 
-    if(
-        value === null ||
-        value === undefined
-    ){
-
+    if(value === null || value === undefined){
         return "";
-
     }
 
     return String(value)
@@ -824,62 +793,60 @@ function escapeHtml(value){
 }
 
 
-/* DATE */
+/* =========================
+   FORMAT DATE
+========================= */
 
 function formatDate(date){
 
     if(!date){
-
         return "-";
-
     }
 
-    try{
+    const d = new Date(date);
 
-        return new Date(date).toLocaleDateString(
-            "en-US",
-            {
-                year:"numeric",
-                month:"short",
-                day:"numeric"
-            }
-        );
-
-    }catch(error){
-
+    if(isNaN(d.getTime())){
         return "-";
-
     }
+
+    return d.toLocaleDateString(
+        "en-US",
+        {
+            year:"numeric",
+            month:"short",
+            day:"numeric"
+        }
+    );
 
 }
 
 
-/* STATS */
+/* =========================
+   STATUS CLASS
+========================= */
 
-function updateStats(leads){
+function statusClass(status){
 
-    document.getElementById("totalLeads").textContent =
-        leads.length;
+    if(status === "Contacted"){
+        return "status-contacted";
+    }
 
-    document.getElementById("newLeads").textContent =
-        leads.filter(
-            lead => (lead.status || "New") === "New"
-        ).length;
+    if(status === "Won"){
+        return "status-won";
+    }
 
-    document.getElementById("contactedLeads").textContent =
-        leads.filter(
-            lead => lead.status === "Contacted"
-        ).length;
+    if(status === "Lost"){
+        return "status-lost";
+    }
 
-    document.getElementById("wonLeads").textContent =
-        leads.filter(
-            lead => lead.status === "Won"
-        ).length;
+    return "status-new";
 
 }
 
 
-/* RENDER */
+/* =========================
+   RENDER LEADS
+========================= */
 
 function renderLeads(){
 
@@ -887,498 +854,423 @@ function renderLeads(){
 
     const search =
         document
-        .getElementById("searchInput")
+        .getElementById("search")
         .value
         .toLowerCase()
         .trim();
 
     const filter =
-        document.getElementById(
-            "statusFilter"
-        ).value;
-
+        document
+        .getElementById("statusFilter")
+        .value;
 
     const table =
-        document.getElementById(
-            "leadsTable"
-        );
+        document.getElementById("leadsTable");
+
+    const empty =
+        document.getElementById("emptyState");
 
 
-    updateStats(leads);
+    const filtered = leads.filter(function(lead){
+
+        const name =
+            String(lead.name || "").toLowerCase();
+
+        const company =
+            String(lead.company || "").toLowerCase();
+
+        const email =
+            String(lead.email || "").toLowerCase();
+
+        const status =
+            String(lead.status || "New");
 
 
-    const filtered =
-        leads.filter(lead => {
-
-            const name =
-                String(
-                    lead.name || ""
-                ).toLowerCase();
-
-            const company =
-                String(
-                    lead.company || ""
-                ).toLowerCase();
-
-            const email =
-                String(
-                    lead.email || ""
-                ).toLowerCase();
+        const matchesSearch =
+            !search ||
+            name.includes(search) ||
+            company.includes(search) ||
+            email.includes(search);
 
 
-            const searchMatch =
-                name.includes(search) ||
-                company.includes(search) ||
-                email.includes(search);
+        const matchesStatus =
+            filter === "All" ||
+            status === filter;
 
 
-            const statusMatch =
-                filter === "All" ||
-                (lead.status || "New") === filter;
+        return matchesSearch && matchesStatus;
+
+    });
 
 
-            return searchMatch && statusMatch;
-
-        });
+    table.innerHTML = "";
 
 
     if(filtered.length === 0){
 
-        table.innerHTML = `
+        empty.style.display = "block";
 
-            <tr>
+    }else{
 
-                <td colspan="8">
-
-                    <div class="empty">
-
-                        <div class="empty-icon">
-                            🎯
-                        </div>
-
-                        <h3>
-                            No Sales Leads Found
-                        </h3>
-
-                        <p>
-                            New demo requests will appear here.
-                        </p>
-
-                    </div>
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
-
-    }
+        empty.style.display = "none";
 
 
-    table.innerHTML =
-        filtered.map(lead => {
+        filtered.forEach(function(lead){
 
             const index =
-                leads.indexOf(lead);
+                leads.findIndex(function(item){
+
+                    return String(item.id) === String(lead.id);
+
+                });
+
 
             const status =
                 lead.status || "New";
 
 
-            return `
+            const row =
+                document.createElement("tr");
 
-                <tr>
 
-                    <td>
-                        <strong>
-                            ${escapeHtml(
-                                lead.name || "Unknown"
-                            )}
-                        </strong>
-                    </td>
+            row.innerHTML = `
 
-                    <td>
-                        ${escapeHtml(
-                            lead.company || "-"
-                        )}
-                    </td>
+                <td>
+                    <strong>
+                        ${escapeHtml(lead.name || "-")}
+                    </strong>
+                </td>
 
-                    <td>
-                        ${escapeHtml(
-                            lead.email || "-"
-                        )}
-                    </td>
+                <td>
+                    <strong>
+                        ${escapeHtml(lead.company || "-")}
+                    </strong>
 
-                    <td>
-                        ${escapeHtml(
-                            lead.phone || "-"
-                        )}
-                    </td>
+                    <div class="company">
+                        Potential Customer
+                    </div>
+                </td>
 
-                    <td>
-                        ${escapeHtml(
-                            lead.plan || "-"
-                        )}
-                    </td>
+                <td>
+                    <span class="email">
+                        ${escapeHtml(lead.email || "-")}
+                    </span>
+                </td>
 
-                    <td>
-                        ${formatDate(
-                            lead.date
-                        )}
-                    </td>
+                <td>
+                    <span class="phone">
+                        ${escapeHtml(lead.phone || "-")}
+                    </span>
+                </td>
 
-                    <td>
+                <td>
+                    <span class="plan">
+                        ${escapeHtml(lead.plan || "-")}
+                    </span>
+                </td>
 
-                        <select
-                            class="status-select"
-                            onchange="
-                                changeStatus(
-                                    ${index},
-                                    this.value
-                                )
-                            "
-                        >
+                <td>
+                    <span class="date">
+                        ${formatDate(lead.date)}
+                    </span>
+                </td>
 
-                            <option
-                                value="New"
-                                ${status === "New" ? "selected" : ""}
-                            >
-                                New
-                            </option>
+                <td>
 
-                            <option
-                                value="Contacted"
-                                ${status === "Contacted" ? "selected" : ""}
-                            >
-                                Contacted
-                            </option>
+                    <span class="status ${statusClass(status)}">
+                        ${escapeHtml(status)}
+                    </span>
 
-                            <option
-                                value="Won"
-                                ${status === "Won" ? "selected" : ""}
-                            >
-                                Won
-                            </option>
+                </td>
 
-                            <option
-                                value="Lost"
-                                ${status === "Lost" ? "selected" : ""}
-                            >
-                                Lost
-                            </option>
+                <td>
 
-                        </select>
+                    <div class="actions">
 
-                    </td>
+                        <button
+                            class="action-btn view-btn"
+                            onclick="viewLead(${index})">
+                            👁 View
+                        </button>
 
-                    <td>
+                        <button
+                            class="action-btn contact-btn"
+                            onclick="changeStatus(${index}, 'Contacted')">
+                            📞 Contacted
+                        </button>
 
-                        <div class="actions">
+                        <button
+                            class="action-btn won-btn"
+                            onclick="changeStatus(${index}, 'Won')">
+                            🏆 Won
+                        </button>
 
-                            <button
-                                class="action-btn view"
-                                onclick="
-                                    viewLead(${index})
-                                "
-                            >
-                                View
-                            </button>
+                        <button
+                            class="action-btn lost-btn"
+                            onclick="changeStatus(${index}, 'Lost')">
+                            ❌ Lost
+                        </button>
 
-                            <button
-                                class="action-btn delete"
-                                onclick="
-                                    deleteLead(${index})
-                                "
-                            >
-                                Delete
-                            </button>
+                        <button
+                            class="action-btn delete-btn"
+                            onclick="deleteLead(${index})">
+                            🗑 Delete
+                        </button>
 
-                        </div>
+                    </div>
 
-                    </td>
-
-                </tr>
+                </td>
 
             `;
 
-        }).join("");
+
+            table.appendChild(row);
+
+        });
+
+    }
+
+
+    updateStats();
 
 }
 
 
-/* STATUS */
+/* =========================
+   UPDATE STATS
+========================= */
+
+function updateStats(){
+
+    const leads = getLeads();
+
+
+    const total =
+        leads.length;
+
+
+    const newCount =
+        leads.filter(function(lead){
+
+            return (lead.status || "New") === "New";
+
+        }).length;
+
+
+    const contacted =
+        leads.filter(function(lead){
+
+            return lead.status === "Contacted";
+
+        }).length;
+
+
+    const won =
+        leads.filter(function(lead){
+
+            return lead.status === "Won";
+
+        }).length;
+
+
+    document.getElementById("totalLeads")
+        .textContent = total;
+
+    document.getElementById("newLeads")
+        .textContent = newCount;
+
+    document.getElementById("contactedLeads")
+        .textContent = contacted;
+
+    document.getElementById("wonLeads")
+        .textContent = won;
+
+}
+
+
+/* =========================
+   CHANGE STATUS
+========================= */
 
 function changeStatus(index,status){
 
-    const leads =
-        getLeads();
+    const leads = getLeads();
 
     if(!leads[index]){
-
         return;
-
     }
 
-    leads[index].status =
-        status;
+
+    leads[index].status = status;
 
     saveLeads(leads);
+
 
     renderLeads();
 
 }
 
 
-/* VIEW */
+/* =========================
+   VIEW LEAD
+========================= */
 
 function viewLead(index){
 
-    const leads =
-        getLeads();
+    const leads = getLeads();
 
-    const lead =
-        leads[index];
+    const lead = leads[index];
 
     if(!lead){
-
         return;
-
     }
 
 
-    document.getElementById(
-        "leadDetails"
-    ).innerHTML = `
-
-        <div class="detail">
-
-            <div class="detail-label">
-                Name
-            </div>
-
-            <div class="detail-value">
-                ${escapeHtml(
-                    lead.name || "-"
-                )}
-            </div>
-
-        </div>
+    document.getElementById("viewName")
+        .textContent = lead.name || "-";
 
 
-        <div class="detail">
-
-            <div class="detail-label">
-                Company
-            </div>
-
-            <div class="detail-value">
-                ${escapeHtml(
-                    lead.company || "-"
-                )}
-            </div>
-
-        </div>
+    document.getElementById("viewCompany")
+        .textContent = lead.company || "-";
 
 
-        <div class="detail">
-
-            <div class="detail-label">
-                Email
-            </div>
-
-            <div class="detail-value">
-                ${escapeHtml(
-                    lead.email || "-"
-                )}
-            </div>
-
-        </div>
+    document.getElementById("viewEmail")
+        .textContent = lead.email || "-";
 
 
-        <div class="detail">
-
-            <div class="detail-label">
-                Phone
-            </div>
-
-            <div class="detail-value">
-                ${escapeHtml(
-                    lead.phone || "-"
-                )}
-            </div>
-
-        </div>
+    document.getElementById("viewPhone")
+        .textContent = lead.phone || "-";
 
 
-        <div class="detail">
-
-            <div class="detail-label">
-                Plan
-            </div>
-
-            <div class="detail-value">
-                ${escapeHtml(
-                    lead.plan || "-"
-                )}
-            </div>
-
-        </div>
+    document.getElementById("viewPlan")
+        .textContent = lead.plan || "-";
 
 
-        <div class="detail">
-
-            <div class="detail-label">
-                Status
-            </div>
-
-            <div class="detail-value">
-                ${escapeHtml(
-                    lead.status || "New"
-                )}
-            </div>
-
-        </div>
+    document.getElementById("viewDate")
+        .textContent = formatDate(lead.date);
 
 
-        <div class="detail">
-
-            <div class="detail-label">
-                Date
-            </div>
-
-            <div class="detail-value">
-                ${formatDate(
-                    lead.date
-                )}
-            </div>
-
-        </div>
+    document.getElementById("viewStatus")
+        .textContent = lead.status || "New";
 
 
-        <div class="detail">
-
-            <div class="detail-label">
-                Message
-            </div>
-
-            <div class="detail-value">
-                ${escapeHtml(
-                    lead.message ||
-                    "No message provided."
-                )}
-            </div>
-
-        </div>
-
-    `;
+    document.getElementById("viewMessage")
+        .textContent =
+            lead.message || "No message provided.";
 
 
-    document.getElementById(
-        "viewModal"
-    ).style.display = "flex";
+    document.getElementById("viewModal")
+        .style.display = "flex";
 
 }
 
 
-/* CLOSE */
+/* =========================
+   CLOSE MODAL
+========================= */
 
 function closeModal(){
 
-    document.getElementById(
-        "viewModal"
-    ).style.display = "none";
+    document.getElementById("viewModal")
+        .style.display = "none";
 
 }
 
 
-/* DELETE */
+document.getElementById("viewModal")
+    .addEventListener("click",function(event){
+
+        if(event.target === this){
+            closeModal();
+        }
+
+    });
+
+
+/* =========================
+   DELETE LEAD
+========================= */
 
 function deleteLead(index){
 
-    const leads =
-        getLeads();
+    const leads = getLeads();
 
     if(!leads[index]){
-
         return;
-
     }
 
 
-    if(
-        !confirm(
-            "Delete this sales lead?"
-        )
-    ){
+    const name =
+        leads[index].name || "this lead";
 
+
+    const confirmDelete =
+        confirm(
+            "Delete " + name + "?"
+        );
+
+
+    if(!confirmDelete){
         return;
-
     }
 
 
-    leads.splice(
-        index,
-        1
-    );
+    leads.splice(index,1);
 
     saveLeads(leads);
 
+
     renderLeads();
 
 }
 
 
-/* DELETE ALL */
+/* =========================
+   DELETE ALL
+========================= */
 
 function clearAllLeads(){
 
-    const leads =
-        getLeads();
+    const leads = getLeads();
+
 
     if(leads.length === 0){
 
-        alert(
-            "There are no sales leads."
+        alert("There are no leads to delete.");
+
+        return;
+
+    }
+
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete ALL sales leads?"
         );
 
-        return;
 
+    if(!confirmDelete){
+        return;
     }
 
 
-    if(
-        !confirm(
-            "Delete ALL sales leads?"
-        )
-    ){
+    localStorage.removeItem("shizaz_leads");
 
-        return;
+    localStorage.removeItem("shizaz_demo_request");
 
-    }
-
-
-    localStorage.removeItem(
-        "shizaz_leads"
-    );
-
-    localStorage.removeItem(
-        "shizaz_demo_request"
-    );
 
     renderLeads();
 
 }
 
 
-/* LOGOUT */
+/* =========================
+   LOGOUT
+========================= */
 
 function logout(){
 
-    localStorage.removeItem(
-        "shizaz_logged_in"
-    );
+    localStorage.removeItem("shizaz_logged_in");
 
     window.location.href =
         "login.html";
@@ -1386,25 +1278,33 @@ function logout(){
 }
 
 
-/* CLOSE MODAL OUTSIDE */
+/* =========================
+   USER EMAIL
+========================= */
 
-document
-.getElementById("viewModal")
-.addEventListener(
-    "click",
-    function(event){
+function loadUser(){
 
-        if(event.target === this){
+    const email =
+        localStorage.getItem(
+            "shizaz_user_email"
+        );
 
-            closeModal();
 
-        }
+    if(email){
+
+        document.getElementById("userEmail")
+            .textContent = email;
 
     }
-);
+
+}
 
 
-/* START */
+/* =========================
+   START
+========================= */
+
+loadUser();
 
 renderLeads();
 
