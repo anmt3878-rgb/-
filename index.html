@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SHIZAZ AI — Enterprise AI Platform</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#050914;
+    color:white;
+}
+
+nav{
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    border-bottom:1px solid #172033;
+    background:#070b15;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#4f8cff;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav a{
+    color:#b7c0d4;
+    text-decoration:none;
+    font-size:15px;
+}
+
+nav a:hover{
+    color:white;
+}
+
+.login{
+    border:1px solid #33415c;
+    padding:10px 18px;
+    border-radius:8px;
+}
+
+.hero{
+    min-height:650px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:80px 20px;
+    background:
+    radial-gradient(circle at 50% 20%,#172c5c 0%,#050914 45%);
+}
+
+.hero-content{
+    max-width:950px;
+}
+
+.badge{
+    display:inline-block;
+    padding:9px 16px;
+    border:1px solid #29467f;
+    border-radius:30px;
+    color:#7eaaff;
+    margin-bottom:25px;
+    font-size:14px;
+}
+
+h1{
+    font-size:64px;
+    line-height:1.05;
+    margin-bottom:25px;
+}
+
+h1 span{
+    color:#5c94ff;
+}
+
+.hero p{
+    color:#aeb8ca;
+    font-size:19px;
+    line-height:1.7;
+    max-width:720px;
+    margin:auto;
+}
+
+.buttons{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+
+.btn{
+    padding:15px 28px;
+    border-radius:9px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.primary{
+    background:#4f8cff;
+    color:white;
+}
+
+.secondary{
+    border:1px solid #33415c;
+    color:white;
+}
+
+section{
+    padding:90px 7%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.section-text{
+    text-align:center;
+    color:#8e99ad;
+    max-width:650px;
+    margin:auto;
+    line-height:1.6;
+}
+
+.features{
+    margin-top:55px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:#0b1120;
+    border:1px solid #1b263b;
+    padding:30px;
+    border-radius:15px;
+}
+
+.card h3{
+    margin:15px 0 10px;
+}
+
+.card p{
+    color:#8f9bb0;
+    line-height:1.6;
+}
+
+.icon{
+    font-size:35px;
+}
+
+.pricing{
+    background:#080d18;
+}
+
+.price-grid{
+    margin-top:55px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.price-card{
+    background:#0d1423;
+    border:1px solid #202d43;
+    border-radius:15px;
+    padding:30px;
+}
+
+.price{
+    font-size:35px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+.price small{
+    font-size:14px;
+    color:#8793a8;
+}
+
+.price-card ul{
+    list-style:none;
+    color:#aab4c6;
+    line-height:2;
+}
+
+.price-card a{
+    display:block;
+    text-align:center;
+    margin-top:25px;
+    padding:13px;
+    background:#17243a;
+    border-radius:8px;
+    color:white;
+    text-decoration:none;
+}
+
+footer{
+    padding:35px 7%;
+    border-top:1px solid #182236;
+    color:#68758b;
+    text-align:center;
+}
+
+@media(max-width:800px){
+
+    nav ul{
+        display:none;
+    }
+
+    h1{
+        font-size:43px;
+    }
+
+    .features,
+    .price-grid{
+        grid-template-columns:1fr;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        SHIZAZ<span>AI</span>
+    </div>
+
+    <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    < class="login"<a href="login.html">Login</a>
+
+</nav>
+
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            Enterprise AI Business Platform
+        </div>
+
+        <h1>
+            Intelligence for the
+            <span>Modern Enterprise.</span>
+        </h1>
+
+        <p>
+            SHIZAZ AI helps organizations analyze business data,
+            automate operations, generate intelligent reports,
+            and make faster decisions from one powerful platform.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#pricing" class="btn primary">
+                Explore Plans
+            </a>
+
+            <a href="#features" class="btn secondary">
+                View Platform
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="features">
+
+    <h2 class="section-title">
+        One Platform. Powerful Intelligence.
+    </h2>
+
+    <p class="section-text">
+        A centralized AI platform designed to help organizations
+        understand their business and automate everyday operations.
+    </p>
+
+
+    <div class="features">
+
+        <div class="card">
+            <div class="icon">🤖</div>
+            <h3>AI Assistant</h3>
+            <p>
+                Ask business questions and receive intelligent
+                insights and recommendations.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📊</div>
+            <h3>Business Analytics</h3>
+            <p>
+                Monitor revenue, performance, KPIs and important
+                business metrics from one dashboard.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">⚙️</div>
+            <h3>Automation</h3>
+            <p>
+                Automate repetitive business processes and
+                improve operational efficiency.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🔐</div>
+            <h3>Enterprise Security</h3>
+            <p>
+                Role-based access, activity monitoring and
+                security controls for organizations.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📈</div>
+            <h3>Smart Reports</h3>
+            <p>
+                Generate business reports and executive summaries
+                with AI assistance.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🔌</div>
+            <h3>Integrations</h3>
+            <p>
+                Connect business tools and internal systems
+                through APIs and integrations.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="pricing" id="pricing">
+
+    <h2 class="section-title">
+        Enterprise Plans
+    </h2>
+
+    <p class="section-text">
+        Flexible plans designed to scale from growing businesses
+        to global organizations.
+    </p>
+
+
+    <div class="price-grid">
+
+        <div class="price-card">
+            <h3>Starter</h3>
+            <div class="price">
+                $2,500 <small>/ month</small>
+            </div>
+            <ul>
+                <li>✓ AI Assistant</li>
+                <li>✓ Business Dashboard</li>
+                <li>✓ Basic Analytics</li>
+                <li>✓ Standard Support</li>
+            </ul>
+            <a href="#">Get Started</a>
+        </div>
+
+
+        <div class="price-card">
+            <h3>Business</h3>
+            <div class="price">
+                $10,000 <small>/ month</small>
+            </div>
+            <ul>
+                <li>✓ Advanced AI</li>
+                <li>✓ Advanced Analytics</li>
+                <li>✓ Automation</li>
+                <li>✓ Priority Support</li>
+            </ul>
+            <a href="#">Get Started</a>
+        </div>
+
+
+        <div class="price-card">
+            <h3>Professional</h3>
+            <div class="price">
+                $25,000 <small>/ month</small>
+            </div>
+            <ul>
+                <li>✓ Advanced AI</li>
+                <li>✓ Custom Reports</li>
+                <li>✓ API Access</li>
+                <li>✓ Premium Support</li>
+            </ul>
+            <a href="#">Get Started</a>
+        </div>
+
+
+        <div class="price-card">
+            <h3>Enterprise</h3>
+            <div class="price">
+                $50,000 <small>/ month</small>
+            </div>
+            <ul>
+                <li>✓ Enterprise AI</li>
+                <li>✓ Custom Integrations</li>
+                <li>✓ Advanced Security</li>
+                <li>✓ Dedicated Support</li>
+            </ul>
+            <a href="#">Contact Sales</a>
+        </div>
+
+
+        <div class="price-card">
+            <h3>Corporate</h3>
+            <div class="price">
+                $100,000 <small>/ month</small>
+            </div>
+            <ul>
+                <li>✓ Custom AI</li>
+                <li>✓ Enterprise Infrastructure</li>
+                <li>✓ Advanced Security</li>
+                <li>✓ Dedicated Account</li>
+            </ul>
+            <a href="#">Contact Sales</a>
+        </div>
+
+
+        <div class="price-card">
+            <h3>Global Enterprise</h3>
+            <div class="price">
+                $250,000 <small>/ month</small>
+            </div>
+            <ul>
+                <li>✓ Global AI Platform</li>
+                <li>✓ Dedicated Infrastructure</li>
+                <li>✓ Custom Integrations</li>
+                <li>✓ Enterprise Support</li>
+            </ul>
+            <a href="#">Contact Sales</a>
+        </div>
+
+
+        <div class="price-card">
+            <h3>Global AI Infrastructure</h3>
+            <div class="price">
+                $500,000+ <small>/ month</small>
+            </div>
+            <ul>
+                <li>✓ Dedicated AI Infrastructure</li>
+                <li>✓ Custom Enterprise AI</li>
+                <li>✓ Global Deployment</li>
+                <li>✓ 24/7 Enterprise Support</li>
+            </ul>
+            <a href="#">Contact Sales</a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="contact">
+
+    <h2 class="section-title">
+        Ready for Enterprise AI?
+    </h2>
+
+    <p class="section-text">
+        Build a smarter, more automated organization with SHIZAZ AI.
+    </p>
+
+</section>
+
+
+<footer>
+    © 2026 SHIZAZ AI. All rights reserved.
+</footer>
+
+</body>
+</html>
