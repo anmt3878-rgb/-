@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>SHIZAZ AI — Sales Leads</title>
 
 <style>
@@ -19,9 +18,7 @@ body{
     color:#f8fafc;
 }
 
-button,
-input,
-select{
+button,input,select{
     font-family:inherit;
 }
 
@@ -29,8 +26,6 @@ a{
     text-decoration:none;
     color:inherit;
 }
-
-/* SIDEBAR */
 
 .sidebar{
     position:fixed;
@@ -82,8 +77,6 @@ a{
     color:#f87171!important;
 }
 
-/* MAIN */
-
 .main{
     margin-left:245px;
     padding:30px;
@@ -111,8 +104,6 @@ a{
     color:#94a3b8;
     font-size:14px;
 }
-
-/* STATS */
 
 .stats{
     display:grid;
@@ -143,8 +134,6 @@ a{
     font-weight:bold;
     margin-top:5px;
 }
-
-/* TOOLBAR */
 
 .toolbar{
     display:flex;
@@ -182,12 +171,6 @@ a{
     color:white;
     cursor:pointer;
 }
-
-.delete-all:hover{
-    background:#991b1b;
-}
-
-/* TABLE */
 
 .table-card{
     background:#0f1b2d;
@@ -248,8 +231,6 @@ tr:hover{
     color:#94a3b8;
 }
 
-/* STATUS */
-
 .status{
     padding:6px 10px;
     border-radius:20px;
@@ -277,8 +258,6 @@ tr:hover{
     background:#450a0a;
     color:#f87171;
 }
-
-/* ACTIONS */
 
 .actions{
     display:flex;
@@ -319,8 +298,6 @@ tr:hover{
     opacity:.8;
 }
 
-/* EMPTY */
-
 .empty{
     text-align:center;
     padding:70px 20px;
@@ -331,8 +308,6 @@ tr:hover{
     font-size:50px;
     margin-bottom:15px;
 }
-
-/* MODAL */
 
 .modal{
     display:none;
@@ -361,10 +336,6 @@ tr:hover{
     justify-content:space-between;
     align-items:center;
     margin-bottom:20px;
-}
-
-.modal-header h2{
-    font-size:22px;
 }
 
 .close{
@@ -399,10 +370,7 @@ tr:hover{
     line-height:1.6;
 }
 
-/* MOBILE */
-
 @media(max-width:1000px){
-
     .stats{
         grid-template-columns:repeat(2,1fr);
     }
@@ -449,61 +417,29 @@ tr:hover{
 
 <body>
 
-<!-- SIDEBAR -->
-
 <aside class="sidebar">
 
     <div class="logo">SHIZAZ AI</div>
 
     <div class="menu-title">MAIN</div>
 
-    <a href="dashboard.html">
-        📊 Dashboard
-    </a>
-
-    <a href="ai.html">
-        🤖 AI Assistant
-    </a>
-
-    <a href="analytics.html">
-        📈 Analytics
-    </a>
-
-    <a href="automation.html">
-        ⚡ Automation
-    </a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="ai.html">🤖 AI Assistant</a>
+    <a href="analytics.html">📈 Analytics</a>
+    <a href="automation.html">⚡ Automation</a>
 
     <div class="menu-title">MANAGEMENT</div>
 
-    <a href="employees.html">
-        👥 Employees
-    </a>
-
-    <a href="customers.html">
-        👤 Customers
-    </a>
-
-    <a href="leads.html" class="active">
-        🎯 Sales Leads
-    </a>
+    <a href="employees.html">👥 Employees</a>
+    <a href="customers.html">👤 Customers</a>
+    <a href="leads.html" class="active">🎯 Sales Leads</a>
 
     <div class="menu-title">SYSTEM</div>
 
-    <a href="security.html">
-        🔐 Security
-    </a>
-
-    <a href="integrations.html">
-        🔗 Integrations
-    </a>
-
-    <a href="billing.html">
-        💳 Billing
-    </a>
-
-    <a href="settings.html">
-        ⚙️ Settings
-    </a>
+    <a href="security.html">🔐 Security</a>
+    <a href="integrations.html">🔗 Integrations</a>
+    <a href="billing.html">💳 Billing</a>
+    <a href="settings.html">⚙️ Settings</a>
 
     <a href="#" class="logout" onclick="logout()">
         🚪 Logout
@@ -511,8 +447,6 @@ tr:hover{
 
 </aside>
 
-
-<!-- MAIN -->
 
 <main class="main">
 
@@ -529,8 +463,6 @@ tr:hover{
 
     </div>
 
-
-    <!-- STATS -->
 
     <section class="stats">
 
@@ -561,8 +493,6 @@ tr:hover{
     </section>
 
 
-    <!-- TOOLBAR -->
-
     <div class="toolbar">
 
         <div class="search-box">
@@ -588,8 +518,6 @@ tr:hover{
 
     </div>
 
-
-    <!-- TABLE -->
 
     <div class="table-card">
 
@@ -634,8 +562,6 @@ tr:hover{
 </main>
 
 
-<!-- VIEW MODAL -->
-
 <div class="modal" id="viewModal">
 
     <div class="modal-box">
@@ -644,9 +570,7 @@ tr:hover{
 
             <h2>Lead Details</h2>
 
-            <button class="close" onclick="closeModal()">
-                ×
-            </button>
+            <button class="close" onclick="closeModal()">×</button>
 
         </div>
 
@@ -686,13 +610,8 @@ tr:hover{
         </div>
 
         <div class="detail">
-
-            <div class="detail-label">
-                Business Requirements
-            </div>
-
+            <div class="detail-label">Business Requirements</div>
             <div class="message" id="viewMessage"></div>
-
         </div>
 
     </div>
@@ -712,42 +631,57 @@ function getLeads(){
 
     try{
 
-        leads = JSON.parse(
-            localStorage.getItem("shizaz_leads") || "[]"
-        );
+        const saved =
+            localStorage.getItem("shizaz_leads");
 
-        if(!Array.isArray(leads)){
-            leads = [];
+        if(saved){
+
+            const parsed = JSON.parse(saved);
+
+            if(Array.isArray(parsed)){
+                leads = parsed;
+            }
+
         }
 
     }catch(error){
 
-        leads = [];
+        console.log("Lead loading error:", error);
 
     }
 
 
     /*
-       Compatibility with old demo request
+       Import old demo request
+       only if there are no leads.
     */
 
     if(leads.length === 0){
 
         try{
 
-            const oldLead =
-                JSON.parse(
-                    localStorage.getItem("shizaz_demo_request")
-                );
+            const old =
+                localStorage.getItem("shizaz_demo_request");
 
-            if(oldLead){
+            if(old){
 
-                leads.push(oldLead);
+                const oldLead = JSON.parse(old);
 
-                localStorage.setItem(
-                    "shizaz_leads",
-                    JSON.stringify(leads)
-                );
+                if(oldLead){
+
+                    if(!oldLead.id){
+                        oldLead.id = Date.now();
+                    }
+
+                    if(!oldLead.status){
+                        oldLead.status = "New";
+                    }
+
+                    leads.push(oldLead);
+
+                    saveLeads(leads);
+
+                }
 
             }
 
@@ -755,12 +689,13 @@ function getLeads(){
 
     }
 
+
     return leads;
 }
 
 
 /* =========================
-   SAVE LEADS
+   SAVE
 ========================= */
 
 function saveLeads(leads){
@@ -774,7 +709,7 @@ function saveLeads(leads){
 
 
 /* =========================
-   ESCAPE HTML
+   ESCAPE
 ========================= */
 
 function escapeHtml(value){
@@ -794,7 +729,7 @@ function escapeHtml(value){
 
 
 /* =========================
-   FORMAT DATE
+   DATE
 ========================= */
 
 function formatDate(date){
@@ -840,12 +775,11 @@ function statusClass(status){
     }
 
     return "status-new";
-
 }
 
 
 /* =========================
-   RENDER LEADS
+   RENDER
 ========================= */
 
 function renderLeads(){
@@ -853,15 +787,13 @@ function renderLeads(){
     const leads = getLeads();
 
     const search =
-        document
-        .getElementById("search")
+        document.getElementById("search")
         .value
         .toLowerCase()
         .trim();
 
     const filter =
-        document
-        .getElementById("statusFilter")
+        document.getElementById("statusFilter")
         .value;
 
     const table =
@@ -871,164 +803,167 @@ function renderLeads(){
         document.getElementById("emptyState");
 
 
+    table.innerHTML = "";
+
+
     const filtered = leads.filter(function(lead){
 
         const name =
-            String(lead.name || "").toLowerCase();
+            String(lead.name || "")
+            .toLowerCase();
 
         const company =
-            String(lead.company || "").toLowerCase();
+            String(lead.company || "")
+            .toLowerCase();
 
         const email =
-            String(lead.email || "").toLowerCase();
+            String(lead.email || "")
+            .toLowerCase();
 
         const status =
-            String(lead.status || "New");
+            lead.status || "New";
 
 
-        const matchesSearch =
+        const searchMatch =
             !search ||
             name.includes(search) ||
             company.includes(search) ||
             email.includes(search);
 
 
-        const matchesStatus =
+        const statusMatch =
             filter === "All" ||
             status === filter;
 
 
-        return matchesSearch && matchesStatus;
+        return searchMatch && statusMatch;
 
     });
-
-
-    table.innerHTML = "";
 
 
     if(filtered.length === 0){
 
         empty.style.display = "block";
 
-    }else{
+        updateStats();
 
-        empty.style.display = "none";
-
-
-        filtered.forEach(function(lead){
-
-            const index =
-                leads.findIndex(function(item){
-
-                    return String(item.id) === String(lead.id);
-
-                });
-
-
-            const status =
-                lead.status || "New";
-
-
-            const row =
-                document.createElement("tr");
-
-
-            row.innerHTML = `
-
-                <td>
-                    <strong>
-                        ${escapeHtml(lead.name || "-")}
-                    </strong>
-                </td>
-
-                <td>
-                    <strong>
-                        ${escapeHtml(lead.company || "-")}
-                    </strong>
-
-                    <div class="company">
-                        Potential Customer
-                    </div>
-                </td>
-
-                <td>
-                    <span class="email">
-                        ${escapeHtml(lead.email || "-")}
-                    </span>
-                </td>
-
-                <td>
-                    <span class="phone">
-                        ${escapeHtml(lead.phone || "-")}
-                    </span>
-                </td>
-
-                <td>
-                    <span class="plan">
-                        ${escapeHtml(lead.plan || "-")}
-                    </span>
-                </td>
-
-                <td>
-                    <span class="date">
-                        ${formatDate(lead.date)}
-                    </span>
-                </td>
-
-                <td>
-
-                    <span class="status ${statusClass(status)}">
-                        ${escapeHtml(status)}
-                    </span>
-
-                </td>
-
-                <td>
-
-                    <div class="actions">
-
-                        <button
-                            class="action-btn view-btn"
-                            onclick="viewLead(${index})">
-                            👁 View
-                        </button>
-
-                        <button
-                            class="action-btn contact-btn"
-                            onclick="changeStatus(${index}, 'Contacted')">
-                            📞 Contacted
-                        </button>
-
-                        <button
-                            class="action-btn won-btn"
-                            onclick="changeStatus(${index}, 'Won')">
-                            🏆 Won
-                        </button>
-
-                        <button
-                            class="action-btn lost-btn"
-                            onclick="changeStatus(${index}, 'Lost')">
-                            ❌ Lost
-                        </button>
-
-                        <button
-                            class="action-btn delete-btn"
-                            onclick="deleteLead(${index})">
-                            🗑 Delete
-                        </button>
-
-                    </div>
-
-                </td>
-
-            `;
-
-
-            table.appendChild(row);
-
-        });
+        return;
 
     }
+
+
+    empty.style.display = "none";
+
+
+    filtered.forEach(function(lead){
+
+        const row =
+            document.createElement("tr");
+
+
+        const status =
+            lead.status || "New";
+
+
+        const safeId =
+            encodeURIComponent(
+                String(lead.id)
+            );
+
+
+        row.innerHTML = `
+
+            <td>
+                <strong>
+                    ${escapeHtml(lead.name || "-")}
+                </strong>
+            </td>
+
+            <td>
+                <strong>
+                    ${escapeHtml(lead.company || "-")}
+                </strong>
+
+                <div class="company">
+                    Potential Customer
+                </div>
+            </td>
+
+            <td>
+                <span class="email">
+                    ${escapeHtml(lead.email || "-")}
+                </span>
+            </td>
+
+            <td>
+                <span class="phone">
+                    ${escapeHtml(lead.phone || "-")}
+                </span>
+            </td>
+
+            <td>
+                <span class="plan">
+                    ${escapeHtml(lead.plan || "-")}
+                </span>
+            </td>
+
+            <td>
+                <span class="date">
+                    ${formatDate(lead.date)}
+                </span>
+            </td>
+
+            <td>
+                <span
+                    class="status ${statusClass(status)}"
+                    id="status-${safeId}">
+                    ${escapeHtml(status)}
+                </span>
+            </td>
+
+            <td>
+
+                <div class="actions">
+
+                    <button
+                        class="action-btn view-btn"
+                        onclick="viewLead('${safeId}')">
+                        👁 View
+                    </button>
+
+                    <button
+                        class="action-btn contact-btn"
+                        onclick="changeStatus('${safeId}','Contacted')">
+                        📞 Contacted
+                    </button>
+
+                    <button
+                        class="action-btn won-btn"
+                        onclick="changeStatus('${safeId}','Won')">
+                        🏆 Won
+                    </button>
+
+                    <button
+                        class="action-btn lost-btn"
+                        onclick="changeStatus('${safeId}','Lost')">
+                        ❌ Lost
+                    </button>
+
+                    <button
+                        class="action-btn delete-btn"
+                        onclick="deleteLead('${safeId}')">
+                        🗑 Delete
+                    </button>
+
+                </div>
+
+            </td>
+        `;
+
+
+        table.appendChild(row);
+
+    });
 
 
     updateStats();
@@ -1045,45 +980,43 @@ function updateStats(){
     const leads = getLeads();
 
 
-    const total =
-        leads.length;
+    let newCount = 0;
+    let contactedCount = 0;
+    let wonCount = 0;
 
 
-    const newCount =
-        leads.filter(function(lead){
+    leads.forEach(function(lead){
 
-            return (lead.status || "New") === "New";
-
-        }).length;
+        const status =
+            lead.status || "New";
 
 
-    const contacted =
-        leads.filter(function(lead){
+        if(status === "New"){
+            newCount++;
+        }
 
-            return lead.status === "Contacted";
+        if(status === "Contacted"){
+            contactedCount++;
+        }
 
-        }).length;
+        if(status === "Won"){
+            wonCount++;
+        }
 
-
-    const won =
-        leads.filter(function(lead){
-
-            return lead.status === "Won";
-
-        }).length;
+    });
 
 
     document.getElementById("totalLeads")
-        .textContent = total;
+        .textContent = leads.length;
 
     document.getElementById("newLeads")
         .textContent = newCount;
 
     document.getElementById("contactedLeads")
-        .textContent = contacted;
+        .textContent = contactedCount;
 
     document.getElementById("wonLeads")
-        .textContent = won;
+        .textContent = wonCount;
 
 }
 
@@ -1092,71 +1025,124 @@ function updateStats(){
    CHANGE STATUS
 ========================= */
 
-function changeStatus(index,status){
+function changeStatus(encodedId,status){
 
-    const leads = getLeads();
+    const id =
+        decodeURIComponent(encodedId);
 
-    if(!leads[index]){
+    const leads =
+        getLeads();
+
+
+    const index =
+        leads.findIndex(function(lead){
+
+            return String(lead.id) === String(id);
+
+        });
+
+
+    if(index === -1){
+
+        alert("Lead not found.");
+
         return;
+
     }
 
 
     leads[index].status = status;
 
+
     saveLeads(leads);
 
 
+    /*
+       Refresh everything
+    */
+
     renderLeads();
+
+
+    /*
+       Confirmation
+    */
+
+    alert(
+        "Lead status changed to " + status
+    );
 
 }
 
 
 /* =========================
-   VIEW LEAD
+   VIEW
 ========================= */
 
-function viewLead(index){
+function viewLead(encodedId){
 
-    const leads = getLeads();
+    const id =
+        decodeURIComponent(encodedId);
 
-    const lead = leads[index];
+    const leads =
+        getLeads();
+
+
+    const lead =
+        leads.find(function(item){
+
+            return String(item.id) === String(id);
+
+        });
+
 
     if(!lead){
+
+        alert("Lead not found.");
+
         return;
+
     }
 
 
     document.getElementById("viewName")
-        .textContent = lead.name || "-";
+        .textContent =
+        lead.name || "-";
 
 
     document.getElementById("viewCompany")
-        .textContent = lead.company || "-";
+        .textContent =
+        lead.company || "-";
 
 
     document.getElementById("viewEmail")
-        .textContent = lead.email || "-";
+        .textContent =
+        lead.email || "-";
 
 
     document.getElementById("viewPhone")
-        .textContent = lead.phone || "-";
+        .textContent =
+        lead.phone || "-";
 
 
     document.getElementById("viewPlan")
-        .textContent = lead.plan || "-";
+        .textContent =
+        lead.plan || "-";
 
 
     document.getElementById("viewDate")
-        .textContent = formatDate(lead.date);
+        .textContent =
+        formatDate(lead.date);
 
 
     document.getElementById("viewStatus")
-        .textContent = lead.status || "New";
+        .textContent =
+        lead.status || "New";
 
 
     document.getElementById("viewMessage")
         .textContent =
-            lead.message || "No message provided.";
+        lead.message || "No message provided.";
 
 
     document.getElementById("viewModal")
@@ -1178,25 +1164,44 @@ function closeModal(){
 
 
 document.getElementById("viewModal")
-    .addEventListener("click",function(event){
+.addEventListener("click",function(event){
 
-        if(event.target === this){
-            closeModal();
-        }
+    if(event.target === this){
 
-    });
+        closeModal();
+
+    }
+
+});
 
 
 /* =========================
-   DELETE LEAD
+   DELETE
 ========================= */
 
-function deleteLead(index){
+function deleteLead(encodedId){
 
-    const leads = getLeads();
+    const id =
+        decodeURIComponent(encodedId);
 
-    if(!leads[index]){
+    let leads =
+        getLeads();
+
+
+    const index =
+        leads.findIndex(function(lead){
+
+            return String(lead.id) === String(id);
+
+        });
+
+
+    if(index === -1){
+
+        alert("Lead not found.");
+
         return;
+
     }
 
 
@@ -1204,18 +1209,15 @@ function deleteLead(index){
         leads[index].name || "this lead";
 
 
-    const confirmDelete =
-        confirm(
-            "Delete " + name + "?"
-        );
+    if(!confirm("Delete " + name + "?")){
 
-
-    if(!confirmDelete){
         return;
+
     }
 
 
     leads.splice(index,1);
+
 
     saveLeads(leads);
 
@@ -1231,26 +1233,25 @@ function deleteLead(index){
 
 function clearAllLeads(){
 
-    const leads = getLeads();
+    const leads =
+        getLeads();
 
 
     if(leads.length === 0){
 
-        alert("There are no leads to delete.");
+        alert("There are no leads.");
 
         return;
 
     }
 
 
-    const confirmDelete =
-        confirm(
-            "Are you sure you want to delete ALL sales leads?"
-        );
+    if(!confirm(
+        "Are you sure you want to delete ALL sales leads?"
+    )){
 
-
-    if(!confirmDelete){
         return;
+
     }
 
 
@@ -1270,7 +1271,9 @@ function clearAllLeads(){
 
 function logout(){
 
-    localStorage.removeItem("shizaz_logged_in");
+    localStorage.removeItem(
+        "shizaz_logged_in"
+    );
 
     window.location.href =
         "login.html";
@@ -1279,7 +1282,7 @@ function logout(){
 
 
 /* =========================
-   USER EMAIL
+   USER
 ========================= */
 
 function loadUser(){
