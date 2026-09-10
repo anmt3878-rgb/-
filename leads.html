@@ -419,284 +419,258 @@ tr:hover{
 
 <aside class="sidebar">
 
-    <div class="logo">SHIZAZ AI</div>
+<div class="logo">SHIZAZ AI</div>
 
-    <div class="menu-title">MAIN</div>
+<div class="menu-title">MAIN</div>
 
-    <a href="dashboard.html">📊 Dashboard</a>
-    <a href="ai.html">🤖 AI Assistant</a>
-    <a href="analytics.html">📈 Analytics</a>
-    <a href="automation.html">⚡ Automation</a>
+<a href="dashboard.html">📊 Dashboard</a>
+<a href="ai.html">🤖 AI Assistant</a>
+<a href="analytics.html">📈 Analytics</a>
+<a href="automation.html">⚡ Automation</a>
 
-    <div class="menu-title">MANAGEMENT</div>
+<div class="menu-title">MANAGEMENT</div>
 
-    <a href="employees.html">👥 Employees</a>
-    <a href="customers.html">👤 Customers</a>
-    <a href="leads.html" class="active">🎯 Sales Leads</a>
+<a href="employees.html">👥 Employees</a>
+<a href="customers.html">👤 Customers</a>
+<a href="leads.html" class="active">🎯 Sales Leads</a>
 
-    <div class="menu-title">SYSTEM</div>
+<div class="menu-title">SYSTEM</div>
 
-    <a href="security.html">🔐 Security</a>
-    <a href="integrations.html">🔗 Integrations</a>
-    <a href="billing.html">💳 Billing</a>
-    <a href="settings.html">⚙️ Settings</a>
+<a href="security.html">🔐 Security</a>
+<a href="integrations.html">🔗 Integrations</a>
+<a href="billing.html">💳 Billing</a>
+<a href="settings.html">⚙️ Settings</a>
 
-    <a href="#" class="logout" onclick="logout()">
-        🚪 Logout
-    </a>
+<a href="#" class="logout" onclick="logout();return false;">
+🚪 Logout
+</a>
 
 </aside>
 
-
 <main class="main">
 
-    <div class="topbar">
+<div class="topbar">
 
-        <div>
-            <h1>🎯 Sales Leads</h1>
-            <p>Manage and track your potential customers.</p>
-        </div>
+<div>
+<h1>🎯 Sales Leads</h1>
+<p>Manage and track your potential customers.</p>
+</div>
 
-        <div class="user-box" id="userEmail">
-            SHIZAZ AI
-        </div>
-
-    </div>
-
-
-    <section class="stats">
-
-        <div class="stat">
-            <div class="stat-icon">🎯</div>
-            <div class="stat-title">Total Leads</div>
-            <div class="stat-value" id="totalLeads">0</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-icon">🆕</div>
-            <div class="stat-title">New Leads</div>
-            <div class="stat-value" id="newLeads">0</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-icon">📞</div>
-            <div class="stat-title">Contacted</div>
-            <div class="stat-value" id="contactedLeads">0</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-icon">🏆</div>
-            <div class="stat-title">Won</div>
-            <div class="stat-value" id="wonLeads">0</div>
-        </div>
-
-    </section>
-
-
-    <div class="toolbar">
-
-        <div class="search-box">
-            <input
-                type="text"
-                id="search"
-                placeholder="Search name, company or email..."
-                oninput="renderLeads()"
-            >
-        </div>
-
-        <select id="statusFilter" onchange="renderLeads()">
-            <option value="All">All Status</option>
-            <option value="New">New</option>
-            <option value="Contacted">Contacted</option>
-            <option value="Won">Won</option>
-            <option value="Lost">Lost</option>
-        </select>
-
-        <button class="delete-all" onclick="clearAllLeads()">
-            🗑️ Delete All
-        </button>
-
-    </div>
-
-
-    <div class="table-card">
-
-        <div class="table-wrapper">
-
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Company</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Plan</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody id="leadsTable"></tbody>
-
-            </table>
-
-        </div>
-
-        <div class="empty" id="emptyState" style="display:none;">
-
-            <div class="empty-icon">🎯</div>
-
-            <h3>No Sales Leads</h3>
-
-            <p>
-                When customers submit the Request Demo form,
-                they will appear here.
-            </p>
-
-        </div>
-
-    </div>
-
-</main>
-
-
-<div class="modal" id="viewModal">
-
-    <div class="modal-box">
-
-        <div class="modal-header">
-
-            <h2>Lead Details</h2>
-
-            <button class="close" onclick="closeModal()">×</button>
-
-        </div>
-
-        <div class="detail">
-            <div class="detail-label">Full Name</div>
-            <div class="detail-value" id="viewName"></div>
-        </div>
-
-        <div class="detail">
-            <div class="detail-label">Company</div>
-            <div class="detail-value" id="viewCompany"></div>
-        </div>
-
-        <div class="detail">
-            <div class="detail-label">Business Email</div>
-            <div class="detail-value" id="viewEmail"></div>
-        </div>
-
-        <div class="detail">
-            <div class="detail-label">Phone</div>
-            <div class="detail-value" id="viewPhone"></div>
-        </div>
-
-        <div class="detail">
-            <div class="detail-label">Selected Solution</div>
-            <div class="detail-value" id="viewPlan"></div>
-        </div>
-
-        <div class="detail">
-            <div class="detail-label">Date</div>
-            <div class="detail-value" id="viewDate"></div>
-        </div>
-
-        <div class="detail">
-            <div class="detail-label">Status</div>
-            <div class="detail-value" id="viewStatus"></div>
-        </div>
-
-        <div class="detail">
-            <div class="detail-label">Business Requirements</div>
-            <div class="message" id="viewMessage"></div>
-        </div>
-
-    </div>
+<div class="user-box" id="userEmail">
+SHIZAZ AI
+</div>
 
 </div>
 
+<section class="stats">
+
+<div class="stat">
+<div class="stat-icon">🎯</div>
+<div class="stat-title">Total Leads</div>
+<div class="stat-value" id="totalLeads">0</div>
+</div>
+
+<div class="stat">
+<div class="stat-icon">🆕</div>
+<div class="stat-title">New Leads</div>
+<div class="stat-value" id="newLeads">0</div>
+</div>
+
+<div class="stat">
+<div class="stat-icon">📞</div>
+<div class="stat-title">Contacted</div>
+<div class="stat-value" id="contactedLeads">0</div>
+</div>
+
+<div class="stat">
+<div class="stat-icon">🏆</div>
+<div class="stat-title">Won</div>
+<div class="stat-value" id="wonLeads">0</div>
+</div>
+
+</section>
+
+<div class="toolbar">
+
+<div class="search-box">
+<input
+type="text"
+id="search"
+placeholder="Search name, company or email..."
+oninput="renderLeads()">
+</div>
+
+<select id="statusFilter" onchange="renderLeads()">
+<option value="All">All Status</option>
+<option value="New">New</option>
+<option value="Contacted">Contacted</option>
+<option value="Won">Won</option>
+<option value="Lost">Lost</option>
+</select>
+
+<button class="delete-all" onclick="clearAllLeads()">
+🗑️ Delete All
+</button>
+
+</div>
+
+<div class="table-card">
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Company</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Plan</th>
+<th>Date</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody id="leadsTable"></tbody>
+
+</table>
+
+</div>
+
+<div class="empty" id="emptyState" style="display:none;">
+
+<div class="empty-icon">🎯</div>
+
+<h3>No Sales Leads</h3>
+
+<p>
+When customers submit the Request Demo form,
+they will appear here.
+</p>
+
+</div>
+
+</div>
+
+</main>
+
+<div class="modal" id="viewModal">
+
+<div class="modal-box">
+
+<div class="modal-header">
+
+<h2>Lead Details</h2>
+
+<button class="close" onclick="closeModal()">×</button>
+
+</div>
+
+<div class="detail">
+<div class="detail-label">Full Name</div>
+<div class="detail-value" id="viewName"></div>
+</div>
+
+<div class="detail">
+<div class="detail-label">Company</div>
+<div class="detail-value" id="viewCompany"></div>
+</div>
+
+<div class="detail">
+<div class="detail-label">Business Email</div>
+<div class="detail-value" id="viewEmail"></div>
+</div>
+
+<div class="detail">
+<div class="detail-label">Phone</div>
+<div class="detail-value" id="viewPhone"></div>
+</div>
+
+<div class="detail">
+<div class="detail-label">Selected Solution</div>
+<div class="detail-value" id="viewPlan"></div>
+</div>
+
+<div class="detail">
+<div class="detail-label">Date</div>
+<div class="detail-value" id="viewDate"></div>
+</div>
+
+<div class="detail">
+<div class="detail-label">Status</div>
+<div class="detail-value" id="viewStatus"></div>
+</div>
+
+<div class="detail">
+<div class="detail-label">Business Requirements</div>
+<div class="message" id="viewMessage"></div>
+</div>
+
+</div>
+
+</div>
 
 <script>
 
-/* =========================
-   GET LEADS
-========================= */
-
 function getLeads(){
 
-    let leads = [];
+    let leads=[];
 
     try{
 
-        const saved =
-            localStorage.getItem("shizaz_leads");
+        const saved=localStorage.getItem("shizaz_leads");
 
         if(saved){
 
-            const parsed = JSON.parse(saved);
+            const parsed=JSON.parse(saved);
 
             if(Array.isArray(parsed)){
-                leads = parsed;
+                leads=parsed;
             }
 
         }
 
     }catch(error){
 
-        console.log("Lead loading error:", error);
+        console.log(error);
 
     }
 
-
-    /*
-       Import old demo request
-       only if there are no leads.
-    */
-
-    if(leads.length === 0){
+    if(leads.length===0){
 
         try{
 
-            const old =
-                localStorage.getItem("shizaz_demo_request");
+            const old=localStorage.getItem("shizaz_demo_request");
 
             if(old){
 
-                const oldLead = JSON.parse(old);
+                const oldLead=JSON.parse(old);
 
                 if(oldLead){
 
                     if(!oldLead.id){
-                        oldLead.id = Date.now();
+                        oldLead.id=Date.now();
                     }
 
                     if(!oldLead.status){
-                        oldLead.status = "New";
+                        oldLead.status="New";
                     }
 
                     leads.push(oldLead);
 
                     saveLeads(leads);
-
                 }
-
             }
 
         }catch(error){}
 
     }
 
-
     return leads;
 }
 
-
-/* =========================
-   SAVE
-========================= */
 
 function saveLeads(leads){
 
@@ -708,29 +682,21 @@ function saveLeads(leads){
 }
 
 
-/* =========================
-   ESCAPE
-========================= */
-
 function escapeHtml(value){
 
-    if(value === null || value === undefined){
+    if(value===null || value===undefined){
         return "";
     }
 
     return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
-
-/* =========================
-   DATE
-========================= */
 
 function formatDate(date){
 
@@ -738,7 +704,7 @@ function formatDate(date){
         return "-";
     }
 
-    const d = new Date(date);
+    const d=new Date(date);
 
     if(isNaN(d.getTime())){
         return "-";
@@ -756,21 +722,17 @@ function formatDate(date){
 }
 
 
-/* =========================
-   STATUS CLASS
-========================= */
-
 function statusClass(status){
 
-    if(status === "Contacted"){
+    if(status==="Contacted"){
         return "status-contacted";
     }
 
-    if(status === "Won"){
+    if(status==="Won"){
         return "status-won";
     }
 
-    if(status === "Lost"){
+    if(status==="Lost"){
         return "status-lost";
     }
 
@@ -778,387 +740,264 @@ function statusClass(status){
 }
 
 
-/* =========================
-   RENDER
-========================= */
-
 function renderLeads(){
 
-    const leads = getLeads();
+    const leads=getLeads();
 
-    const search =
-        document.getElementById("search")
+    const search=document
+        .getElementById("search")
         .value
         .toLowerCase()
         .trim();
 
-    const filter =
-        document.getElementById("statusFilter")
+    const filter=document
+        .getElementById("statusFilter")
         .value;
 
-    const table =
-        document.getElementById("leadsTable");
+    const table=document
+        .getElementById("leadsTable");
 
-    const empty =
-        document.getElementById("emptyState");
+    const empty=document
+        .getElementById("emptyState");
 
+    table.innerHTML="";
 
-    table.innerHTML = "";
+    const filtered=leads.filter(function(lead){
 
+        const text=(
+            (lead.name||"")+" "+
+            (lead.company||"")+" "+
+            (lead.email||"")
+        ).toLowerCase();
 
-    const filtered = leads.filter(function(lead){
+        const status=lead.status||"New";
 
-        const name =
-            String(lead.name || "")
-            .toLowerCase();
-
-        const company =
-            String(lead.company || "")
-            .toLowerCase();
-
-        const email =
-            String(lead.email || "")
-            .toLowerCase();
-
-        const status =
-            lead.status || "New";
-
-
-        const searchMatch =
-            !search ||
-            name.includes(search) ||
-            company.includes(search) ||
-            email.includes(search);
-
-
-        const statusMatch =
-            filter === "All" ||
-            status === filter;
-
-
-        return searchMatch && statusMatch;
+        return (
+            (!search || text.includes(search)) &&
+            (filter==="All" || status===filter)
+        );
 
     });
 
 
-    if(filtered.length === 0){
+    if(filtered.length===0){
 
-        empty.style.display = "block";
+        empty.style.display="block";
 
         updateStats();
 
         return;
-
     }
 
 
-    empty.style.display = "none";
+    empty.style.display="none";
 
 
     filtered.forEach(function(lead){
 
-        const row =
-            document.createElement("tr");
+        const row=document.createElement("tr");
 
+        const status=lead.status||"New";
 
-        const status =
-            lead.status || "New";
+        row.innerHTML=`
 
+<td>
+<strong>${escapeHtml(lead.name||"-")}</strong>
+</td>
 
-        const safeId =
-            encodeURIComponent(
-                String(lead.id)
-            );
+<td>
+<strong>${escapeHtml(lead.company||"-")}</strong>
+<div class="company">Potential Customer</div>
+</td>
 
+<td>
+<span class="email">${escapeHtml(lead.email||"-")}</span>
+</td>
 
-        row.innerHTML = `
+<td>
+<span class="phone">${escapeHtml(lead.phone||"-")}</span>
+</td>
 
-            <td>
-                <strong>
-                    ${escapeHtml(lead.name || "-")}
-                </strong>
-            </td>
+<td>
+<span class="plan">${escapeHtml(lead.plan||"-")}</span>
+</td>
 
-            <td>
-                <strong>
-                    ${escapeHtml(lead.company || "-")}
-                </strong>
+<td>
+<span class="date">${formatDate(lead.date)}</span>
+</td>
 
-                <div class="company">
-                    Potential Customer
-                </div>
-            </td>
+<td>
+<span class="status ${statusClass(status)}">
+${escapeHtml(status)}
+</span>
+</td>
 
-            <td>
-                <span class="email">
-                    ${escapeHtml(lead.email || "-")}
-                </span>
-            </td>
+<td>
 
-            <td>
-                <span class="phone">
-                    ${escapeHtml(lead.phone || "-")}
-                </span>
-            </td>
+<div class="actions">
 
-            <td>
-                <span class="plan">
-                    ${escapeHtml(lead.plan || "-")}
-                </span>
-            </td>
+<button class="action-btn view-btn"
+onclick="viewLead(${JSON.stringify(String(lead.id))})">
+👁 View
+</button>
 
-            <td>
-                <span class="date">
-                    ${formatDate(lead.date)}
-                </span>
-            </td>
+<button class="action-btn contact-btn"
+onclick="changeStatus(${JSON.stringify(String(lead.id))},'Contacted')">
+📞 Contacted
+</button>
 
-            <td>
-                <span
-                    class="status ${statusClass(status)}"
-                    id="status-${safeId}">
-                    ${escapeHtml(status)}
-                </span>
-            </td>
+<button class="action-btn won-btn"
+onclick="changeStatus(${JSON.stringify(String(lead.id))},'Won')">
+🏆 Won
+</button>
 
-            <td>
+<button class="action-btn lost-btn"
+onclick="changeStatus(${JSON.stringify(String(lead.id))},'Lost')">
+❌ Lost
+</button>
 
-                <div class="actions">
+<button class="action-btn delete-btn"
+onclick="deleteLead(${JSON.stringify(String(lead.id))})">
+🗑 Delete
+</button>
 
-                    <button
-                        class="action-btn view-btn"
-                        onclick="viewLead('${safeId}')">
-                        👁 View
-                    </button>
+</div>
 
-                    <button
-                        class="action-btn contact-btn"
-                        onclick="changeStatus('${safeId}','Contacted')">
-                        📞 Contacted
-                    </button>
-
-                    <button
-                        class="action-btn won-btn"
-                        onclick="changeStatus('${safeId}','Won')">
-                        🏆 Won
-                    </button>
-
-                    <button
-                        class="action-btn lost-btn"
-                        onclick="changeStatus('${safeId}','Lost')">
-                        ❌ Lost
-                    </button>
-
-                    <button
-                        class="action-btn delete-btn"
-                        onclick="deleteLead('${safeId}')">
-                        🗑 Delete
-                    </button>
-
-                </div>
-
-            </td>
-        `;
-
+</td>
+`;
 
         table.appendChild(row);
 
     });
 
-
     updateStats();
-
 }
 
 
-/* =========================
-   UPDATE STATS
-========================= */
-
 function updateStats(){
 
-    const leads = getLeads();
+    const leads=getLeads();
 
-
-    let newCount = 0;
-    let contactedCount = 0;
-    let wonCount = 0;
-
+    let newCount=0;
+    let contactedCount=0;
+    let wonCount=0;
 
     leads.forEach(function(lead){
 
-        const status =
-            lead.status || "New";
+        const status=lead.status||"New";
 
-
-        if(status === "New"){
+        if(status==="New"){
             newCount++;
         }
 
-        if(status === "Contacted"){
+        if(status==="Contacted"){
             contactedCount++;
         }
 
-        if(status === "Won"){
+        if(status==="Won"){
             wonCount++;
         }
 
     });
 
-
     document.getElementById("totalLeads")
-        .textContent = leads.length;
+        .textContent=leads.length;
 
     document.getElementById("newLeads")
-        .textContent = newCount;
+        .textContent=newCount;
 
     document.getElementById("contactedLeads")
-        .textContent = contactedCount;
+        .textContent=contactedCount;
 
     document.getElementById("wonLeads")
-        .textContent = wonCount;
-
+        .textContent=wonCount;
 }
 
 
 /* =========================
-   CHANGE STATUS
+   IMPORTANT STATUS FUNCTION
 ========================= */
 
-function changeStatus(encodedId,status){
+function changeStatus(id,status){
 
-    const id =
-        decodeURIComponent(encodedId);
+    let leads=getLeads();
 
-    const leads =
-        getLeads();
+    const index=leads.findIndex(function(lead){
 
+        return String(lead.id)===String(id);
 
-    const index =
-        leads.findIndex(function(lead){
+    });
 
-            return String(lead.id) === String(id);
-
-        });
-
-
-    if(index === -1){
+    if(index===-1){
 
         alert("Lead not found.");
-
         return;
 
     }
 
-
-    leads[index].status = status;
-
+    leads[index].status=status;
 
     saveLeads(leads);
 
-
-    /*
-       Refresh everything
-    */
-
     renderLeads();
-
-
-    /*
-       Confirmation
-    */
-
-    alert(
-        "Lead status changed to " + status
-    );
 
 }
 
 
 /* =========================
-   VIEW
+   VIEW LEAD
 ========================= */
 
-function viewLead(encodedId){
+function viewLead(id){
 
-    const id =
-        decodeURIComponent(encodedId);
+    const leads=getLeads();
 
-    const leads =
-        getLeads();
+    const lead=leads.find(function(item){
 
+        return String(item.id)===String(id);
 
-    const lead =
-        leads.find(function(item){
-
-            return String(item.id) === String(id);
-
-        });
-
+    });
 
     if(!lead){
 
         alert("Lead not found.");
-
         return;
 
     }
 
-
     document.getElementById("viewName")
-        .textContent =
-        lead.name || "-";
-
+        .textContent=lead.name||"-";
 
     document.getElementById("viewCompany")
-        .textContent =
-        lead.company || "-";
-
+        .textContent=lead.company||"-";
 
     document.getElementById("viewEmail")
-        .textContent =
-        lead.email || "-";
-
+        .textContent=lead.email||"-";
 
     document.getElementById("viewPhone")
-        .textContent =
-        lead.phone || "-";
-
+        .textContent=lead.phone||"-";
 
     document.getElementById("viewPlan")
-        .textContent =
-        lead.plan || "-";
-
+        .textContent=lead.plan||"-";
 
     document.getElementById("viewDate")
-        .textContent =
-        formatDate(lead.date);
-
+        .textContent=formatDate(lead.date);
 
     document.getElementById("viewStatus")
-        .textContent =
-        lead.status || "New";
-
+        .textContent=lead.status||"New";
 
     document.getElementById("viewMessage")
-        .textContent =
-        lead.message || "No message provided.";
-
+        .textContent=lead.message||"No message provided.";
 
     document.getElementById("viewModal")
-        .style.display = "flex";
-
+        .style.display="flex";
 }
 
-
-/* =========================
-   CLOSE MODAL
-========================= */
 
 function closeModal(){
 
     document.getElementById("viewModal")
-        .style.display = "none";
+        .style.display="none";
 
 }
 
@@ -1166,149 +1005,92 @@ function closeModal(){
 document.getElementById("viewModal")
 .addEventListener("click",function(event){
 
-    if(event.target === this){
-
+    if(event.target===this){
         closeModal();
-
     }
 
 });
 
 
-/* =========================
-   DELETE
-========================= */
+function deleteLead(id){
 
-function deleteLead(encodedId){
+    let leads=getLeads();
 
-    const id =
-        decodeURIComponent(encodedId);
+    const index=leads.findIndex(function(lead){
 
-    let leads =
-        getLeads();
+        return String(lead.id)===String(id);
 
+    });
 
-    const index =
-        leads.findIndex(function(lead){
-
-            return String(lead.id) === String(id);
-
-        });
-
-
-    if(index === -1){
+    if(index===-1){
 
         alert("Lead not found.");
-
         return;
 
     }
 
+    const name=leads[index].name||"this lead";
 
-    const name =
-        leads[index].name || "this lead";
-
-
-    if(!confirm("Delete " + name + "?")){
-
+    if(!confirm("Delete "+name+"?")){
         return;
-
     }
-
 
     leads.splice(index,1);
 
-
     saveLeads(leads);
 
-
     renderLeads();
-
 }
 
 
-/* =========================
-   DELETE ALL
-========================= */
-
 function clearAllLeads(){
 
-    const leads =
-        getLeads();
+    const leads=getLeads();
 
-
-    if(leads.length === 0){
+    if(leads.length===0){
 
         alert("There are no leads.");
-
         return;
 
     }
-
 
     if(!confirm(
         "Are you sure you want to delete ALL sales leads?"
     )){
-
         return;
-
     }
 
-
     localStorage.removeItem("shizaz_leads");
-
     localStorage.removeItem("shizaz_demo_request");
 
-
     renderLeads();
-
 }
 
-
-/* =========================
-   LOGOUT
-========================= */
 
 function logout(){
 
-    localStorage.removeItem(
-        "shizaz_logged_in"
-    );
+    localStorage.removeItem("shizaz_logged_in");
 
-    window.location.href =
-        "login.html";
+    window.location.href="login.html";
 
 }
 
 
-/* =========================
-   USER
-========================= */
-
 function loadUser(){
 
-    const email =
-        localStorage.getItem(
-            "shizaz_user_email"
-        );
-
+    const email=localStorage.getItem("shizaz_user_email");
 
     if(email){
 
         document.getElementById("userEmail")
-            .textContent = email;
+        .textContent=email;
 
     }
 
 }
 
 
-/* =========================
-   START
-========================= */
-
 loadUser();
-
 renderLeads();
 
 </script>
