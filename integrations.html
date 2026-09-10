@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SHIZAZ AI - Integrations</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#0b1120;
+    color:#fff;
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:240px;
+    background:#111827;
+    padding:25px 15px;
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    overflow-y:auto;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:35px;
+    padding-left:12px;
+}
+
+.logo span{
+    color:#38bdf8;
+}
+
+.nav a{
+    display:block;
+    text-decoration:none;
+    color:#94a3b8;
+    padding:13px 14px;
+    border-radius:10px;
+    margin-bottom:7px;
+}
+
+.nav a:hover,
+.nav a.active{
+    background:#1e293b;
+    color:#fff;
+}
+
+.user-area{
+    margin-top:25px;
+    padding:15px 12px;
+    border-top:1px solid #1e293b;
+}
+
+.user-email{
+    color:#94a3b8;
+    font-size:11px;
+    word-break:break-all;
+    margin-bottom:10px;
+}
+
+.logout-btn{
+    width:100%;
+    border:0;
+    padding:10px;
+    border-radius:8px;
+    background:#dc2626;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.logout-btn:hover{
+    opacity:.9;
+}
+
+.main{
+    margin-left:240px;
+    width:calc(100% - 240px);
+    padding:30px;
+}
+
+.header{
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:30px;
+}
+
+.header p{
+    color:#94a3b8;
+    margin-top:7px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:#111827;
+    border:1px solid #1e293b;
+    border-radius:15px;
+    padding:22px;
+}
+
+.stat-title{
+    color:#94a3b8;
+    font-size:14px;
+}
+
+.stat-number{
+    font-size:28px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.integrations{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:#111827;
+    border:1px solid #1e293b;
+    border-radius:16px;
+    padding:22px;
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+    border-color:#334155;
+}
+
+.icon{
+    width:50px;
+    height:50px;
+    border-radius:12px;
+    background:#1e293b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:25px;
+    margin-bottom:18px;
+}
+
+.card h2{
+    font-size:19px;
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#94a3b8;
+    font-size:13px;
+    line-height:1.5;
+    min-height:40px;
+}
+
+.card-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:20px;
+}
+
+.status{
+    font-size:12px;
+    padding:6px 10px;
+    border-radius:20px;
+}
+
+.connected{
+    background:#12351f;
+    color:#4ade80;
+}
+
+.disconnected{
+    background:#334155;
+    color:#94a3b8;
+}
+
+.connect-btn{
+    border:0;
+    padding:8px 13px;
+    border-radius:8px;
+    background:#38bdf8;
+    color:#06111d;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.connect-btn:hover{
+    opacity:.9;
+}
+
+.api-box{
+    margin-top:25px;
+    background:#111827;
+    border:1px solid #1e293b;
+    border-radius:16px;
+    padding:22px;
+}
+
+.api-box h2{
+    margin-bottom:8px;
+}
+
+.api-box p{
+    color:#94a3b8;
+    font-size:13px;
+}
+
+.api-row{
+    display:flex;
+    gap:10px;
+    margin-top:18px;
+}
+
+.api-input{
+    flex:1;
+    background:#0b1120;
+    border:1px solid #263449;
+    color:#fff;
+    padding:13px;
+    border-radius:8px;
+}
+
+.api-btn{
+    border:0;
+    padding:13px 18px;
+    border-radius:8px;
+    background:#38bdf8;
+    color:#06111d;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+@media(max-width:1000px){
+
+    .integrations{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:190px;
+    }
+
+    .main{
+        margin-left:190px;
+        width:calc(100% - 190px);
+        padding:20px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .sidebar{
+        width:70px;
+        padding:20px 8px;
+    }
+
+    .logo{
+        font-size:14px;
+        padding:0;
+        text-align:center;
+    }
+
+    .nav a{
+        font-size:0;
+        text-align:center;
+        padding:14px 5px;
+    }
+
+    .nav a::first-letter{
+        font-size:18px;
+    }
+
+    .user-area{
+        padding:10px 2px;
+        text-align:center;
+    }
+
+    .user-email{
+        display:none;
+    }
+
+    .logout-btn{
+        font-size:0;
+        padding:13px 5px;
+    }
+
+    .logout-btn::before{
+        content:"🚪";
+        font-size:18px;
+    }
+
+    .main{
+        margin-left:70px;
+        width:calc(100% - 70px);
+        padding:15px;
+    }
+
+    .integrations{
+        grid-template-columns:1fr;
+    }
+
+    .header h1{
+        font-size:23px;
+    }
+
+    .api-row{
+        flex-direction:column;
+    }
+
+}
+
+@media(max-width:380px){
+
+    .card{
+        padding:17px;
+    }
+
+    .card-bottom{
+        gap:8px;
+    }
+
+    .connect-btn{
+        padding:7px 9px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<script>
+
+if(localStorage.getItem("shizaz_logged_in") !== "true"){
+    window.location.href = "login.html";
+}
+
+</script>
+
+<div class="sidebar">
+
+    <div class="logo">
+        SHIZAZ <span>AI</span>
+    </div>
+
+    <div class="nav">
+
+        <a href="dashboard.html">📊 Dashboard</a>
+
+        <a href="ai.html">🤖 AI Assistant</a>
+
+        <a href="analytics.html">📈 Analytics</a>
+
+        <a href="automation.html">⚙️ Automation</a>
+
+        <a href="employees.html">👥 Employees</a>
+
+        <!-- CUSTOMERS -->
+        <a href="customers.html">👤 Customers</a>
+
+        <a href="security.html">🔐 Security</a>
+
+        <a href="integrations.html" class="active">🔗 Integrations</a>
+
+        <a href="billing.html">💳 Billing</a>
+
+        <a href="settings.html">⚙️ Settings</a>
+
+    </div>
+
+    <div class="user-area">
+
+        <div class="user-email" id="userEmail">
+            User
+        </div>
+
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+<div class="main">
+
+    <div class="header">
+
+        <h1>Integrations</h1>
+
+        <p>
+            Connect SHIZAZ AI with your business tools and services.
+        </p>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Available Integrations
+            </div>
+
+            <div class="stat-number">
+                9
+            </div>
+
+        </div>
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Connected
+            </div>
+
+            <div class="stat-number">
+
+                <span id="connectedCount">
+                    3
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="stat">
+
+            <div class="stat-title">
+                API Status
+            </div>
+
+            <div class="stat-number">
+                🟢 Online
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="integrations">
+
+        <div class="card">
+
+            <div class="icon">🤖</div>
+
+            <h2>AI Services</h2>
+
+            <p>
+                Connect AI models for intelligent business automation.
+            </p>
+
+            <div class="card-bottom">
+
+                <span class="status connected">
+                    Connected
+                </span>
+
+                <button class="connect-btn"
+                    onclick="toggleConnection(this)">
+                    Manage
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">💳</div>
+
+            <h2>Payment Gateway</h2>
+
+            <p>
+                Connect payment systems for billing and transactions.
+            </p>
+
+            <div class="card-bottom">
+
+                <span class="status connected">
+                    Connected
+                </span>
+
+                <button class="connect-btn"
+                    onclick="toggleConnection(this)">
+                    Manage
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">📧</div>
+
+            <h2>Email</h2>
+
+            <p>
+                Automate customer emails and business notifications.
+            </p>
+
+            <div class="card-bottom">
+
+                <span class="status connected">
+                    Connected
+                </span>
+
+                <button class="connect-btn"
+                    onclick="toggleConnection(this)">
+                    Manage
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">☁️</div>
+
+            <h2>Cloud Storage</h2>
+
+            <p>
+                Store and manage business documents securely.
+            </p>
+
+            <div class="card-bottom">
+
+                <span class="status disconnected">
+                    Not Connected
+                </span>
+
+                <button class="connect-btn"
+                    onclick="toggleConnection(this)">
+                    Connect
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">📊</div>
+
+            <h2>Analytics</h2>
+
+            <p>
+                Send business data to analytics platforms.
+            </p>
+
+            <div class="card-bottom">
+
+                <span class="status disconnected">
+                    Not Connected
+                </span>
+
+                <button class="connect-btn"
+                    onclick="toggleConnection(this)">
+                    Connect
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">💬</div>
+
+            <h2>Communication</h2>
+
+            <p>
+                Connect messaging and communication services.
+            </p>
+
+            <div class="card-bottom">
+
+                <span class="status disconnected">
+                    Not Connected
+                </span>
+
+                <button class="connect-btn"
+                    onclick="toggleConnection(this)">
+                    Connect
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">🔐</div>
+
+            <h2>Identity & Access</h2>
+
+            <p>
+                Manage enterprise authentication and access control.
+            </p>
+
+            <div class="card-bottom">
+
+                <span class="status disconnected">
+                    Not Connected
+                </span>
+
+                <button class="connect-btn"
+                    onclick="toggleConnection(this)">
+                    Connect
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">🏢</div>
+
+            <h2>CRM</h2>
+
+            <p>
+                Connect customer relationship management systems.
+            </p>
+
+            <div class="card-bottom">
+
+                <span class="status disconnected">
+                    Not Connected
+                </span>
+
+                <button class="connect-btn"
+                    onclick="toggleConnection(this)">
+                    Connect
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">⚡</div>
+
+            <h2>Automation API</h2>
+
+            <p>
+                Connect external workflows and automation systems.
+            </p>
+
+            <div class="card-bottom">
+
+                <span class="status disconnected">
+                    Not Connected
+                </span>
+
+                <button class="connect-btn"
+                    onclick="toggleConnection(this)">
+                    Connect
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="api-box">
+
+        <h2>🔑 API Connection</h2>
+
+        <p>
+            Enter an API endpoint to connect an external business service.
+        </p>
+
+        <div class="api-row">
+
+            <input
+                class="api-input"
+                id="apiInput"
+                placeholder="https://api.example.com"
+            >
+
+            <button
+                class="api-btn"
+                onclick="testAPI()">
+                Test Connection
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const savedEmail =
+    localStorage.getItem("shizaz_user_email");
+
+if(savedEmail){
+
+    document.getElementById("userEmail").innerText =
+        savedEmail;
+
+}
+
+function logout(){
+
+    localStorage.removeItem("shizaz_logged_in");
+
+    localStorage.removeItem("shizaz_user_email");
+
+    window.location.href = "login.html";
+
+}
+
+function toggleConnection(button){
+
+    const card =
+        button.closest(".card");
+
+    const status =
+        card.querySelector(".status");
+
+    if(status.classList.contains("connected")){
+
+        status.classList.remove("connected");
+
+        status.classList.add("disconnected");
+
+        status.innerText =
+            "Not Connected";
+
+        button.innerText =
+            "Connect";
+
+    }
+
+    else{
+
+        status.classList.remove("disconnected");
+
+        status.classList.add("connected");
+
+        status.innerText =
+            "Connected";
+
+        button.innerText =
+            "Manage";
+
+    }
+
+    updateConnected();
+
+    saveConnections();
+
+}
+
+function updateConnected(){
+
+    const connected =
+        document.querySelectorAll(
+            ".status.connected"
+        ).length;
+
+    document.getElementById(
+        "connectedCount"
+    ).innerText = connected;
+
+}
+
+function saveConnections(){
+
+    const cards =
+        document.querySelectorAll(".card");
+
+    const states = [];
+
+    cards.forEach(card => {
+
+        const status =
+            card.querySelector(".status");
+
+        states.push(
+            status.classList.contains("connected")
+        );
+
+    });
+
+    localStorage.setItem(
+        "shizaz_integrations",
+        JSON.stringify(states)
+    );
+
+}
+
+function loadConnections(){
+
+    const saved =
+        localStorage.getItem(
+            "shizaz_integrations"
+        );
+
+    if(!saved){
+        updateConnected();
+        return;
+    }
+
+    try{
+
+        const states =
+            JSON.parse(saved);
+
+        const cards =
+            document.querySelectorAll(".card");
+
+        cards.forEach((card,index)=>{
+
+            if(states[index] === true){
+
+                const status =
+                    card.querySelector(".status");
+
+                const button =
+                    card.querySelector(".connect-btn");
+
+                status.classList.remove(
+                    "disconnected"
+                );
+
+                status.classList.add(
+                    "connected"
+                );
+
+                status.innerText =
+                    "Connected";
+
+                button.innerText =
+                    "Manage";
+
+            }
+
+            else if(states[index] === false){
+
+                const status =
+                    card.querySelector(".status");
+
+                const button =
+                    card.querySelector(".connect-btn");
+
+                status.classList.remove(
+                    "connected"
+                );
+
+                status.classList.add(
+                    "disconnected"
+                );
+
+                status.innerText =
+                    "Not Connected";
+
+                button.innerText =
+                    "Connect";
+
+            }
+
+        });
+
+        updateConnected();
+
+    }
+    catch(error){
+
+        console.log(
+            "Could not load integration settings."
+        );
+
+    }
+
+}
+
+function testAPI(){
+
+    const input =
+        document.getElementById("apiInput");
+
+    const value =
+        input.value.trim();
+
+    if(value === ""){
+
+        alert(
+            "Please enter an API endpoint."
+        );
+
+        return;
+
+    }
+
+    alert(
+        "Demo connection test completed successfully.\n\nEndpoint:\n"
+        + value
+    );
+
+}
+
+loadConnections();
+
+</script>
+
+</body>
+</html>
