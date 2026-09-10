@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SHIZAZ AI - Sales Leads</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#0b1020;
+    color:#fff;
+}
+
+/* SIDEBAR */
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:240px;
+    height:100vh;
+    background:#111827;
+    border-right:1px solid #263147;
+    padding:25px 15px;
+    overflow-y:auto;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    color:#fff;
+    margin-bottom:35px;
+    padding-left:10px;
+}
+
+.logo span{
+    color:#6366f1;
+}
+
+.nav a{
+    display:block;
+    text-decoration:none;
+    color:#aeb7c8;
+    padding:13px 15px;
+    margin-bottom:6px;
+    border-radius:9px;
+    transition:.2s;
+}
+
+.nav a:hover,
+.nav a.active{
+    background:#1f2937;
+    color:#fff;
+}
+
+.user-box{
+    position:absolute;
+    bottom:20px;
+    left:15px;
+    right:15px;
+    padding:12px;
+    background:#1a2233;
+    border-radius:10px;
+    font-size:13px;
+}
+
+.user-email{
+    color:#aeb7c8;
+    margin-bottom:10px;
+    word-break:break-all;
+}
+
+.logout{
+    width:100%;
+    padding:9px;
+    border:none;
+    border-radius:7px;
+    background:#ef4444;
+    color:white;
+    cursor:pointer;
+}
+
+/* MAIN */
+.main{
+    margin-left:240px;
+    padding:30px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.topbar h1{
+    font-size:30px;
+}
+
+.topbar p{
+    color:#8e99ad;
+    margin-top:7px;
+}
+
+.clear-btn{
+    background:#ef4444;
+    border:none;
+    color:white;
+    padding:11px 17px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:#111827;
+    border:1px solid #263147;
+    border-radius:12px;
+    padding:20px;
+}
+
+.card-title{
+    color:#8e99ad;
+    font-size:14px;
+}
+
+.card-value{
+    font-size:28px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+/* TABLE */
+.table-card{
+    background:#111827;
+    border:1px solid #263147;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.table-header{
+    padding:20px;
+    border-bottom:1px solid #263147;
+}
+
+.table-header h2{
+    margin-bottom:15px;
+}
+
+.controls{
+    display:flex;
+    gap:10px;
+}
+
+.controls input,
+.controls select{
+    background:#0b1020;
+    color:white;
+    border:1px solid #303b52;
+    padding:11px;
+    border-radius:8px;
+    outline:none;
+}
+
+.controls input{
+    flex:1;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:850px;
+}
+
+th,
+td{
+    padding:15px;
+    text-align:left;
+    border-bottom:1px solid #222c3d;
+}
+
+th{
+    color:#8995aa;
+    font-size:13px;
+}
+
+td{
+    font-size:14px;
+}
+
+.muted{
+    color:#8995aa;
+}
+
+.status{
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    display:inline-block;
+}
+
+.status-New{
+    background:#312e81;
+    color:#c7d2fe;
+}
+
+.status-Contacted{
+    background:#164e63;
+    color:#a5f3fc;
+}
+
+.status-Won{
+    background:#14532d;
+    color:#bbf7d0;
+}
+
+.status-Lost{
+    background:#7f1d1d;
+    color:#fecaca;
+}
+
+.actions{
+    display:flex;
+    gap:7px;
+}
+
+.actions button{
+    border:none;
+    padding:7px 10px;
+    border-radius:6px;
+    cursor:pointer;
+    color:white;
+}
+
+.contact-btn{
+    background:#2563eb;
+}
+
+.delete-btn{
+    background:#dc2626;
+}
+
+.empty{
+    text-align:center;
+    padding:60px 20px;
+    color:#8995aa;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+        border-right:none;
+        border-bottom:1px solid #263147;
+    }
+
+    .user-box{
+        position:static;
+        margin-top:15px;
+    }
+
+    .main{
+        margin-left:0;
+        padding:20px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .topbar{
+        align-items:flex-start;
+        gap:15px;
+    }
+}
+
+@media(max-width:600px){
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .topbar{
+        flex-direction:column;
+    }
+
+    .clear-btn{
+        width:100%;
+    }
+
+    .controls{
+        flex-direction:column;
+    }
+
+    .controls input,
+    .controls select{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="logo">
+        SHIZAZ <span>AI</span>
+    </div>
+
+    <div class="nav">
+
+        <a href="dashboard.html">📊 Dashboard</a>
+
+        <a href="ai.html">🤖 AI Assistant</a>
+
+        <a href="analytics.html">📈 Analytics</a>
+
+        <a href="automation.html">⚙️ Automation</a>
+
+        <a href="employees.html">👥 Employees</a>
+
+        <a href="customers.html">🧑‍💼 Customers</a>
+
+        <a href="leads.html" class="active">🎯 Sales Leads</a>
+
+        <a href="security.html">🔐 Security</a>
+
+        <a href="integrations.html">🔗 Integrations</a>
+
+        <a href="billing.html">💳 Billing</a>
+
+        <a href="settings.html">⚙️ Settings</a>
+
+    </div>
+
+    <div class="user-box">
+
+        <div class="user-email" id="userEmail">
+            Loading...
+        </div>
+
+        <button class="logout" onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+<div class="main">
+
+    <div class="topbar">
+
+        <div>
+            <h1>Sales Leads</h1>
+            <p>Manage customer demo requests and sales opportunities.</p>
+        </div>
+
+        <button class="clear-btn" onclick="clearAllLeads()">
+            Clear All Leads
+        </button>
+
+    </div>
+
+
+    <!-- STATS -->
+    <div class="stats">
+
+        <div class="card">
+            <div class="card-title">
+                Total Leads
+            </div>
+
+            <div class="card-value" id="totalLeads">
+                0
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-title">
+                New Leads
+            </div>
+
+            <div class="card-value" id="newLeads">
+                0
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-title">
+                Contacted
+            </div>
+
+            <div class="card-value" id="contactedLeads">
+                0
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-title">
+                Won
+            </div>
+
+            <div class="card-value" id="wonLeads">
+                0
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- LEADS TABLE -->
+    <div class="table-card">
+
+        <div class="table-header">
+
+            <h2>Customer Requests</h2>
+
+            <div class="controls">
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search name, company or email..."
+                    oninput="renderLeads()"
+                >
+
+                <select id="statusFilter" onchange="renderLeads()">
+
+                    <option value="All">
+                        All Status
+                    </option>
+
+                    <option value="New">
+                        New
+                    </option>
+
+                    <option value="Contacted">
+                        Contacted
+                    </option>
+
+                    <option value="Won">
+                        Won
+                    </option>
+
+                    <option value="Lost">
+                        Lost
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Name</th>
+
+                        <th>Company</th>
+
+                        <th>Email</th>
+
+                        <th>Phone</th>
+
+                        <th>Plan</th>
+
+                        <th>Date</th>
+
+                        <th>Status</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="leadTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* LOGIN PROTECTION */
+
+if(
+    localStorage.getItem("shizaz_logged_in") !== "true"
+){
+    window.location.href = "login.html";
+}
+
+
+/* USER EMAIL */
+
+const userEmail =
+    localStorage.getItem("shizaz_user_email");
+
+document.getElementById("userEmail").textContent =
+    userEmail || "SHIZAZ User";
+
+
+/* GET LEADS */
+
+function getLeads(){
+
+    let leads =
+        JSON.parse(
+            localStorage.getItem("shizaz_leads") || "[]"
+        );
+
+    /*
+    اگر نسخه فعلی Sales فقط یک درخواست
+    در shizaz_demo_request ذخیره کرده باشد،
+    آن را هم به Leads اضافه می‌کنیم.
+    */
+
+    const oldLead =
+        localStorage.getItem("shizaz_demo_request");
+
+    if(
+        oldLead &&
+        leads.length === 0
+    ){
+
+        try{
+
+            const data =
+                JSON.parse(oldLead);
+
+            data.status =
+                data.status || "New";
+
+            data.id =
+                Date.now();
+
+            leads.push(data);
+
+            localStorage.setItem(
+                "shizaz_leads",
+                JSON.stringify(leads)
+            );
+
+        }catch(error){
+
+            console.log(error);
+
+        }
+
+    }
+
+    return leads;
+}
+
+
+/* SAVE LEADS */
+
+function saveLeads(leads){
+
+    localStorage.setItem(
+        "shizaz_leads",
+        JSON.stringify(leads)
+    );
+
+}
+
+
+/* DISPLAY LEADS */
+
+function renderLeads(){
+
+    const table =
+        document.getElementById("leadTable");
+
+    const search =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+    const filter =
+        document
+        .getElementById("statusFilter")
+        .value;
+
+    let leads = getLeads();
+
+    leads = leads.filter(function(lead){
+
+        const text =
+            (
+                (lead.name || "") +
+                " " +
+                (lead.company || "") +
+                " " +
+                (lead.email || "")
+            ).toLowerCase();
+
+        const matchesSearch =
+            text.includes(search);
+
+        const matchesStatus =
+            filter === "All" ||
+            (lead.status || "New") === filter;
+
+        return matchesSearch && matchesStatus;
+
+    });
+
+
+    table.innerHTML = "";
+
+
+    if(leads.length === 0){
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="8" class="empty">
+                    No sales leads yet.
+                    <br><br>
+                    Customer demo requests will appear here.
+                </td>
+            </tr>
+        `;
+
+        updateStats();
+
+        return;
+
+    }
+
+
+    leads.forEach(function(lead){
+
+        const originalLeads =
+            getLeads();
+
+        const realIndex =
+            originalLeads.findIndex(
+                item => item.id === lead.id
+            );
+
+
+        const status =
+            lead.status || "New";
+
+
+        const row =
+            document.createElement("tr");
+
+
+        row.innerHTML = `
+
+            <td>
+                <strong>
+                    ${escapeHtml(lead.name || "-")}
+                </strong>
+            </td>
+
+            <td>
+                ${escapeHtml(lead.company || "-")}
+            </td>
+
+            <td>
+                ${escapeHtml(lead.email || "-")}
+            </td>
+
+            <td>
+                ${escapeHtml(lead.phone || "-")}
+            </td>
+
+            <td>
+                ${escapeHtml(lead.plan || "-")}
+            </td>
+
+            <td>
+                <span class="muted">
+                    ${formatDate(lead.date)}
+                </span>
+            </td>
+
+            <td>
+
+                <select
+                    onchange="changeStatus(${realIndex}, this.value)"
+                    class="status-select"
+                    style="
+                        background:#0b1020;
+                        color:white;
+                        border:1px solid #303b52;
+                        padding:7px;
+                        border-radius:7px;
+                    "
+                >
+
+                    <option
+                        value="New"
+                        ${status === "New" ? "selected" : ""}
+                    >
+                        New
+                    </option>
+
+                    <option
+                        value="Contacted"
+                        ${status === "Contacted" ? "selected" : ""}
+                    >
+                        Contacted
+                    </option>
+
+                    <option
+                        value="Won"
+                        ${status === "Won" ? "selected" : ""}
+                    >
+                        Won
+                    </option>
+
+                    <option
+                        value="Lost"
+                        ${status === "Lost" ? "selected" : ""}
+                    >
+                        Lost
+                    </option>
+
+                </select>
+
+            </td>
+
+            <td>
+
+                <div class="actions">
+
+                    <button
+                        class="contact-btn"
+                        onclick="viewLead(${realIndex})"
+                    >
+                        View
+                    </button>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteLead(${realIndex})"
+                    >
+                        Delete
+                    </button>
+
+                </div>
+
+            </td>
+
+        `;
+
+
+        table.appendChild(row);
+
+    });
+
+
+    updateStats();
+
+}
+
+
+/* STATUS */
+
+function changeStatus(index,status){
+
+    const leads =
+        getLeads();
+
+    if(leads[index]){
+
+        leads[index].status =
+            status;
+
+        saveLeads(leads);
+
+        renderLeads();
+
+    }
+
+}
+
+
+/* VIEW LEAD */
+
+function viewLead(index){
+
+    const leads =
+        getLeads();
+
+    const lead =
+        leads[index];
+
+    if(!lead){
+        return;
+    }
+
+
+    alert(
+
+        "SHIZAZ AI SALES LEAD\n\n" +
+
+        "Name: " +
+        (lead.name || "-") +
+
+        "\nCompany: " +
+        (lead.company || "-") +
+
+        "\nEmail: " +
+        (lead.email || "-") +
+
+        "\nPhone: " +
+        (lead.phone || "-") +
+
+        "\nPlan: " +
+        (lead.plan || "-") +
+
+        "\nStatus: " +
+        (lead.status || "New") +
+
+        "\n\nMessage:\n" +
+        (lead.message || "-")
+
+    );
+
+}
+
+
+/* DELETE */
+
+function deleteLead(index){
+
+    if(
+        !confirm(
+            "Delete this sales lead?"
+        )
+    ){
+        return;
+    }
+
+
+    const leads =
+        getLeads();
+
+    leads.splice(index,1);
+
+    saveLeads(leads);
+
+    renderLeads();
+
+}
+
+
+/* CLEAR ALL */
+
+function clearAllLeads(){
+
+    const leads =
+        getLeads();
+
+    if(leads.length === 0){
+
+        alert("There are no leads to delete.");
+
+        return;
+
+    }
+
+
+    if(
+        !confirm(
+            "Are you sure you want to delete ALL sales leads?"
+        )
+    ){
+        return;
+    }
+
+
+    localStorage.removeItem(
+        "shizaz_leads"
+    );
+
+    localStorage.removeItem(
+        "shizaz_demo_request"
+    );
+
+    renderLeads();
+
+}
+
+
+/* STATS */
+
+function updateStats(){
+
+    const leads =
+        getLeads();
+
+
+    const total =
+        leads.length;
+
+
+    const newCount =
+        leads.filter(
+            lead => (lead.status || "New") === "New"
+        ).length;
+
+
+    const contacted =
+        leads.filter(
+            lead => lead.status === "Contacted"
+        ).length;
+
+
+    const won =
+        leads.filter(
+            lead => lead.status === "Won"
+        ).length;
+
+
+    document.getElementById(
+        "totalLeads"
+    ).textContent = total;
+
+
+    document.getElementById(
+        "newLeads"
+    ).textContent = newCount;
+
+
+    document.getElementById(
+        "contactedLeads"
+    ).textContent = contacted;
+
+
+    document.getElementById(
+        "wonLeads"
+    ).textContent = won;
+
+}
+
+
+/* DATE */
+
+function formatDate(date){
+
+    if(!date){
+        return "-";
+    }
+
+    try{
+
+        return new Date(date)
+        .toLocaleDateString();
+
+    }catch(error){
+
+        return date;
+
+    }
+
+}
+
+
+/* SECURITY */
+
+function escapeHtml(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+    localStorage.removeItem(
+        "shizaz_logged_in"
+    );
+
+    localStorage.removeItem(
+        "shizaz_user_email"
+    );
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* START */
+
+renderLeads();
+
+</script>
+
+</body>
+</html>
