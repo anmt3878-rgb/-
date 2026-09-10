@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sales Leads — SHIZAZ AI</title>
+<title>SHIZAZ AI — Sales Leads</title>
 
 <style>
 *{
@@ -37,7 +37,6 @@ body{
     font-weight:bold;
     text-align:center;
     margin-bottom:30px;
-    color:#fff;
 }
 
 .nav-title{
@@ -98,12 +97,12 @@ body{
 }
 
 .user-email{
-    font-size:13px;
     color:#6b7280;
+    font-size:13px;
 }
 
 .logout{
-    border:none;
+    border:0;
     background:#ef4444;
     color:white;
     padding:9px 14px;
@@ -139,9 +138,9 @@ body{
 
 .stat{
     background:white;
+    border:1px solid #e5e7eb;
     border-radius:12px;
     padding:22px;
-    border:1px solid #e5e7eb;
 }
 
 .stat-icon{
@@ -150,13 +149,13 @@ body{
 }
 
 .stat-title{
-    font-size:13px;
     color:#6b7280;
+    font-size:13px;
     margin-bottom:7px;
 }
 
 .stat-value{
-    font-size:26px;
+    font-size:27px;
     font-weight:bold;
 }
 
@@ -192,26 +191,16 @@ body{
 }
 
 .btn{
-    border:none;
+    border:0;
     padding:12px 17px;
     border-radius:7px;
     cursor:pointer;
     font-weight:bold;
 }
 
-.btn-blue{
-    background:#2563eb;
-    color:white;
-}
-
 .btn-red{
     background:#ef4444;
     color:white;
-}
-
-.btn-gray{
-    background:#e5e7eb;
-    color:#111827;
 }
 
 /* TABLE */
@@ -246,34 +235,6 @@ td strong{
 }
 
 /* STATUS */
-.status{
-    display:inline-block;
-    padding:6px 9px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:bold;
-}
-
-.status-new{
-    background:#dbeafe;
-    color:#1d4ed8;
-}
-
-.status-contacted{
-    background:#fef3c7;
-    color:#92400e;
-}
-
-.status-won{
-    background:#dcfce7;
-    color:#166534;
-}
-
-.status-lost{
-    background:#fee2e2;
-    color:#991b1b;
-}
-
 .status-select{
     padding:7px;
     border:1px solid #d1d5db;
@@ -281,13 +242,14 @@ td strong{
     font-size:12px;
 }
 
+/* ACTIONS */
 .actions{
     display:flex;
     gap:7px;
 }
 
 .action-btn{
-    border:none;
+    border:0;
     padding:7px 10px;
     border-radius:6px;
     cursor:pointer;
@@ -307,12 +269,12 @@ td strong{
 /* EMPTY */
 .empty{
     text-align:center;
-    padding:50px 20px;
+    padding:55px 20px;
     color:#6b7280;
 }
 
 .empty-icon{
-    font-size:45px;
+    font-size:50px;
     margin-bottom:12px;
 }
 
@@ -340,19 +302,19 @@ td strong{
 
 .modal-header{
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
     margin-bottom:20px;
 }
 
 .close{
-    border:none;
+    border:0;
     background:#f3f4f6;
     width:35px;
     height:35px;
     border-radius:50%;
     cursor:pointer;
-    font-size:18px;
+    font-size:20px;
 }
 
 .detail{
@@ -362,7 +324,7 @@ td strong{
 .detail-label{
     font-size:11px;
     color:#6b7280;
-    margin-bottom:4px;
+    margin-bottom:5px;
     text-transform:uppercase;
 }
 
@@ -408,8 +370,6 @@ td strong{
 
     .topbar{
         padding:0 15px;
-        height:auto;
-        min-height:65px;
     }
 
     .user-email{
@@ -445,7 +405,9 @@ td strong{
 <!-- SIDEBAR -->
 <aside class="sidebar">
 
-    <div class="logo">SHIZAZ AI</div>
+    <div class="logo">
+        SHIZAZ AI
+    </div>
 
     <div class="nav-title">Main</div>
 
@@ -503,25 +465,27 @@ td strong{
 <!-- MAIN -->
 <main class="main">
 
-    <!-- TOPBAR -->
     <div class="topbar">
 
         <h1>Sales Leads</h1>
 
         <div class="user-area">
+
             <span class="user-email" id="userEmail">
-                User
+                SHIZAZ AI User
             </span>
 
-            <button class="logout" onclick="logout()">
+            <button
+                class="logout"
+                onclick="logout()">
                 Logout
             </button>
+
         </div>
 
     </div>
 
 
-    <!-- CONTENT -->
     <div class="content">
 
         <div class="page-title">
@@ -539,68 +503,92 @@ td strong{
         <div class="stats">
 
             <div class="stat">
-                <div class="stat-icon">🎯</div>
+
+                <div class="stat-icon">
+                    🎯
+                </div>
 
                 <div class="stat-title">
                     Total Leads
                 </div>
 
-                <div class="stat-value" id="totalLeads">
+                <div
+                    class="stat-value"
+                    id="totalLeads">
                     0
                 </div>
+
             </div>
 
 
             <div class="stat">
-                <div class="stat-icon">🆕</div>
+
+                <div class="stat-icon">
+                    🆕
+                </div>
 
                 <div class="stat-title">
                     New Leads
                 </div>
 
-                <div class="stat-value" id="newLeads">
+                <div
+                    class="stat-value"
+                    id="newLeads">
                     0
                 </div>
+
             </div>
 
 
             <div class="stat">
-                <div class="stat-icon">📞</div>
+
+                <div class="stat-icon">
+                    📞
+                </div>
 
                 <div class="stat-title">
                     Contacted
                 </div>
 
-                <div class="stat-value" id="contactedLeads">
+                <div
+                    class="stat-value"
+                    id="contactedLeads">
                     0
                 </div>
+
             </div>
 
 
             <div class="stat">
-                <div class="stat-icon">🏆</div>
+
+                <div class="stat-icon">
+                    🏆
+                </div>
 
                 <div class="stat-title">
                     Won
                 </div>
 
-                <div class="stat-value" id="wonLeads">
+                <div
+                    class="stat-value"
+                    id="wonLeads">
                     0
                 </div>
+
             </div>
 
         </div>
 
 
-        <!-- LEADS PANEL -->
+        <!-- LEADS -->
         <div class="panel">
 
             <div class="toolbar">
 
                 <input
-                    type="text"
                     id="searchInput"
                     class="search"
+                    type="text"
                     placeholder="Search name, company or email..."
                     oninput="renderLeads()"
                 >
@@ -608,20 +596,37 @@ td strong{
                 <select
                     id="statusFilter"
                     class="filter"
-                    onchange="renderLeads()"
-                >
-                    <option value="All">All Status</option>
-                    <option value="New">New</option>
-                    <option value="Contacted">Contacted</option>
-                    <option value="Won">Won</option>
-                    <option value="Lost">Lost</option>
+                    onchange="renderLeads()">
+
+                    <option value="All">
+                        All Status
+                    </option>
+
+                    <option value="New">
+                        New
+                    </option>
+
+                    <option value="Contacted">
+                        Contacted
+                    </option>
+
+                    <option value="Won">
+                        Won
+                    </option>
+
+                    <option value="Lost">
+                        Lost
+                    </option>
+
                 </select>
+
 
                 <button
                     class="btn btn-red"
-                    onclick="clearAllLeads()"
-                >
+                    onclick="clearAllLeads()">
+
                     Delete All
+
                 </button>
 
             </div>
@@ -634,6 +639,7 @@ td strong{
                     <thead>
 
                         <tr>
+
                             <th>Name</th>
                             <th>Company</th>
                             <th>Email</th>
@@ -642,13 +648,13 @@ td strong{
                             <th>Date</th>
                             <th>Status</th>
                             <th>Actions</th>
+
                         </tr>
 
                     </thead>
 
-                    <tbody id="leadsTable">
 
-                    </tbody>
+                    <tbody id="leadsTable"></tbody>
 
                 </table>
 
@@ -661,8 +667,10 @@ td strong{
 </main>
 
 
-<!-- VIEW MODAL -->
-<div class="modal" id="viewModal">
+<!-- MODAL -->
+<div
+    class="modal"
+    id="viewModal">
 
     <div class="modal-box">
 
@@ -672,9 +680,10 @@ td strong{
 
             <button
                 class="close"
-                onclick="closeModal()"
-            >
+                onclick="closeModal()">
+
                 ×
+
             </button>
 
         </div>
@@ -688,23 +697,21 @@ td strong{
 
 <script>
 
-/* LOGIN CHECK */
-if(localStorage.getItem("shizaz_logged_in") !== "true"){
-    window.location.href = "login.html";
-}
-
-
 /* USER EMAIL */
+
 const savedEmail =
     localStorage.getItem("shizaz_user_email");
 
 if(savedEmail){
+
     document.getElementById("userEmail").textContent =
         savedEmail;
+
 }
 
 
 /* GET LEADS */
+
 function getLeads(){
 
     try{
@@ -715,13 +722,14 @@ function getLeads(){
             );
 
         if(!Array.isArray(leads)){
+
             leads = [];
+
         }
 
-        /*
-        Import old single demo request
-        if shizaz_leads is empty.
-        */
+
+        /* OLD DEMO REQUEST */
+
         if(
             leads.length === 0 &&
             localStorage.getItem("shizaz_demo_request")
@@ -731,10 +739,26 @@ function getLeads(){
 
                 const oldLead =
                     JSON.parse(
-                        localStorage.getItem("shizaz_demo_request")
+                        localStorage.getItem(
+                            "shizaz_demo_request"
+                        )
                     );
 
-                if(oldLead && oldLead.email){
+                if(oldLead){
+
+                    if(!oldLead.id){
+
+                        oldLead.id =
+                            Date.now();
+
+                    }
+
+                    if(!oldLead.status){
+
+                        oldLead.status =
+                            "New";
+
+                    }
 
                     leads.push(oldLead);
 
@@ -742,23 +766,21 @@ function getLeads(){
                         "shizaz_leads",
                         JSON.stringify(leads)
                     );
+
                 }
 
             }catch(error){
 
-                console.log(
-                    "Old demo request could not be loaded."
-                );
+                console.log(error);
 
             }
 
         }
 
+
         return leads;
 
     }catch(error){
-
-        console.log(error);
 
         return [];
 
@@ -767,7 +789,8 @@ function getLeads(){
 }
 
 
-/* SAVE LEADS */
+/* SAVE */
+
 function saveLeads(leads){
 
     localStorage.setItem(
@@ -778,11 +801,17 @@ function saveLeads(leads){
 }
 
 
-/* ESCAPE HTML */
+/* ESCAPE */
+
 function escapeHtml(value){
 
-    if(value === null || value === undefined){
+    if(
+        value === null ||
+        value === undefined
+    ){
+
         return "";
+
     }
 
     return String(value)
@@ -795,11 +824,14 @@ function escapeHtml(value){
 }
 
 
-/* FORMAT DATE */
+/* DATE */
+
 function formatDate(date){
 
     if(!date){
+
         return "-";
+
     }
 
     try{
@@ -815,38 +847,15 @@ function formatDate(date){
 
     }catch(error){
 
-        return date;
+        return "-";
 
     }
 
 }
 
 
-/* STATUS CLASS */
-function statusClass(status){
+/* STATS */
 
-    if(status === "New"){
-        return "status-new";
-    }
-
-    if(status === "Contacted"){
-        return "status-contacted";
-    }
-
-    if(status === "Won"){
-        return "status-won";
-    }
-
-    if(status === "Lost"){
-        return "status-lost";
-    }
-
-    return "status-new";
-
-}
-
-
-/* UPDATE STATS */
 function updateStats(leads){
 
     document.getElementById("totalLeads").textContent =
@@ -854,7 +863,7 @@ function updateStats(leads){
 
     document.getElementById("newLeads").textContent =
         leads.filter(
-            lead => lead.status === "New"
+            lead => (lead.status || "New") === "New"
         ).length;
 
     document.getElementById("contactedLeads").textContent =
@@ -871,6 +880,7 @@ function updateStats(leads){
 
 
 /* RENDER */
+
 function renderLeads(){
 
     const leads = getLeads();
@@ -883,46 +893,61 @@ function renderLeads(){
         .trim();
 
     const filter =
-        document
-        .getElementById("statusFilter")
-        .value;
+        document.getElementById(
+            "statusFilter"
+        ).value;
+
 
     const table =
-        document.getElementById("leadsTable");
-
-    const filtered =
-        leads.filter(lead => {
-
-            const name =
-                String(lead.name || "").toLowerCase();
-
-            const company =
-                String(lead.company || "").toLowerCase();
-
-            const email =
-                String(lead.email || "").toLowerCase();
-
-            const matchesSearch =
-                name.includes(search) ||
-                company.includes(search) ||
-                email.includes(search);
-
-            const matchesStatus =
-                filter === "All" ||
-                String(lead.status || "New") === filter;
-
-            return matchesSearch && matchesStatus;
-
-        });
+        document.getElementById(
+            "leadsTable"
+        );
 
 
     updateStats(leads);
 
 
+    const filtered =
+        leads.filter(lead => {
+
+            const name =
+                String(
+                    lead.name || ""
+                ).toLowerCase();
+
+            const company =
+                String(
+                    lead.company || ""
+                ).toLowerCase();
+
+            const email =
+                String(
+                    lead.email || ""
+                ).toLowerCase();
+
+
+            const searchMatch =
+                name.includes(search) ||
+                company.includes(search) ||
+                email.includes(search);
+
+
+            const statusMatch =
+                filter === "All" ||
+                (lead.status || "New") === filter;
+
+
+            return searchMatch && statusMatch;
+
+        });
+
+
     if(filtered.length === 0){
 
         table.innerHTML = `
+
             <tr>
+
                 <td colspan="8">
 
                     <div class="empty">
@@ -931,7 +956,9 @@ function renderLeads(){
                             🎯
                         </div>
 
-                        <h3>No Sales Leads Found</h3>
+                        <h3>
+                            No Sales Leads Found
+                        </h3>
 
                         <p>
                             New demo requests will appear here.
@@ -940,7 +967,9 @@ function renderLeads(){
                     </div>
 
                 </td>
+
             </tr>
+
         `;
 
         return;
@@ -949,15 +978,14 @@ function renderLeads(){
 
 
     table.innerHTML =
-        filtered.map((lead) => {
+        filtered.map(lead => {
 
-            const originalIndex =
-                leads.findIndex(
-                    item => String(item.id) === String(lead.id)
-                );
+            const index =
+                leads.indexOf(lead);
 
-            const safeStatus =
+            const status =
                 lead.status || "New";
+
 
             return `
 
@@ -965,61 +993,78 @@ function renderLeads(){
 
                     <td>
                         <strong>
-                            ${escapeHtml(lead.name || "Unknown")}
+                            ${escapeHtml(
+                                lead.name || "Unknown"
+                            )}
                         </strong>
                     </td>
 
                     <td>
-                        ${escapeHtml(lead.company || "-")}
+                        ${escapeHtml(
+                            lead.company || "-"
+                        )}
                     </td>
 
                     <td>
-                        ${escapeHtml(lead.email || "-")}
+                        ${escapeHtml(
+                            lead.email || "-"
+                        )}
                     </td>
 
                     <td>
-                        ${escapeHtml(lead.phone || "-")}
+                        ${escapeHtml(
+                            lead.phone || "-"
+                        )}
                     </td>
 
                     <td>
-                        ${escapeHtml(lead.plan || "-")}
+                        ${escapeHtml(
+                            lead.plan || "-"
+                        )}
                     </td>
 
                     <td>
-                        ${formatDate(lead.date)}
+                        ${formatDate(
+                            lead.date
+                        )}
                     </td>
 
                     <td>
 
                         <select
                             class="status-select"
-                            onchange="changeStatus(${originalIndex}, this.value)"
+                            onchange="
+                                changeStatus(
+                                    ${index},
+                                    this.value
+                                )
+                            "
                         >
 
                             <option
                                 value="New"
-                                ${safeStatus === "New" ? "selected" : ""}
+                                ${status === "New" ? "selected" : ""}
                             >
                                 New
                             </option>
 
                             <option
                                 value="Contacted"
-                                ${safeStatus === "Contacted" ? "selected" : ""}
+                                ${status === "Contacted" ? "selected" : ""}
                             >
                                 Contacted
                             </option>
 
                             <option
                                 value="Won"
-                                ${safeStatus === "Won" ? "selected" : ""}
+                                ${status === "Won" ? "selected" : ""}
                             >
                                 Won
                             </option>
 
                             <option
                                 value="Lost"
-                                ${safeStatus === "Lost" ? "selected" : ""}
+                                ${status === "Lost" ? "selected" : ""}
                             >
                                 Lost
                             </option>
@@ -1034,14 +1079,18 @@ function renderLeads(){
 
                             <button
                                 class="action-btn view"
-                                onclick="viewLead(${originalIndex})"
+                                onclick="
+                                    viewLead(${index})
+                                "
                             >
                                 View
                             </button>
 
                             <button
                                 class="action-btn delete"
-                                onclick="deleteLead(${originalIndex})"
+                                onclick="
+                                    deleteLead(${index})
+                                "
                             >
                                 Delete
                             </button>
@@ -1059,16 +1108,21 @@ function renderLeads(){
 }
 
 
-/* CHANGE STATUS */
+/* STATUS */
+
 function changeStatus(index,status){
 
-    const leads = getLeads();
+    const leads =
+        getLeads();
 
     if(!leads[index]){
+
         return;
+
     }
 
-    leads[index].status = status;
+    leads[index].status =
+        status;
 
     saveLeads(leads);
 
@@ -1077,23 +1131,26 @@ function changeStatus(index,status){
 }
 
 
-/* VIEW LEAD */
+/* VIEW */
+
 function viewLead(index){
 
-    const leads = getLeads();
+    const leads =
+        getLeads();
 
-    const lead = leads[index];
+    const lead =
+        leads[index];
 
     if(!lead){
+
         return;
+
     }
 
 
-    const details =
-        document.getElementById("leadDetails");
-
-
-    details.innerHTML = `
+    document.getElementById(
+        "leadDetails"
+    ).innerHTML = `
 
         <div class="detail">
 
@@ -1102,7 +1159,9 @@ function viewLead(index){
             </div>
 
             <div class="detail-value">
-                ${escapeHtml(lead.name || "-")}
+                ${escapeHtml(
+                    lead.name || "-"
+                )}
             </div>
 
         </div>
@@ -1115,7 +1174,9 @@ function viewLead(index){
             </div>
 
             <div class="detail-value">
-                ${escapeHtml(lead.company || "-")}
+                ${escapeHtml(
+                    lead.company || "-"
+                )}
             </div>
 
         </div>
@@ -1128,7 +1189,9 @@ function viewLead(index){
             </div>
 
             <div class="detail-value">
-                ${escapeHtml(lead.email || "-")}
+                ${escapeHtml(
+                    lead.email || "-"
+                )}
             </div>
 
         </div>
@@ -1141,7 +1204,9 @@ function viewLead(index){
             </div>
 
             <div class="detail-value">
-                ${escapeHtml(lead.phone || "-")}
+                ${escapeHtml(
+                    lead.phone || "-"
+                )}
             </div>
 
         </div>
@@ -1150,11 +1215,13 @@ function viewLead(index){
         <div class="detail">
 
             <div class="detail-label">
-                Selected Solution
+                Plan
             </div>
 
             <div class="detail-value">
-                ${escapeHtml(lead.plan || "-")}
+                ${escapeHtml(
+                    lead.plan || "-"
+                )}
             </div>
 
         </div>
@@ -1167,7 +1234,9 @@ function viewLead(index){
             </div>
 
             <div class="detail-value">
-                ${escapeHtml(lead.status || "New")}
+                ${escapeHtml(
+                    lead.status || "New"
+                )}
             </div>
 
         </div>
@@ -1180,7 +1249,9 @@ function viewLead(index){
             </div>
 
             <div class="detail-value">
-                ${formatDate(lead.date)}
+                ${formatDate(
+                    lead.date
+                )}
             </div>
 
         </div>
@@ -1193,7 +1264,10 @@ function viewLead(index){
             </div>
 
             <div class="detail-value">
-                ${escapeHtml(lead.message || "No message provided.")}
+                ${escapeHtml(
+                    lead.message ||
+                    "No message provided."
+                )}
             </div>
 
         </div>
@@ -1201,45 +1275,53 @@ function viewLead(index){
     `;
 
 
-    document.getElementById("viewModal").style.display =
-        "flex";
+    document.getElementById(
+        "viewModal"
+    ).style.display = "flex";
 
 }
 
 
-/* CLOSE MODAL */
+/* CLOSE */
+
 function closeModal(){
 
-    document.getElementById("viewModal").style.display =
-        "none";
+    document.getElementById(
+        "viewModal"
+    ).style.display = "none";
 
 }
 
 
-/* DELETE ONE */
+/* DELETE */
+
 function deleteLead(index){
 
-    const leads = getLeads();
+    const leads =
+        getLeads();
 
     if(!leads[index]){
+
         return;
+
     }
-
-
-    const name =
-        leads[index].name || "this lead";
 
 
     if(
         !confirm(
-            "Delete " + name + "?"
+            "Delete this sales lead?"
         )
     ){
+
         return;
+
     }
 
 
-    leads.splice(index,1);
+    leads.splice(
+        index,
+        1
+    );
 
     saveLeads(leads);
 
@@ -1249,13 +1331,17 @@ function deleteLead(index){
 
 
 /* DELETE ALL */
+
 function clearAllLeads(){
 
-    const leads = getLeads();
+    const leads =
+        getLeads();
 
     if(leads.length === 0){
 
-        alert("There are no leads to delete.");
+        alert(
+            "There are no sales leads."
+        );
 
         return;
 
@@ -1264,16 +1350,22 @@ function clearAllLeads(){
 
     if(
         !confirm(
-            "Are you sure you want to delete ALL sales leads?"
+            "Delete ALL sales leads?"
         )
     ){
+
         return;
+
     }
 
 
-    localStorage.removeItem("shizaz_leads");
+    localStorage.removeItem(
+        "shizaz_leads"
+    );
 
-    localStorage.removeItem("shizaz_demo_request");
+    localStorage.removeItem(
+        "shizaz_demo_request"
+    );
 
     renderLeads();
 
@@ -1281,9 +1373,12 @@ function clearAllLeads(){
 
 
 /* LOGOUT */
+
 function logout(){
 
-    localStorage.removeItem("shizaz_logged_in");
+    localStorage.removeItem(
+        "shizaz_logged_in"
+    );
 
     window.location.href =
         "login.html";
@@ -1291,22 +1386,26 @@ function logout(){
 }
 
 
-/* CLOSE MODAL WHEN CLICKING OUTSIDE */
-document
-    .getElementById("viewModal")
-    .addEventListener(
-        "click",
-        function(event){
+/* CLOSE MODAL OUTSIDE */
 
-            if(event.target === this){
-                closeModal();
-            }
+document
+.getElementById("viewModal")
+.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closeModal();
 
         }
-    );
+
+    }
+);
 
 
-/* INITIAL LOAD */
+/* START */
+
 renderLeads();
 
 </script>
