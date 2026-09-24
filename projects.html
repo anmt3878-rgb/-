@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - CompanyFlow</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 240px;
+      height: 100vh;
+      background: #111827;
+      color: white;
+      padding: 25px 15px;
+      overflow-y: auto;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      padding-left: 10px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #d1d5db;
+      text-decoration: none;
+      padding: 12px 14px;
+      border-radius: 8px;
+      margin-bottom: 5px;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background: #2563eb;
+      color: white;
+    }
+
+    .main {
+      margin-left: 240px;
+      padding: 30px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    .plan-box {
+      background: white;
+      padding: 12px 18px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 25px;
+    }
+
+    .stat {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    }
+
+    .stat-title {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+      margin-bottom: 25px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: Arial, sans-serif;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    button {
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-danger {
+      background: #dc2626;
+      color: white;
+      padding: 8px 12px;
+    }
+
+    .message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .limit-box {
+      background: #eff6ff;
+      color: #1e40af;
+      padding: 14px;
+      border-radius: 8px;
+      margin-bottom: 18px;
+    }
+
+    .search {
+      margin-bottom: 18px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 800px;
+    }
+
+    th,
+    td {
+      padding: 13px;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    th {
+      background: #f9fafb;
+    }
+
+    .status-active {
+      color: #15803d;
+      font-weight: bold;
+    }
+
+    .status-completed {
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    .status-pending {
+      color: #b45309;
+      font-weight: bold;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .main {
+        margin-left: 200px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 18px;
+      }
+
+      .stats,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <aside class="sidebar">
+
+    <div class="logo">
+      CompanyFlow
+    </div>
+
+    <a href="dashboard.html">Dashboard</a>
+    <a href="employees.html">Employees</a>
+    <a href="customers.html">Customers</a>
+    <a href="projects.html" class="active">Projects</a>
+    <a href="tasks.html">Tasks</a>
+    <a href="finance.html">Finance</a>
+    <a href="inventory.html">Inventory</a>
+    <a href="documents.html">Documents</a>
+    <a href="reports.html">Reports</a>
+    <a href="roles.html">Roles & Permissions</a>
+    <a href="notifications.html">Notifications</a>
+    <a href="settings.html">Settings</a>
+    <a href="index.html">Back to Website</a>
+
+  </aside>
+
+
+  <main class="main">
+
+    <div class="topbar">
+
+      <div>
+        <h1>Projects</h1>
+        <p>Manage your company projects.</p>
+      </div>
+
+      <div class="plan-box">
+        Plan:
+        <strong id="currentPlan">Loading...</strong>
+      </div>
+
+    </div>
+
+
+    <div class="stats">
+
+      <div class="stat">
+        <div class="stat-title">Total Projects</div>
+        <div class="stat-number" id="totalProjects">0</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">Active Projects</div>
+        <div class="stat-number" id="activeProjects">0</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">Completed Projects</div>
+        <div class="stat-number" id="completedProjects">0</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">Pending Projects</div>
+        <div class="stat-number" id="pendingProjects">0</div>
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>Add Project</h2>
+
+      <div class="limit-box">
+        Project limit:
+        <strong id="limitText">Loading...</strong>
+      </div>
+
+      <form id="projectForm">
+
+        <div class="form-grid">
+
+          <input
+            type="text"
+            id="name"
+            placeholder="Project Name"
+            required
+          >
+
+          <input
+            type="text"
+            id="client"
+            placeholder="Client Name"
+          >
+
+          <input
+            type="date"
+            id="start_date"
+          >
+
+          <input
+            type="date"
+            id="due_date"
+          >
+
+          <select id="status">
+
+            <option value="Active">
+              Active
+            </option>
+
+            <option value="Pending">
+              Pending
+            </option>
+
+            <option value="Completed">
+              Completed
+            </option>
+
+          </select>
+
+          <input
+            type="number"
+            id="budget"
+            placeholder="Budget"
+            min="0"
+            step="0.01"
+          >
+
+        </div>
+
+        <br>
+
+        <textarea
+          id="description"
+          placeholder="Project Description"
+        ></textarea>
+
+        <br><br>
+
+        <button
+          type="submit"
+          class="btn-primary"
+          id="addButton"
+        >
+          Add Project
+        </button>
+
+      </form>
+
+      <div
+        id="message"
+        class="message"
+      ></div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>Project List</h2>
+
+      <input
+        class="search"
+        type="text"
+        id="searchInput"
+        placeholder="Search projects..."
+      >
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>Project</th>
+              <th>Client</th>
+              <th>Status</th>
+              <th>Start Date</th>
+              <th>Due Date</th>
+              <th>Budget</th>
+              <th>Action</th>
+            </tr>
+
+          </thead>
+
+          <tbody id="projectTableBody"></tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+<script>
+
+  let projects = [];
+
+  let companyId = null;
+
+  let currentPlan = "Free";
+
+
+  const PLAN_LIMITS = {
+
+    "Free": 1,
+
+    "Starter": 20,
+
+    "Business": 100,
+
+    "Professional": 500,
+
+    "Enterprise": Infinity
+
+  };
+
+
+  function showMessage(message, type) {
+
+    const box =
+      document.getElementById("message");
+
+    box.textContent = message;
+
+    box.className =
+      "message " + type;
+
+    box.style.display = "block";
+
+    setTimeout(function() {
+
+      box.style.display = "none";
+
+    }, 4000);
+
+  }
+
+
+  async function getCompanyData() {
+
+    const {
+      data: {
+        user
+      },
+      error: authError
+    } =
+      await supabaseClient.auth.getUser();
+
+
+    if (authError || !user) {
+
+      window.location.href =
+        "signin.html";
+
+      return false;
+
+    }
+
+
+    const {
+      data: profile,
+      error: profileError
+    } =
+      await supabaseClient
+
+        .from("profiles")
+
+        .select("company_id")
+
+        .eq("id", user.id)
+
+        .single();
+
+
+    if (
+      profileError ||
+      !profile
+    ) {
+
+      showMessage(
+        "Could not load company information.",
+        "error"
+      );
+
+      return false;
+
+    }
+
+
+    companyId =
+      profile.company_id;
+
+
+    const {
+      data: company,
+      error: companyError
+    } =
+      await supabaseClient
+
+        .from("companies")
+
+        .select("plan")
+
+        .eq("id", companyId)
+
+        .single();
+
+
+    if (
+      companyError ||
+      !company
+    ) {
+
+      currentPlan = "Free";
+
+    } else {
+
+      currentPlan =
+        company.plan || "Free";
+
+    }
+
+
+    if (
+      !PLAN_LIMITS.hasOwnProperty(
+        currentPlan
+      )
+    ) {
+
+      currentPlan = "Free";
+
+    }
+
+
+    document.getElementById(
+      "currentPlan"
+    ).textContent =
+      currentPlan;
+
+
+    const limit =
+      PLAN_LIMITS[currentPlan];
+
+
+    document.getElementById(
+      "limitText"
+    ).textContent =
+      limit === Infinity
+        ? "Unlimited"
+        : limit + " project" +
+          (limit === 1 ? "" : "s");
+
+
+    return true;
+
+  }
+
+
+  async function loadProjects() {
+
+    const ready =
+      await getCompanyData();
+
+
+    if (!ready) return;
+
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+
+        .from("projects")
+
+        .select("*")
+
+        .eq(
+          "company_id",
+          companyId
+        )
+
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        );
+
+
+    if (error) {
+
+      showMessage(
+        "Could not load projects: " +
+        error.message,
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    projects =
+      data || [];
+
+
+    renderProjects();
+
+    updateStats();
+
+    updateLimitButton();
+
+  }
+
+
+  function updateLimitButton() {
+
+    const limit =
+      PLAN_LIMITS[currentPlan];
+
+
+    const button =
+      document.getElementById(
+        "addButton"
+      );
+
+
+    if (
+      limit !== Infinity &&
+      projects.length >= limit
+    ) {
+
+      button.disabled =
+        true;
+
+      button.style.opacity =
+        "0.5";
+
+      button.style.cursor =
+        "not-allowed";
+
+      button.textContent =
+        "Plan Limit Reached";
+
+    } else {
+
+      button.disabled =
+        false;
+
+      button.style.opacity =
+        "1";
+
+      button.style.cursor =
+        "pointer";
+
+      button.textContent =
+        "Add Project";
+
+    }
+
+  }
+
+
+  document.getElementById(
+    "projectForm"
+  ).addEventListener(
+    "submit",
+    async function(event) {
+
+      event.preventDefault();
+
+
+      const limit =
+        PLAN_LIMITS[currentPlan];
+
+
+      if (
+        limit !== Infinity &&
+        projects.length >= limit
+      ) {
+
+        showMessage(
+          "Your " +
+          currentPlan +
+          " plan allows only " +
+          limit +
+          " project" +
+          (limit === 1 ? "." : "s."),
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      const name =
+        document.getElementById(
+          "name"
+        ).value.trim();
+
+
+      const client =
+        document.getElementById(
+          "client"
+        ).value.trim();
+
+
+      const startDate =
+        document.getElementById(
+          "start_date"
+        ).value;
+
+
+      const dueDate =
+        document.getElementById(
+          "due_date"
+        ).value;
+
+
+      const status =
+        document.getElementById(
+          "status"
+        ).value;
+
+
+      const budget =
+        document.getElementById(
+          "budget"
+        ).value;
+
+
+      const description =
+        document.getElementById(
+          "description"
+        ).value.trim();
+
+
+      if (!name) {
+
+        showMessage(
+          "Project name is required.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      const button =
+        document.getElementById(
+          "addButton"
+        );
+
+
+      button.disabled =
+        true;
+
+      button.textContent =
+        "Adding...";
+
+
+      const insertData = {
+
+        company_id:
+          companyId,
+
+        name:
+          name,
+
+        description:
+          description || null,
+
+        due_date:
+          dueDate || null,
+
+        status:
+          status
+
+      };
+
+
+      if (client) {
+
+        insertData.client =
+          client;
+
+      }
+
+
+      if (startDate) {
+
+        insertData.start_date =
+          startDate;
+
+      }
+
+
+      if (budget) {
+
+        insertData.budget =
+          Number(budget);
+
+      }
+
+
+      const {
+        error
+      } =
+      await supabaseClient
+
+        .from("projects")
+
+        .insert(
+          insertData
+        );
+
+
+      if (error) {
+
+        showMessage(
+          "Could not add project: " +
+          error.message,
+          "error"
+        );
+
+        updateLimitButton();
+
+        return;
+
+      }
+
+
+      showMessage(
+        "Project added successfully.",
+        "success"
+      );
+
+
+      document.getElementById(
+        "projectForm"
+      ).reset();
+
+
+      await loadProjects();
+
+    }
+  );
+
+
+  async function deleteProject(id) {
+
+    const confirmed =
+      confirm(
+        "Are you sure you want to delete this project?"
+      );
+
+
+    if (!confirmed) return;
+
+
+    const {
+      error
+    } =
+      await supabaseClient
+
+        .from("projects")
+
+        .delete()
+
+        .eq(
+          "id",
+          id
+        )
+
+        .eq(
+          "company_id",
+          companyId
+        );
+
+
+    if (error) {
+
+      showMessage(
+        "Could not delete project: " +
+        error.message,
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    showMessage(
+      "Project deleted successfully.",
+      "success"
+    );
+
+
+    await loadProjects();
+
+  }
+
+
+  function renderProjects() {
+
+    const tbody =
+      document.getElementById(
+        "projectTableBody"
+      );
+
+
+    const search =
+      document.getElementById(
+        "searchInput"
+      ).value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+      projects.filter(
+        function(project) {
+
+          const text = (
+
+            (project.name || "") +
+            " " +
+            (project.client || "") +
+            " " +
+            (project.status || "") +
+            " " +
+            (project.description || "")
+
+          ).toLowerCase();
+
+
+          return text.includes(search);
+
+        }
+      );
+
+
+    if (filtered.length === 0) {
+
+      tbody.innerHTML =
+        `
+        <tr>
+          <td colspan="7" style="text-align:center;">
+            No projects found.
+          </td>
+        </tr>
+        `;
+
+      return;
+
+    }
+
+
+    tbody.innerHTML =
+      filtered.map(
+        function(project) {
+
+          const status =
+            project.status ||
+            "Active";
+
+
+          let statusClass =
+            "status-active";
+
+
+          if (
+            String(status)
+              .toLowerCase() ===
+            "completed"
+          ) {
+
+            statusClass =
+              "status-completed";
+
+          }
+
+
+          if (
+            String(status)
+              .toLowerCase() ===
+            "pending"
+          ) {
+
+            statusClass =
+              "status-pending";
+
+          }
+
+
+          let budget = "-";
+
+
+          if (
+            project.budget !== null &&
+            project.budget !== undefined &&
+            project.budget !== ""
+          ) {
+
+            budget =
+              "$" +
+              Number(
+                project.budget
+              ).toLocaleString();
+
+          }
+
+
+          return `
+
+            <tr>
+
+              <td>
+                ${escapeHTML(
+                  project.name ||
+                  ""
+                )}
+              </td>
+
+              <td>
+                ${escapeHTML(
+                  project.client ||
+                  "-"
+                )}
+              </td>
+
+              <td class="${statusClass}">
+                ${escapeHTML(status)}
+              </td>
+
+              <td>
+                ${escapeHTML(
+                  project.start_date ||
+                  "-"
+                )}
+              </td>
+
+              <td>
+                ${escapeHTML(
+                  project.due_date ||
+                  "-"
+                )}
+              </td>
+
+              <td>
+                ${budget}
+              </td>
+
+              <td>
+
+                <button
+                  class="btn-danger"
+                  onclick="deleteProject('${project.id}')"
+                >
+                  Delete
+                </button>
+
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      ).join("");
+
+  }
+
+
+  document.getElementById(
+    "searchInput"
+  ).addEventListener(
+    "input",
+    renderProjects
+  );
+
+
+  function updateStats() {
+
+    const total =
+      projects.length;
+
+
+    const active =
+      projects.filter(
+        function(project) {
+
+          return (
+            String(
+              project.status ||
+              ""
+            ).toLowerCase() ===
+            "active"
+          );
+
+        }
+      ).length;
+
+
+    const completed =
+      projects.filter(
+        function(project) {
+
+          return (
+            String(
+              project.status ||
+              ""
+            ).toLowerCase() ===
+            "completed"
+          );
+
+        }
+      ).length;
+
+
+    const pending =
+      projects.filter(
+        function(project) {
+
+          return (
+            String(
+              project.status ||
+              ""
+            ).toLowerCase() ===
+            "pending"
+          );
+
+        }
+      ).length;
+
+
+    document.getElementById(
+      "totalProjects"
+    ).textContent =
+      total;
+
+
+    document.getElementById(
+      "activeProjects"
+    ).textContent =
+      active;
+
+
+    document.getElementById(
+      "completedProjects"
+    ).textContent =
+      completed;
+
+
+    document.getElementById(
+      "pendingProjects"
+    ).textContent =
+      pending;
+
+  }
+
+
+  function escapeHTML(value) {
+
+    return String(value)
+
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+
+      .replace(
+        /</g,
+        "&lt;"
+      )
+
+      .replace(
+        />/g,
+        "&gt;"
+      )
+
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
+
+
+  loadProjects();
+
+</script>
+
+</body>
+  </html>
